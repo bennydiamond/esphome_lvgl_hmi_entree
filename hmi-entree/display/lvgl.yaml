@@ -1,0 +1,89 @@
+packages:
+  page_home: !include lvgl/page_home.yaml
+  page_settings: !include lvgl/sub_pages/page_settings.yaml
+  page_music: !include lvgl/sub_pages/page_music.yaml
+  notification_area_sensors: !include notification_area_sensors.yaml
+
+  page_light_all_ext: !include 
+    file: lvgl/templates/template.page_light_rgbct.yaml
+    vars:
+      light_friendly_name: "Tout l'extérieur"
+      light_ha_entity: ${light_all_ext_ha_entity_id}
+      lvgl_page_id: page_light_all_ext
+      light_button_grid_button_id: id_lv_but_all_ext_light
+      light_button_grid_label_id: id_lv_lab_all_ext_light
+      light_ha_min_kelvin: ${light_all_ext_min_kelvin}
+      light_ha_max_kelvin: ${light_all_ext_max_kelvin}
+
+  page_light_port: !include
+    file: lvgl/templates/template.page_light_rgbct.yaml
+    vars:
+      light_friendly_name: "Portique"
+      light_ha_entity: ${light_port_ha_entity_id}
+      lvgl_page_id: page_light_port
+      light_button_grid_button_id: id_lv_but_port
+      light_button_grid_label_id: id_lv_lab_port
+      light_ha_min_kelvin: ${light_port_min_kelvin}
+      light_ha_max_kelvin: ${light_port_max_kelvin}
+
+  page_light_extc: !include
+    file: lvgl/templates/template.page_light_rgbct.yaml
+    vars:
+      light_friendly_name: "Corniches Avant"
+      light_ha_entity: ${light_extc_ha_entity_id}
+      lvgl_page_id: page_light_extc
+      light_button_grid_button_id: id_lv_but_extc
+      light_button_grid_label_id: id_lv_lab_extc
+      light_ha_min_kelvin: ${light_extc_min_kelvin}
+      light_ha_max_kelvin: ${light_extc_max_kelvin}
+
+  page_light_lamp: !include
+    file: lvgl/templates/template.page_light_rgbct.yaml
+    vars:
+      light_friendly_name: "Lampadaire Avant"
+      light_ha_entity: ${lampadaire_avant_lights_ha_entity_id}
+      lvgl_page_id: page_light_lamp
+      light_button_grid_button_id: id_lv_but_lamp
+      light_button_grid_label_id: id_lv_lab_lamp
+      light_ha_min_kelvin: ${lampadaire_avant_min_kelvin}
+      light_ha_max_kelvin: ${lampadaire_avant_max_kelvin}
+  
+#  page_light_portique_avant: !include
+#    file: lvgl/templates/template.page_light_rgbct.yaml
+#    vars:
+#      light_friendly_name: "Portique"
+#      light_ha_entity: ${portique_avant_lights_ha_entity_id}
+#      lvgl_page_id: page_light_portique_avant
+#      light_button_grid_button_id: id_lv_but_portique_light
+#      light_button_grid_label_id: id_lv_lab_portique_light
+#      light_ha_min_kelvin: ${portique_avant_min_kelvin}
+#      light_ha_max_kelvin: ${portique_avant_max_kelvin}
+
+#  page_light_sous_sol: !include
+#    file: lvgl/templates/template.page_light_dimmer.yaml
+#    vars:
+#      light_friendly_name: "Tout le Sous-Sol"
+#      light_ha_entity: ${tout_le_sous_sol_lights_ha_entity_id}
+#      lvgl_page_id: page_light_sous_sol
+#      light_button_grid_button_id: id_lv_but_all_ss
+#      light_button_grid_label_id: id_lv_lab_all_ss
+
+font: !include fonts.yaml
+image: !include images.yaml
+color: !include colors.yaml
+
+lvgl:
+#  on_idle:
+#    timeout: ${screen_idle_timeout_seconds}s
+#    then:
+#      - binary_sensor.template.publish:
+#          id: id_bin_bl_state
+#          state: False
+  gradients: !include lvgl/gradients.yaml  
+  disp_bg_image: none
+            
+  top_layer: # Top Screen Status bar. Visible on all pages.
+    widgets:
+      - <<: !include lvgl/top_layer/media_control_side_widget.yaml
+      # Top notification area delimiter line
+      - <<: !include lvgl/top_layer/notification_area.yaml

@@ -1,0 +1,11 @@
+script:
+  - id: id_script_backlight_timeout
+    mode: restart
+    then:
+      - binary_sensor.template.publish:
+          id: id_bin_bl_state
+          state: True
+      - delay: !lambda "return id(id_num_bl_timeout).state * 1000;"
+      - binary_sensor.template.publish:
+          id: id_bin_bl_state
+          state: False

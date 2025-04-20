@@ -1,0 +1,12 @@
+number:
+  - platform: template
+    name: Screen Backlight Timeout
+    optimistic: true
+    id: id_num_bl_timeout
+    unit_of_measurement: "s"
+    initial_value: 240
+    restore_value: true
+    min_value: 10
+    max_value: 300
+    step: 5
+    mode: box

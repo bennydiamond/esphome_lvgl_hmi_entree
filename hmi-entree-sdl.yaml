@@ -1,0 +1,24 @@
+# Based of https://github.com/alaltitov/display/tree/main
+
+# ESP32-S3-Touch-LCD-7
+substitutions: !include hmi-entree/substitutions.yaml
+
+packages:
+  hardware: !include hmi-entree/sdl.yaml
+  button: !include hmi-entree/components/button.yaml
+  globals: !include hmi-entree/components/globals.yaml
+  interval: !include hmi-entree/components/interval.yaml
+  text_sensor: !include hmi-entree/components/text_sensor.yaml
+  sensor: !include hmi-entree/components/sensor.yaml
+  binary_sensor: !include hmi-entree/components/binary_sensor.yaml
+  switch: !include hmi-entree/components/switch.yaml
+  online_image: !include hmi-entree/components/online_image.yaml
+  select: !include hmi-entree/components/select.yaml
+  number: !include hmi-entree/components/number.yaml
+  script: !include hmi-entree/components/script.yaml
+  lvgl: !include hmi-entree/display/lvgl.yaml
+
+external_components:
+  - source: github://pr#8040
+    refresh: 30s
+    components: [http_request]

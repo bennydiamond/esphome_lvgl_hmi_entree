@@ -1,0 +1,50 @@
+esphome:
+  name: sdl-hmi-entree
+  min_version: 2025.02.0
+  on_boot:
+    - script.execute: time_update
+
+host:
+  mac_address: "de:ad:be:ef:fe:ed"
+
+logger:
+  level: DEBUG
+
+api:
+
+http_request:
+
+text_sensor:
+  - platform: template
+    id: sntp_time
+
+display:
+  - platform: sdl
+    #show_test_card: true
+    dimensions:
+      width: 800
+      height: 480
+    auto_clear_enabled: false 
+
+touchscreen:
+  platform: sdl
+
+script: !include display/simulator_script.yaml
+
+button:
+  - platform: restart
+    name: "Device Restart (fake safe mode)"
+    id: id_button_device_restart_safe_mode
+    internal: True
+
+light:
+  - platform: lvgl
+    id: id_light_backlight_brightness
+    widget: fake_led_id
+    name: fake backlight stub
+
+lvgl:
+  widgets:
+    - led:
+        id: fake_led_id
+        hidden: true

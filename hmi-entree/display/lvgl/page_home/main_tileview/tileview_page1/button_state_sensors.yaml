@@ -1,0 +1,53 @@
+binary_sensor:
+  - platform: homeassistant
+    id: id_bin_lock_side
+    internal: True
+    entity_id: binary_sensor.etat_verrou_porte_avant
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.button.update: 
+            id: id_lv_but_lock_side
+            shadow_color: color_green
+        - lvgl.label.update:
+            id: id_lv_lab_lock_side
+            text_color: color_green
+        - lvgl.label.update:
+            id: id_lv_lab_ico_lock_side
+            text_color: color_green
+            text: "${locked}"
+    on_release:
+      then:
+        - lvgl.button.update: 
+            id: id_lv_but_lock_side
+            shadow_color: color_red
+        - lvgl.label.update:
+            id: id_lv_lab_lock_side
+            text_color: color_red
+        - lvgl.label.update:
+            id: id_lv_lab_ico_lock_side
+            text_color: color_red
+            text: "${unlocked}"
+  - platform: homeassistant
+    id: id_bin_curt_salon_rdc
+    internal: True
+    entity_id: binary_sensor.etat_rideaux_salon_rdc_ouvert
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.button.update: 
+            id: id_lv_but_curt_sal
+            shadow_color: color_warmest_white
+        - lvgl.label.update:
+            id: id_lv_lab_curt_sal
+            text_color: color_warmest_white
+            text: "${curtain_opened}"
+    on_release:
+      then:
+        - lvgl.button.update: 
+            id: id_lv_but_curt_sal
+            shadow_color: color_violet
+        - lvgl.label.update:
+            id: id_lv_lab_curt_sal
+            text_color: color_violet
+            text: "${curtain_closed}"

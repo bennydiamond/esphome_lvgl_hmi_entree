@@ -1,0 +1,94 @@
+binary_sensor:
+  # Garage Motion Sensor from HA #  
+  - platform: homeassistant
+    id: id_ha_motion_garage
+    entity_id: binary_sensor.presence_dans_le_garage
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_motion_status
+            text_color: color_red
+    on_release:
+      then:
+      - lvgl.label.update: 
+          id: id_lv_lab_motion_status
+          text_color: color_dark_gray
+
+  # Garage inside door to basement from HA #
+  - platform: homeassistant
+    id: id_ha_door_cf
+    entity_id: binary_sensor.switch_lumiere_chambre_froide_door_sensor
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_cf_door_status
+            text_color: color_green
+    on_release:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_cf_door_status
+            text_color: color_dark_gray
+
+  # Garage inside door to ground floor from HA #
+  - platform: homeassistant
+    id: id_ha_indoor_rdc
+    entity_id: binary_sensor.ademcointerposer_interieur_garage_rdc
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_groundfloor_door_status
+            text_color: color_green
+    on_release:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_groundfloor_door_status
+            text_color: color_dark_gray
+
+sensor:
+  - platform: homeassistant
+    id: gr_temp
+    internal: True
+    entity_id: sensor.yaris_remote_temperature
+    on_value:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_temperature_garage_rdc
+            text:
+              format: "%.1f°C"
+              args: x
+  - platform: homeassistant
+    id: gr_hum
+    internal: True
+    entity_id: sensor.yaris_remote_humidty
+    on_value:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_humidity_garage_rdc
+            text:
+              format: "%.0f%%"
+              args: x
+  - platform: homeassistant
+    id: cf_temp
+    internal: True
+    entity_id: sensor.switch_lumiere_chambre_froide_temperature
+    on_value:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_temperature_cf
+            text:
+              format: "%.1f°C"
+              args: x
+  - platform: homeassistant
+    id: cf_hum
+    internal: True
+    entity_id: sensor.switch_lumiere_chambre_froide_humidity
+    on_value:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_humidity_cf
+            text:
+              format: "%.0f%%"
+              args: x

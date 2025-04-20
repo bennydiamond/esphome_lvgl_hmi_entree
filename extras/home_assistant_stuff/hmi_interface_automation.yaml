@@ -1,0 +1,358 @@
+alias: HMIGarage - all-in-one automation
+description: >-
+  - Interprète les events en provenance du HMI
+
+  - Regénère la liste de station radio (à chaque fois que l'automatisation est
+  déclenchée)
+
+  - Augmente/diminue la luminosité de l'écran selon détection de présence
+
+  - Éxécute le LCD antiburn à tous les jours.
+triggers:
+  - trigger: state
+    entity_id:
+      - event.hmi_garage_media_events
+    id: trigger_id_button_pressed
+  - trigger: state
+    entity_id:
+      - binary_sensor.ademcointerposer_garage
+    id: trigger_id_presence_increase_backlight_brightness
+    to: "on"
+  - trigger: state
+    entity_id:
+      - binary_sensor.ademcointerposer_garage
+    id: trigger_id_presence_decrease_backlight_brightness
+    to: "off"
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - trigger: time
+    at: "04:00:00"
+    id: trigger_id_lcd_antiburn_daily
+    alias: Lancer le LCD Antiburn tous les matin à 4h00
+conditions: []
+actions:
+  - action: script.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: script.generate_station_list
+    alias: Regénérer la liste de stations radio
+  - alias: Si un bouton a été actionné sur le HMI
+    if:
+      - condition: trigger
+        id:
+          - trigger_id_button_pressed
+    then:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_radio
+            sequence:
+              - if:
+                  - condition: state
+                    entity_id: binary_sensor.hmigarage_radio_is_currently_playing
+                    state: "on"
+                then:
+                  - action: input_select.select_next
+                    metadata: {}
+                    data:
+                      cycle: true
+                    target:
+                      entity_id: input_select.mass_radio_station_list
+                alias: >-
+                  Si le lecteur est déjà en train de jouer une radio, passer à
+                  la prochaine station.
+              - action: music_assistant.play_media
+                metadata: {}
+                data:
+                  media_type: radio
+                  enqueue: play
+                  media_id: "{{ states('input_select.mass_radio_station_list') }}"
+                target:
+                  entity_id: media_player.mass_garage
+                alias: Lire la station sélectionnée dans la liste
+            alias: Si Bouton Radio est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_next_track
+            sequence:
+              - if:
+                  - condition: state
+                    entity_id: binary_sensor.hmigarage_radio_is_currently_playing
+                    state: "on"
+                then:
+                  - action: input_select.select_next
+                    metadata: {}
+                    data:
+                      cycle: true
+                    target:
+                      entity_id: input_select.mass_radio_station_list
+                  - action: music_assistant.play_media
+                    metadata: {}
+                    data:
+                      media_type: radio
+                      enqueue: play
+                      media_id: "{{ states('input_select.mass_radio_station_list') }}"
+                    target:
+                      entity_id: media_player.mass_garage
+                    alias: Lire la station sélectionnée dans la liste
+                else:
+                  - action: media_player.media_next_track
+                    metadata: {}
+                    data: {}
+                    target:
+                      entity_id: media_player.mass_garage
+                alias: >-
+                  Si une station de radio est en train de jouer, jouer la
+                  prochaine station dans la liste. Sinon, jouer la prochaine
+                  piste audio.
+            alias: Si Bouton "piste suivante" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_previous_track
+            sequence:
+              - alias: >-
+                  Si une station de radio est en train de jouer, jouer la
+                  précédente station dans la liste. Sinon, jouer la précédente
+                  piste audio.
+                if:
+                  - condition: state
+                    entity_id: binary_sensor.hmigarage_radio_is_currently_playing
+                    state: "on"
+                then:
+                  - action: input_select.select_previous
+                    metadata: {}
+                    data:
+                      cycle: true
+                    target:
+                      entity_id: input_select.mass_radio_station_list
+                  - action: music_assistant.play_media
+                    metadata: {}
+                    data:
+                      media_type: radio
+                      enqueue: play
+                      media_id: "{{ states('input_select.mass_radio_station_list') }}"
+                    target:
+                      entity_id: media_player.mass_garage
+                    alias: Lire la station sélectionnée dans la liste
+                else:
+                  - action: media_player.media_previous_track
+                    metadata: {}
+                    data: {}
+                    target:
+                      entity_id: media_player.mass_garage
+            alias: Si Bouton "piste précédente" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_playlist1
+            sequence: []
+            alias: Si Bouton "playlist1" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_playlist2
+            sequence: []
+            alias: Si Bouton "playlist2" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_playlist3
+            sequence: []
+            alias: Si Bouton "playlist3" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_playlist4
+            sequence: []
+            alias: Si Bouton "playlist4" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_mute
+            sequence:
+              - alias: Basculer l'état sourdine selon l'état actuel du lecteur
+                if:
+                  - alias: Si le lecteur n'est pas présentement en sourdine
+                    condition: state
+                    entity_id: media_player.mass_garage
+                    attribute: is_volume_muted
+                    state: false
+                then:
+                  - action: media_player.volume_mute
+                    metadata: {}
+                    data:
+                      is_volume_muted: true
+                    target:
+                      entity_id: media_player.mass_garage
+                    alias: Mettre en sourdine le lecteur
+                else:
+                  - action: media_player.volume_mute
+                    metadata: {}
+                    data:
+                      is_volume_muted: false
+                    target:
+                      entity_id: media_player.mass_garage
+                    alias: Retirer la sourdine du lecteur
+            alias: Si Bouton Mute est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_play_pause
+            sequence:
+              - action: media_player.media_play_pause
+                metadata: {}
+                data: {}
+                target:
+                  entity_id: media_player.mass_garage
+            alias: Si Bouton "Play/Pause" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_repeat
+            sequence:
+              - choose:
+                  - conditions:
+                      - condition: state
+                        entity_id: media_player.mass_garage
+                        attribute: repeat
+                        state: "off"
+                    sequence:
+                      - action: media_player.repeat_set
+                        metadata: {}
+                        data:
+                          repeat: one
+                        target:
+                          entity_id: media_player.mass_garage
+                        alias: Définir "Répéter une fois"
+                    alias: Si Répéter est "off", activer le mode "Répéter une fois"
+                  - conditions:
+                      - condition: state
+                        entity_id: media_player.mass_garage
+                        attribute: repeat
+                        state: one
+                    sequence:
+                      - alias: Définir "Répéter une fois"
+                        action: media_player.repeat_set
+                        metadata: {}
+                        data:
+                          repeat: all
+                        target:
+                          entity_id: media_player.mass_garage
+                    alias: >-
+                      Si Répéter est "Répéter une fois", activer le mode
+                      "Répéter tout"
+                  - conditions:
+                      - condition: state
+                        entity_id: media_player.mass_garage
+                        attribute: repeat
+                        state: all
+                    sequence:
+                      - alias: Définir "Répéter une fois"
+                        action: media_player.repeat_set
+                        metadata: {}
+                        data:
+                          repeat: "off"
+                        target:
+                          entity_id: media_player.mass_garage
+                    alias: >-
+                      Si Répéter est "Répéter tout", désactiver le mode
+                      "Répéter"
+            alias: Si Bouton "Repeat" est actionné sur le HMI
+          - conditions:
+              - condition: state
+                entity_id: event.hmi_garage_media_events
+                attribute: event_type
+                state: button_shuffle
+            sequence:
+              - alias: Basculer l'état "shuffle" selon l'état actuel du lecteur
+                if:
+                  - condition: state
+                    entity_id: media_player.mass_garage
+                    attribute: shuffle
+                    state: false
+                then:
+                  - action: media_player.shuffle_set
+                    metadata: {}
+                    data:
+                      shuffle: true
+                    target:
+                      entity_id: media_player.mass_garage
+                else:
+                  - action: media_player.shuffle_set
+                    metadata: {}
+                    data:
+                      shuffle: false
+                    target:
+                      entity_id: media_player.mass_garage
+            alias: Si Bouton "Aléatoire" est actionné sur le HMI
+  - alias: >-
+      Augmenter la luminostié de l'écran quand une présence est détectée.
+      Désactiver LCD Antiburn pré-emptivement.
+    if:
+      - condition: trigger
+        id:
+          - trigger_id_presence_increase_backlight_brightness
+    then:
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.hmigarage_lcd_antiburn
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: light.hmigarage_backlight_brightness
+        alias: Luminosité de l'écran à 100%
+  - alias: Réduire la luminostié de l'écran quand aucune présence n'est détectée
+    if:
+      - condition: trigger
+        id:
+          - trigger_id_presence_decrease_backlight_brightness
+    then:
+      - alias: Luminosité de l'écran à 20%
+        action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 20
+        target:
+          entity_id: light.hmigarage_backlight_brightness
+  - alias: Éxécuter le LCD Antiburn pour 10 minutes
+    if:
+      - condition: trigger
+        id:
+          - trigger_id_lcd_antiburn_daily
+    then:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.hmigarage_lcd_antiburn
+      - delay:
+          hours: 0
+          minutes: 10
+          seconds: 0
+          milliseconds: 0
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.hmigarage_lcd_antiburn
+mode: single

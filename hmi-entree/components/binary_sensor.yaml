@@ -1,0 +1,26 @@
+binary_sensor:
+  - platform: template
+    id: id_bin_bl_state
+    name: "Device active"
+    on_press:
+      then:
+        - light.turn_on: 
+            id: id_light_backlight_brightness
+            brightness: 100%
+    on_release:
+      then:
+        - light.turn_on:
+            id: id_light_backlight_brightness
+            brightness: 20%
+        - if:
+            condition:
+              - not:
+                  - lvgl.page.is_showing: page_music
+            then:
+              - lvgl.tileview.select:
+                  id: id_lv_tile_main
+                  tile_id: id_lv_tile_page0
+                  animated: true
+              - lvgl.page.show: page_home
+        - delay: 100ms
+        - lvgl.pause:

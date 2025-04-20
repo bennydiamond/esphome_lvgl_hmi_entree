@@ -1,0 +1,103 @@
+dname: "hmi-entree"
+uname: "HMI Entrée"
+
+settings:           "\U000F0493" # settings
+thermostat:         "\U0000e901" # thermostat
+lights:             "\U000F0335" # lightbulb
+home_lightbulb:     "\U000F1251" # mdi-home-lightbulb
+lightbulb_group:    "\U000F1253" # mdi-lightbulb-group
+motion:             "\U000F0D91" # motion, presence
+heating:            "\U000F0438" # heating
+ha:                 "\U000F07D0" # home assistant
+ventilation:        "\U0000e90d" # ventilation
+wifi_25:            "\U000F091F" # wifi signal from 25% to 1%
+wifi_50:            "\U000F0922" # wifi signal from 50% to 25%
+wifi_75:            "\U000F0925" # wifi signal from 75% to 50%
+wifi_100:           "\U000F0928" # wifi signal from 100% to 75% or disable
+humidity:           "\U0000e912" # humidity
+temperature:        "\U0000e915" # temperature
+wind_speed:         "\U000F059D" # mdi-weather-windy
+illumination:       "\U0000e916" # lux
+empty:              "\U0000e917" # placeholder
+door_open:          "\U000F081C"
+patio_door_open:    "\U000F1820"
+watering_can:       "\U000F1481"
+ceiling_light:      "\U000F0769" # mdi-ceiling-light
+light_recessed:     "\U000F179B" # mdi-light-recessed
+lamp_post:          "\U000F1A60" # mdi-post-lamp
+music_note:         "\U000F075A" # mdi-music
+h_circle_outline:   "\U000F0C02" # mdi-alpha-h-circle-outline
+hvac_cooling:       "\U000F1A71" # mdi-snowflake-thermometer
+hvac_heating:       "\U000F0510" # mdi-thermometer-lines
+volume_high:        "\U000F057E" # mdi-volume-high
+volume_medium:      "\U000F0580" # mdi-volume-medium
+volume_low:         "\U000F057F" # mdi-volume-low
+volume_off:         "\U000F0581" # mdi-volume-off
+pause_icon:         "\U000F03E4" # mdi-pause
+play_icon:          "\U000F040A" # mdi-play
+skip_next_icon:     "\U000F04AD" # mdi-skip-next
+skip_previous_icon: "\U000F04AE" # mdi-skip-previous
+repeat_off_icon:    "\U000F0457" # mdi-repeat-off
+repeat_once_icon:   "\U000F0458" # mdi-repeat-once
+repeat_icon:        "\U000F0456" # mdi-repeat
+shuffle_disabled_icon: "\U000F049E" # mdi-shuffle-disabled
+shuffle_icon:       "\U000F049D" # mdi-shuffle
+waves_arrow_left:   "\U000F1859" # mdi-waves-arrow-left
+waves_arrow_up:     "\U000F185B" # mdi-waves-arrow-up
+home_floor_g:       "\U000F0D85" # mdi-home-floor-g
+exit_run:           "\U000F0A48" # mdi-exit-run
+locked:             "\U000F033E" # mdi-lock
+unlocked:           "\U000F0FC6" # mdi-lock-open-variant
+curtain_closed:     "\U000F1847" # mdi-curtains-closed
+curtain_opened:     "\U000F1846" # mdi-curtains
+air_quality:        "\U000F00B5" # mdi-blur
+
+ha_instance_url: "http://192.168.0.250:8123"
+# token is valid for 10 years (2025-02-15)
+ha_auth_token: !secret ha_long_term_auth_token
+music_cover_jpg_url: 'http://192.168.1.192/music_cover.jpg'
+default_music_cover_jpg_url: 'http://192.168.0.250:8123/local/music_note_cover.jpg?authToken=${ha_auth_token}'
+
+#screen_idle_timeout_seconds: "5"
+entity_update_debounce_ms: "350"
+
+default_min_kelvin: "2000"
+default_max_kelvin: "6535"
+default_mid_kelvin: "4000"
+
+weather_ha_entity_id: "weather.environnement_canada_meteo_previsions"
+
+light_all_ext_ha_entity_id: "exterieur"
+light_all_ext_min_kelvin: "${default_min_kelvin}"
+light_all_ext_mid_kelvin: "4000"
+light_all_ext_max_kelvin: "${default_max_kelvin}"
+
+light_extf_ha_entity_id: "exterieur_avant_maison"
+light_extf_min_kelvin: "${default_min_kelvin}"
+light_extf_mid_kelvin: "4000"
+light_extf_max_kelvin: "${default_max_kelvin}"
+
+light_port_ha_entity_id: "portique_avant"
+light_port_min_kelvin: "${default_min_kelvin}"
+light_port_mid_kelvin: "4000"
+light_port_max_kelvin: "${default_max_kelvin}"
+
+light_extc_ha_entity_id: "exterieur_avant_corniches"
+light_extc_min_kelvin: "${default_min_kelvin}"
+light_extc_mid_kelvin: "4000"
+light_extc_max_kelvin: "${default_max_kelvin}"
+
+lampadaire_avant_lights_ha_entity_id: "bulb_ilot_cusine_2"
+lampadaire_avant_min_kelvin: "${default_min_kelvin}"
+lampadaire_avant_mid_kelvin: "4000"
+lampadaire_avant_max_kelvin: "${default_max_kelvin}"
+
+volume_control_entity_id: "number.homepod_cuisine_volume"
+mute_state_entity_id: "switch.homepod_cuisine_virtual_mute"
+media_player_entity_id: "media_player.homepod_cuisine"
+mass_entity_id: "media_player.mass_cuisine"
+media_from_mass_entity_id: "binary_sensor.homepod_cuisine_audio_from_mass"
+music_playlist1_text: "Playlist1"
+music_playlist2_text: "Ben - Plex Mix"
+music_playlist3_text: "Playlist3"
+music_playlist4_text: "Playlist4"
