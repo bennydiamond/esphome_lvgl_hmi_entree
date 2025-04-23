@@ -15,7 +15,7 @@ binary_sensor:
         - if:
             condition:
               - not:
-                  - lvgl.page.is_showing: page_music
+                  - lvgl.page.is_showing: page_music_cuisine
             then:
               - lvgl.tileview.select:
                   id: id_lv_tile_main

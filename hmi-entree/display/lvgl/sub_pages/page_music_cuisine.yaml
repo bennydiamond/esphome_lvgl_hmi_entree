@@ -28,9 +28,26 @@ binary_sensor:
             id: id_lv_lab_speaker_icon
             text: !lambda  |-
               if(id(id_media_muted).state == true) {return "${volume_off}";}
-              else if(id(id_media_volume).state < 0.25) {return "${volume_low}";}
-              else if (id(id_media_volume).state < 0.65) {return "${volume_medium}";}
+              else if(id(id_media_volume).state < 25) {return "${volume_low}";}
+              else if (id(id_media_volume).state < 65) {return "${volume_medium}";}
               else {return "${volume_high}";}
+  - platform: homeassistant
+    id: id_media_player_shuffle
+    entity_id: ${media_player_shuffle_state_entity_id}
+    internal: true
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update:
+            id: id_label_media_player_shuffle
+            text: ${shuffle_icon}
+            text_color: color_dark_blue
+    on_release:
+      then:
+        - lvgl.label.update:
+            id: id_label_media_player_shuffle
+            text: ${shuffle_disabled_icon}
+            text_color: color_gray
 
 sensor:
   # Media player volume value
@@ -63,6 +80,22 @@ text_sensor:
             - lvgl.label.update:
                 id: id_lv_lab_music_playpause_icon
                 text: ${play_icon}
+      - if:
+          condition:
+            # Checks if "my_text_sensor" has state "Hello World"
+            text_sensor.state:
+              id: id_media_state
+              state: 'idle'
+          then:
+            - lvgl.label.update:
+                id: id_lv_lab_now_playing_track_name
+                text: " "
+            - lvgl.label.update:
+                id: id_lv_lab_now_playing_album_name
+                text: " "
+            - lvgl.label.update:
+                id: id_lv_lab_now_playing_artist_name
+                text: " "
 
   - platform: homeassistant
     id: id_media_now_playing_track
@@ -82,7 +115,7 @@ text_sensor:
             text: " "
 #        - if:
 #            condition:
-#              lvgl.page.is_showing: page_music
+#              lvgl.page.is_showing: page_music_cuisine
 #            then:
 #              - delay: 100ms
 #              - component.update: id_online_img_now_playing
@@ -111,8 +144,7 @@ text_sensor:
             text: !lambda "return x.c_str();"
   - platform: homeassistant
     id: id_media_player_repeat
-    entity_id: ${mass_entity_id}
-    attribute: repeat
+    entity_id: ${media_player_repeat_state_entity_id}
     internal: true
     on_value:
       then:
@@ -142,32 +174,11 @@ text_sensor:
                         id: id_label_media_player_repeat
                         text: ${repeat_off_icon}
                         text_color: color_gray
-  - platform: homeassistant
-    id: id_media_player_shuffle
-    entity_id: ${mass_entity_id}
-    attribute: shuffle
-    internal: true
-    on_value:
-      then:
-        - if:
-            condition:
-              text_sensor.state:
-                id: id_media_player_shuffle
-                state: 'on'
-            then:
-              - lvgl.label.update:
-                  id: id_label_media_player_shuffle
-                  text: ${shuffle_icon}
-                  text_color: color_dark_blue
-            else:
-              - lvgl.label.update:
-                  id: id_label_media_player_shuffle
-                  text: ${shuffle_disabled_icon}
-                  text_color: color_gray
+
 
 lvgl:
   pages:
-    - id: page_music
+    - id: page_music_cuisine
       bg_color: color_black
       # TODO online_image re-enable once PNG decoder error is fixed
 #      on_load:

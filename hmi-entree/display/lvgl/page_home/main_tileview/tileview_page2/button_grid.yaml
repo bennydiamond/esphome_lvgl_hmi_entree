@@ -13,7 +13,7 @@ widgets:
       shadow_spread: 2
       shadow_width: 25
       shadow_opa: 100%
-      grid_cell_column_pos: 1
+      grid_cell_column_pos: 0
       grid_cell_row_pos: 0
       grid_cell_x_align: STRETCH
       grid_cell_y_align: STRETCH
@@ -29,17 +29,17 @@ widgets:
             x: 60
             text_font: lato_24
             text_color: color_mint
-            text: " Musique\n  Atelier"
+            text: "Cuisine"
       on_short_click:
         then:
             - lvgl.page.show: 
-                id: page_music
+                id: page_music_cuisine
                 animation: OUT_RIGHT
                 time: 300ms
       on_long_press:
         then:
             - lvgl.page.show: 
-                id: page_music
+                id: page_music_cuisine
                 animation: OUT_RIGHT
                 time: 300ms
 #  - button:

@@ -94,7 +94,9 @@ lampadaire_avant_max_kelvin: "${default_max_kelvin}"
 
 volume_control_entity_id: "number.homepod_cuisine_volume"
 mute_state_entity_id: "switch.homepod_cuisine_virtual_mute"
-media_player_entity_id: "media_player.homepod_cuisine"
+media_player_entity_id: "media_player.cuisine_proxy" # HA is in charge of supplying correct information on this sensor. Toggles between Homepod and MASS entity.
+media_player_repeat_state_entity_id: "sensor.homepod_cuisine_repeat_proxy"
+media_player_shuffle_state_entity_id: "binary_sensor.homepod_cuisine_shuffle_proxy"
 mass_entity_id: "media_player.mass_cuisine"
 media_from_mass_entity_id: "binary_sensor.homepod_cuisine_audio_from_mass"
 music_playlist1_text: "Playlist1"
