@@ -10,10 +10,12 @@ esp32:
       CONFIG_FREERTOS_HZ: "1000"
       CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240: y
       CONFIG_ESPTOOLPY_FLASHMODE_QIO: y
-      CONFIG_ESPTOOLPY_FLASHFREQ_120M: y
+      CONFIG_ESPTOOLPY_FLASHFREQ_80M: y
+#      CONFIG_ESPTOOLPY_FLASHFREQ_120M: y
       CONFIG_SPIRAM_MODE_OCT: y
       CONFIG_IDF_EXPERIMENTAL_FEATURES: y
-      CONFIG_SPIRAM_SPEED_120M: y
+      CONFIG_SPIRAM_SPEED_80M: y
+#      CONFIG_SPIRAM_SPEED_120M: y
       CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
       CONFIG_SPIRAM_RODATA: y
       CONFIG_ESP32S3_DATA_CACHE_LINE_64B: y
@@ -101,10 +103,10 @@ ota:
 mdns:
   disabled: True
   
-web_server:
-  port: 80
-  version: 3
-  include_internal: True
+#web_server:
+#  port: 80
+#  version: 3
+#  include_internal: True
 
 time:
   - platform: sntp
@@ -124,7 +126,8 @@ time:
 # Video memory
 psram:
   mode: octal
-  speed: 120MHz
+  speed: 80MHz
+#  enable_ecc: True
 
 ch422g:
   - id: io_ex
