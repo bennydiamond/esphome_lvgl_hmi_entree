@@ -1,23 +1,26 @@
+script:
+  - id: id_script_blink_lock_ico
+    mode: restart
+    then:
+      - repeat:
+          count: 30  # 30 x 1000ms = 30 seconds
+          then:
+            - lvgl.widget.hide: id_lv_lab_ico_lock_side
+            - delay: 500ms
+            - lvgl.widget.show: id_lv_lab_ico_lock_side
+            - delay: 500ms
+      - lvgl.widget.show: id_lv_lab_ico_lock_side
+
+
 binary_sensor:
   - platform: homeassistant
     id: id_bin_lock_side
-    internal: True
-    entity_id: binary_sensor.etat_verrou_porte_avant
-    publish_initial_state: True
+    internal: true
+    entity_id: binary_sensor.etat_verrou_porte_de_cote
+    publish_initial_state: true
     on_press:
       then:
-        - lvgl.button.update: 
-            id: id_lv_but_lock_side
-            shadow_color: color_green
-        - lvgl.label.update:
-            id: id_lv_lab_lock_side
-            text_color: color_green
-        - lvgl.label.update:
-            id: id_lv_lab_ico_lock_side
-            text_color: color_green
-            text: "${locked}"
-    on_release:
-      then:
+        - script.stop: id_script_blink_lock_ico
         - lvgl.button.update: 
             id: id_lv_but_lock_side
             shadow_color: color_red
@@ -28,6 +31,22 @@ binary_sensor:
             id: id_lv_lab_ico_lock_side
             text_color: color_red
             text: "${unlocked}"
+            hidden: false
+    on_release:
+      then:
+        - script.stop: id_script_blink_lock_ico
+        - lvgl.button.update: 
+            id: id_lv_but_lock_side
+            shadow_color: color_green
+        - lvgl.label.update:
+            id: id_lv_lab_lock_side
+            text_color: color_green
+        - lvgl.label.update:
+            id: id_lv_lab_ico_lock_side
+            text_color: color_green
+            text: "${locked}"
+            hidden: false
+
   - platform: homeassistant
     id: id_bin_curt_salon_rdc
     internal: True

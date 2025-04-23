@@ -187,15 +187,27 @@ widgets:
             text_color: color_red
             text: "Porte Coté"
       on_short_click:
-        - homeassistant.event:
-            event: esphome.button_pressed
-            data:
-              message: button_lock_side_door_toggle
+        if:
+          condition:
+            not:
+              - script.is_running: id_script_blink_lock_ico
+          then:
+            - script.execute: id_script_blink_lock_ico
+            - homeassistant.event:
+                event: esphome.button_pressed
+                data:
+                  message: button_lock_side_door_toggle
       on_long_press:
-        - homeassistant.event:
-            event: esphome.button_pressed
-            data:
-              message: button_lock_side_door_toggle
+        if:
+          condition:
+            not:
+              - script.is_running: id_script_blink_lock_ico
+          then:
+            - script.execute: id_script_blink_lock_ico
+            - homeassistant.event:
+                event: esphome.button_pressed
+                data:
+                  message: button_lock_side_door_toggle
   - button:
       id: id_lv_but_curt_sal
       bg_color: color_black

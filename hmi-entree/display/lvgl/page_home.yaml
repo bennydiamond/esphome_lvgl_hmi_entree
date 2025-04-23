@@ -21,6 +21,19 @@ packages:
 #            id: id_widget_but_all
 #            hidden: True
 
+script:
+  - id: id_script_blink_quit_icon
+    mode: restart
+    then:
+      - repeat:
+          count: 120  # 120 x 1000ms = 120 seconds
+          then:
+            - lvgl.widget.hide: id_lv_but_quit_home
+            - delay: 500ms
+            - lvgl.widget.show: id_lv_but_quit_home
+            - delay: 500ms
+      - lvgl.widget.show: id_lv_but_quit_home
+
 lvgl:
   pages:
     - id: page_home
@@ -47,7 +60,7 @@ lvgl:
 #                  text_color: color_white
 #                  text: "Quitter"
               - button:
-                  #id: ${id_lvgl_widget_button}
+                  id: id_lv_but_quit_home
                   width: 100
                   height: 100
 #                  y: 10
@@ -60,10 +73,16 @@ lvgl:
                   border_width: 2
                   radius: 50
                   on_press:
-                    - homeassistant.event:
-                          event: esphome.button_pressed
-                          data:
-                            message: button_quit_porte_avant
+                    if:
+                      condition:
+                        not:
+                          - script.is_running: id_script_blink_quit_icon
+                      then:
+                        - script.execute: id_script_blink_quit_icon
+                        - homeassistant.event:
+                              event: esphome.button_pressed
+                              data:
+                                message: button_quit_porte_avant
                   widgets:
                     - label:
                         align: CENTER
