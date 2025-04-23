@@ -166,7 +166,7 @@ widgets:
       shadow_color: color_red
       shadow_spread: 2
       shadow_width: 20
-      shadow_opa: 100%
+      shadow_opa: COVER
       grid_cell_column_pos: 0
       grid_cell_row_pos: 2
       grid_cell_x_align: STRETCH

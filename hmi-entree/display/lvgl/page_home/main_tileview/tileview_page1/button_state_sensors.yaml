@@ -2,14 +2,20 @@ script:
   - id: id_script_blink_lock_ico
     mode: restart
     then:
+      - lvgl.button.update: 
+          id: id_lv_but_lock_side
+          shadow_opa: TRANSP
       - repeat:
-          count: 30  # 30 x 1000ms = 30 seconds
+          count: 45  # 45 x 1000ms = 45 seconds
           then:
             - lvgl.widget.hide: id_lv_lab_ico_lock_side
             - delay: 500ms
             - lvgl.widget.show: id_lv_lab_ico_lock_side
             - delay: 500ms
       - lvgl.widget.show: id_lv_lab_ico_lock_side
+      - lvgl.button.update: 
+          id: id_lv_but_lock_side
+          shadow_opa: COVER
 
 
 binary_sensor:
@@ -32,6 +38,9 @@ binary_sensor:
             text_color: color_red
             text: "${unlocked}"
             hidden: false
+        - lvgl.button.update: 
+            id: id_lv_but_lock_side
+            shadow_opa: COVER
     on_release:
       then:
         - script.stop: id_script_blink_lock_ico
@@ -46,6 +55,9 @@ binary_sensor:
             text_color: color_green
             text: "${locked}"
             hidden: false
+        - lvgl.button.update: 
+            id: id_lv_but_lock_side
+            shadow_opa: COVER
 
   - platform: homeassistant
     id: id_bin_curt_salon_rdc
