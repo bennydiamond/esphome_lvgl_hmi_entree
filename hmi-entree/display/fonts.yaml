@@ -166,6 +166,7 @@
     "\U000F0FC6", # mdi-lock-open-variant
     "\U000F1847", # mdi-curtains-closed
     "\U000F1846", # mdi-curtains
+    "\U000F071F", # mdi-speaker-wireless
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"

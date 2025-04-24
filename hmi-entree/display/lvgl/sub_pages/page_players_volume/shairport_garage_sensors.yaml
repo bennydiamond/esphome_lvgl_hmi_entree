@@ -1,0 +1,45 @@
+binary_sensor:
+  - platform: homeassistant
+    id: id_bin_garage_muted
+    internal: True
+    entity_id: ${garage_mute_state_entity_id}
+    publish_initial_state: True
+    on_state: 
+      then:
+        - lvgl.label.update:
+            id: id_garage_speaker_icon
+            text: !lambda  |-
+              if(x == true) {return "${volume_off}";}
+              else if(x < 25) {return "${volume_low}";}
+              else if (x < 65) {return "${volume_medium}";}
+              else {return "${volume_high}";}
+
+sensor:
+  - platform: homeassistant
+    id: id_sens_garage_volume
+    entity_id: ${garage_volume_control_entity_id}
+    internal: true
+    on_value:
+      - lvgl.slider.update:
+          id: id_lv_slid_garage_vol
+          value: !lambda "return x;"
+          
+text_sensor:
+  - platform: homeassistant
+    id: id_garage_media_state
+    entity_id: ${garage_media_player_entity_id}
+    internal: true
+    on_value:
+      - if:
+          condition:
+            text_sensor.state:
+              id: id_garage_media_state
+              state: 'playing'
+          then:
+            - lvgl.label.update:
+                id: id_garage_play_pause_icon
+                text: ${pause_icon}
+          else:
+            - lvgl.label.update:
+                id: id_garage_play_pause_icon
+                text: ${play_icon}

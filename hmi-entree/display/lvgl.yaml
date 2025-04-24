@@ -2,6 +2,7 @@ packages:
   page_home: !include lvgl/page_home.yaml
   page_settings: !include lvgl/sub_pages/page_settings.yaml
   page_music_cuisine: !include lvgl/sub_pages/page_music_cuisine.yaml
+  page_players_volume: !include lvgl/sub_pages/page_players_volume.yaml
   notification_area_sensors: !include notification_area_sensors.yaml
 
   page_light_all_ext: !include 

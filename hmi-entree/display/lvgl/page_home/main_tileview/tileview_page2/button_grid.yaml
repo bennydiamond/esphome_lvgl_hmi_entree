@@ -42,41 +42,43 @@ widgets:
                 id: page_music_cuisine
                 animation: OUT_RIGHT
                 time: 300ms
-#  - button:
-#      id: id_lv_but_attic_light
-#      bg_color: color_black
-#      shadow_color: color_gray
-#      shadow_spread: 2
-#      shadow_width: 20
-#      shadow_opa: 100%
-#      grid_cell_column_pos: 1
-#      grid_cell_row_pos: 0
-#      grid_cell_x_align: STRETCH
-#      grid_cell_y_align: STRETCH
-#      widgets:
-#        - label:
-#            id: id_lv_lab_attic_light
-#            align: LEFT_MID
-#            x: 0
-#            text_font: mdi_icons_48
-#            text_color: color_gray
-#            text: "${home_floor_g}"
-#        - label:
-#            align: LEFT_MID
-#            x: 60
-#            text_font: lato_24
-#            text_color: color_white
-#            text: "Grenier"
-#      on_short_click:
-#        - homeassistant.action:
-#            action: light.toggle
-#            data:
-#              entity_id: light.${grenier_light_ha_entity_id}
-#      on_long_press:
-#        - homeassistant.action:
-#            action: light.toggle
-#            data:
-#              entity_id: light.${grenier_light_ha_entity_id}
+  - button:
+      id: id_lv_but_players_volums
+      bg_color: color_black
+      shadow_color: color_white
+      shadow_spread: 2
+      shadow_width: 20
+      shadow_opa: 100%
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 2
+      grid_cell_x_align: STRETCH
+      grid_cell_y_align: STRETCH
+      widgets:
+        - label:
+            id: id_lv_lab_vol_but_ico
+            align: LEFT_MID
+            x: 0
+            text_font: mdi_icons_48
+            text_color: color_white
+            text: "${speaker_wireless}"
+        - label:
+            align: LEFT_MID
+            x: 60
+            text_font: lato_24
+            text_color: color_white
+            text: "Volumes"
+      on_short_click:
+        then:
+            - lvgl.page.show: 
+                id: page_players_volume
+                animation: OUT_RIGHT
+                time: 300ms
+      on_long_press:
+        then:
+            - lvgl.page.show: 
+                id: page_players_volume
+                animation: OUT_RIGHT
+                time: 300ms
 
 #  - button:
 #      id: id_lv_but_extc

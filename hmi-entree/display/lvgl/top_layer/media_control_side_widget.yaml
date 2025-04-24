@@ -58,15 +58,11 @@ obj: # Speaker Volume control
           min_value: 0
           max_value: 100
           # main (background) styles
-          bg_opa: cover
           radius: 6
-          indicator:
-            bg_opa: cover 
           knob:
             radius: 15
             width: 10
             height: 12%
-            bg_color: color_blue
           on_value:
             - lvgl.label.update:
                 id: id_lv_lab_speaker_icon

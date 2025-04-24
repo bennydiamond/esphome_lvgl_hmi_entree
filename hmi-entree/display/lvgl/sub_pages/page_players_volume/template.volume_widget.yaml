@@ -1,0 +1,83 @@
+- obj:
+    width: 660
+    height: 80
+    align: LEFT_MID
+    bg_opa: TRANSP
+    shadow_opa: TRANSP
+    border_opa: TRANSP
+    pad_left: 0
+    scrollable: False
+    layout:
+      type: GRID
+      grid_columns: [FR(20), FR(15), FR(2), FR(56), FR(2), FR(10)]
+      grid_rows: [100%]
+    widgets:
+      - label:
+          grid_cell_column_pos: 0
+          grid_cell_row_pos: 0
+          grid_cell_x_align: CENTER
+          grid_cell_y_align: CENTER
+          text_font: lato_24
+          text_color: color_white
+          text_align: CENTER
+          text: ${f_name}
+      - button:
+          grid_cell_column_pos: 1
+          grid_cell_row_pos: 0
+          grid_cell_x_align: CENTER
+          grid_cell_y_align: CENTER
+          border_opa: TRANSP
+          bg_opa: TRANSP
+          shadow_opa: TRANSP
+          widgets:
+            - label:
+                id: ${id_speaker_icon}
+                text_font: mdi_icons_48
+                text_color: color_white
+                text_align: CENTER
+                text: ${volume_off}
+          on_press:
+            - homeassistant.event:
+                event: esphome.button_pressed
+                data:
+                  message: ${mute_but_event_name}
+      - slider:
+          id: ${id_slider}
+          grid_cell_column_pos: 3
+          grid_cell_row_pos: 0
+          grid_cell_x_align: STRETCH
+          grid_cell_y_align: CENTER
+          on_value:
+            - lvgl.label.update:
+                id: ${id_speaker_icon}
+                text: !lambda  |-
+                  if(id(${id_muted}).state == true) {return "${volume_off}";}
+                  else if(x < 25) {return "${volume_low}";}
+                  else if (x < 65) {return "${volume_medium}";}
+                  else {return "${volume_high}";}
+          on_release:
+            - homeassistant.action:
+                action: number.set_value
+                data:
+                  entity_id: ${volume_control_ent_id}
+                  value: !lambda "return x;"
+      - button:
+          grid_cell_column_pos: 5
+          grid_cell_row_pos: 0
+          grid_cell_x_align: CENTER
+          grid_cell_y_align: CENTER
+          border_opa: TRANSP
+          bg_opa: TRANSP
+          shadow_opa: TRANSP
+          widgets:
+            - label:
+                id: ${id_play_pause_icon}
+                text_font: mdi_icons_48
+                text_color: color_white
+                text_align: CENTER
+                text: ${play_icon}
+          on_press:
+            - homeassistant.event:
+                event: esphome.button_pressed
+                data:
+                  message: ${play_pause_but_event_name}
