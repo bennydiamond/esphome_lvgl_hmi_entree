@@ -18,6 +18,7 @@
         ù,
         û,
         ç,
+        ô,
         É,
         È,
         Ê,
@@ -25,6 +26,7 @@
         ñ,
         ³,
         †,
+        Ô,
         µ
       ]
 
@@ -48,10 +50,12 @@
         ù,
         û,
         ç,
+        ô,
         É,
         È,
         Ê,
         Ç,
+        Ô,
         ñ
       ]
 
@@ -167,6 +171,8 @@
     "\U000F1847", # mdi-curtains-closed
     "\U000F1846", # mdi-curtains
     "\U000F071F", # mdi-speaker-wireless
+    "\U000F06D9", # mdi-garage
+    "\U000F06DA", # mdi-garage-open
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"

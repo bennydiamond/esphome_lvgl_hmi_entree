@@ -42,6 +42,38 @@ widgets:
                 id: page_music_cuisine
                 animation: OUT_RIGHT
                 time: 300ms
+
+  - button:
+      id: id_lv_but_curt_sal
+      bg_color: color_black
+      shadow_color: color_warmest_white
+      shadow_spread: 2
+      shadow_width: 20
+      shadow_opa: 100%
+      grid_cell_column_pos: 1
+      grid_cell_row_pos: 0
+      grid_cell_x_align: STRETCH
+      grid_cell_y_align: STRETCH
+      widgets:
+        - label:
+            id: id_lv_lab_curt_sal
+            align: LEFT_MID
+            x: 0
+            text_font: mdi_icons_48
+            text_color: color_warmest_white
+            text: "${curtain_opened}"
+        - label:
+            align: LEFT_MID
+            x: 60
+            text_font: lato_24
+            text_color: color_white
+            text: "Salon"
+      on_short_click:
+        - homeassistant.event:
+            event: esphome.button_pressed
+            data:
+              message: button_curtain_salon_rdc
+
   - button:
       id: id_lv_but_players_volums
       bg_color: color_black

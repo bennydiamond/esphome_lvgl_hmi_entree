@@ -99,8 +99,7 @@ text_sensor:
 
   - platform: homeassistant
     id: id_media_now_playing_track
-    entity_id: ${media_player_entity_id}
-    attribute: media_title
+    entity_id: ${media_player_title_entity_id}
     internal: true
     on_value:
       then:
@@ -122,8 +121,7 @@ text_sensor:
 
   - platform: homeassistant
     id: id_media_now_playing_album
-    entity_id: ${media_player_entity_id}
-    attribute: media_album_name
+    entity_id: ${media_player_album_entity_id}
     internal: true
     on_value:
       then:
@@ -133,8 +131,7 @@ text_sensor:
             text: !lambda "return x.c_str();"
   - platform: homeassistant
     id: id_media_now_playing_artist
-    entity_id: ${media_player_entity_id}
-    attribute: media_artist
+    entity_id: ${media_player_artist_entity_id}
     internal: true
     on_value:
       then:

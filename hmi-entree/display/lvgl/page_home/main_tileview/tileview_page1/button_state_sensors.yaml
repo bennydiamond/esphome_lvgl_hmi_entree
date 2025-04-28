@@ -17,6 +17,24 @@ script:
           id: id_lv_but_lock_side
           shadow_opa: COVER
 
+  - id: id_script_blink_garage_ico
+    mode: restart
+    then:
+      - lvgl.button.update: 
+          id: id_lv_but_garage_door
+          shadow_opa: TRANSP
+      - repeat:
+          count: 20  # 20 x 1000ms = 20 seconds
+          then:
+            - lvgl.widget.hide: id_lv_lab_ico_garage_door
+            - delay: 500ms
+            - lvgl.widget.show: id_lv_lab_ico_garage_door
+            - delay: 500ms
+      - lvgl.widget.show: id_lv_lab_ico_garage_door
+      - lvgl.button.update: 
+          id: id_lv_but_garage_door
+          shadow_opa: COVER
+
 
 binary_sensor:
   - platform: homeassistant
@@ -60,25 +78,41 @@ binary_sensor:
             shadow_opa: COVER
 
   - platform: homeassistant
-    id: id_bin_curt_salon_rdc
-    internal: True
-    entity_id: binary_sensor.etat_rideaux_salon_rdc_ouvert
-    publish_initial_state: True
+    id: id_bin_garage_door
+    internal: true
+    entity_id: binary_sensor.garage_door_opener_tat_de_la_porte
+    publish_initial_state: true
     on_press:
       then:
         - lvgl.button.update: 
-            id: id_lv_but_curt_sal
-            shadow_color: color_warmest_white
+            id: id_lv_but_garage_door
+            shadow_color: color_red
         - lvgl.label.update:
-            id: id_lv_lab_curt_sal
-            text_color: color_warmest_white
-            text: "${curtain_opened}"
+            id: id_lv_lab_garage_door
+            text_color: color_red
+        - lvgl.label.update:
+            id: id_lv_lab_ico_garage_door
+            text_color: color_red
+            text: "${garage_door_open}"
+            hidden: false
+        - lvgl.button.update: 
+            id: id_lv_but_garage_door
+            shadow_opa: COVER
     on_release:
       then:
+        - script.stop: id_script_blink_garage_ico
         - lvgl.button.update: 
-            id: id_lv_but_curt_sal
-            shadow_color: color_violet
+            id: id_lv_but_garage_door
+            shadow_color: color_green
         - lvgl.label.update:
-            id: id_lv_lab_curt_sal
-            text_color: color_violet
-            text: "${curtain_closed}"
+            id: id_lv_lab_garage_door
+            text_color: color_green
+        - lvgl.label.update:
+            id: id_lv_lab_ico_garage_door
+            text_color: color_green
+            text: "${garage_door_closed}"
+            hidden: false
+        - lvgl.button.update: 
+            id: id_lv_but_garage_door
+            shadow_opa: COVER
+

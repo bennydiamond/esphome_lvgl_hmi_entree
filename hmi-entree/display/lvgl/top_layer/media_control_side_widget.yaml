@@ -57,7 +57,6 @@ obj: # Speaker Volume control
           height: 260
           min_value: 0
           max_value: 100
-          # main (background) styles
           radius: 6
           knob:
             radius: 15

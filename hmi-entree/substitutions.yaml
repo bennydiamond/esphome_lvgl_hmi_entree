@@ -52,6 +52,8 @@ curtain_closed:     "\U000F1847" # mdi-curtains-closed
 curtain_opened:     "\U000F1846" # mdi-curtains
 air_quality:        "\U000F00B5" # mdi-blur
 speaker_wireless:   "\U000F071F" # mdi-speaker-wireless
+garage_door_closed: "\U000F06D9" # mdi-garage
+garage_door_open:   "\U000F06DA" # mdi-garage-open
 
 ha_instance_url: "http://192.168.0.250:8123"
 # token is valid for 10 years (2025-02-15)
@@ -96,9 +98,11 @@ lampadaire_avant_max_kelvin: "${default_max_kelvin}"
 volume_control_entity_id: "number.homepod_cuisine_volume"
 mute_state_entity_id: "switch.homepod_cuisine_virtual_mute"
 media_player_entity_id: "media_player.cuisine_proxy" # HA is in charge of supplying correct information on this sensor. Toggles between Homepod and MASS entity.
+media_player_title_entity_id: "sensor.homepod_cuisine_media_title_sanitized"
+media_player_album_entity_id: "sensor.homepod_cuisine_media_album_sanitized"
+media_player_artist_entity_id: "sensor.homepod_cuisine_media_artist_sanitized"
 media_player_repeat_state_entity_id: "sensor.homepod_cuisine_repeat_proxy"
 media_player_shuffle_state_entity_id: "binary_sensor.homepod_cuisine_shuffle_proxy"
-mass_entity_id: "media_player.mass_cuisine"
 media_from_mass_entity_id: "binary_sensor.homepod_cuisine_audio_from_mass"
 music_playlist1_text: "Playlist1"
 music_playlist2_text: "Ben - Plex Mix"

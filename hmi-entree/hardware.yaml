@@ -22,8 +22,8 @@ esp32:
       #CONFIG_COMPILER_OPTIMIZATION_SIZE: y
       CONFIG_COMPILER_OPTIMIZATION_PERF: y
       #CONFIG_COMPILER_OPTIMIZATION_DEBUG: y
-    advanced:
-      enable_idf_experimental_features: True
+#    advanced:
+#      enable_idf_experimental_features: True
 
 esphome:
   name: ${dname}
@@ -49,9 +49,9 @@ logger:
   logs: 
     safe_mode: INFO
     debug: INFO
-    main: INFO
+    main: WARN
     esp-idf: WARN
-    esp32.preferences: INFO
+    esp32.preferences: WARN
     wifi: WARN
     api: WARN
     sntp: WARN
@@ -70,6 +70,7 @@ logger:
     homeassistant.binary_sensor: WARN
     homeassistant.text_sensor: WARN
     template.switch: WARN
+    script: WARN
 
 api:
 
@@ -91,11 +92,11 @@ wifi:
     gateway: 192.168.0.3
     subnet: 255.255.254.0
   # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "HMI Entree Fallback hotspot"
-    password: !secret wifi_password
+#  ap:
+#    ssid: "HMI Entree Fallback hotspot"
+#    password: !secret wifi_password
 
-captive_portal:
+#captive_portal:
 
 ota:
   platform: esphome
@@ -127,6 +128,7 @@ time:
 psram:
   mode: octal
   speed: 80MHz
+#  speed: 120MHz
 #  enable_ecc: True
 
 ch422g:

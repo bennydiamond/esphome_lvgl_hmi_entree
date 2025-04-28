@@ -186,17 +186,17 @@ widgets:
             text_font: lato_24
             text_color: color_red
             text: "Porte Coté"
-      on_short_click:
-        if:
-          condition:
-            not:
-              - script.is_running: id_script_blink_lock_ico
-          then:
-            - script.execute: id_script_blink_lock_ico
-            - homeassistant.event:
-                event: esphome.button_pressed
-                data:
-                  message: button_lock_side_door_toggle
+#      on_short_click:
+#        if:
+#          condition:
+#            not:
+#              - script.is_running: id_script_blink_lock_ico
+#          then:
+#            - script.execute: id_script_blink_lock_ico
+#            - homeassistant.event:
+#                event: esphome.button_pressed
+#                data:
+#                  message: button_lock_side_door_toggle
       on_long_press:
         if:
           condition:
@@ -209,38 +209,50 @@ widgets:
                 data:
                   message: button_lock_side_door_toggle
   - button:
-      id: id_lv_but_curt_sal
+      id: id_lv_but_garage_door
       bg_color: color_black
-      shadow_color: color_warmest_white
+      shadow_color: color_red
       shadow_spread: 2
       shadow_width: 20
-      shadow_opa: 100%
+      shadow_opa: COVER
       grid_cell_column_pos: 1
       grid_cell_row_pos: 2
       grid_cell_x_align: STRETCH
       grid_cell_y_align: STRETCH
       widgets:
         - label:
-            id: id_lv_lab_curt_sal
+            id: id_lv_lab_ico_garage_door
             align: LEFT_MID
             x: 0
             text_font: mdi_icons_48
-            text_color: color_warmest_white
-            text: "${curtain_opened}"
+            text_color: color_red
+            text: "${garage_door_open}"
         - label:
+            id: id_lv_lab_garage_door
             align: LEFT_MID
             x: 60
             text_font: lato_24
-            text_color: color_white
-            text: "Salon"
-      on_short_click:
-        - homeassistant.event:
-            event: esphome.button_pressed
-            data:
-              message: button_curtain_salon_rdc
-#      on_long_press:
-#        then:
-#            - lvgl.page.show: 
-#                id: page_light_exterieur_avant_maison
-#                animation: OUT_RIGHT
-#                time: 300ms
+            text_color: color_red
+            text: "Garage"
+#      on_short_click:
+#        if:
+#          condition:
+#            not:
+#              - script.is_running: id_script_blink_lock_ico
+#          then:
+#            - script.execute: id_script_blink_lock_ico
+#            - homeassistant.event:
+#                event: esphome.button_pressed
+#                data:
+#                  message: button_garage_door_toggle
+      on_long_press:
+        if:
+          condition:
+            not:
+              - script.is_running: id_script_blink_garage_ico
+          then:
+            - script.execute: id_script_blink_garage_ico
+            - homeassistant.event:
+                event: esphome.button_pressed
+                data:
+                  message: button_garage_door_toggle

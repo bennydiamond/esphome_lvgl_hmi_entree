@@ -1,6 +1,7 @@
 packages:
   page1_widgets_sensors: !include main_tileview/tileview_page1/widgets_sensors.yaml
-  page2_lock_sensors: !include main_tileview/tileview_page1/button_state_sensors.yaml
+  page1_buttons_sensors: !include main_tileview/tileview_page1/button_state_sensors.yaml
+  page2_buttons_sensors: !include main_tileview/tileview_page2/button_state_sensors.yaml
   page2_widgets_sensors: !include main_tileview/tileview_page2/climate_widgets_sensors.yaml
 
 lvgl:
