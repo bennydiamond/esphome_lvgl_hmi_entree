@@ -38,6 +38,11 @@ esphome:
     # No second OTA partition. Must be flashed through serial (hint: ser2net)
 #    board_build.partitions: "../../../hmi-entree/custom_partition_no_ota.csv"
   on_boot:
+    - priority: 500 # a bit after sensor init
+      then:
+        - number.set:
+            id: id_num_awake_backlight_brightness
+            value: 100
     - priority: -100 # everything should be initialized
       then:
         - script.execute: id_script_backlight_timeout

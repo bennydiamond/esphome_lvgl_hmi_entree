@@ -3,10 +3,33 @@ number:
     name: Screen Backlight Timeout
     optimistic: true
     id: id_num_bl_timeout
-    unit_of_measurement: "s"
     initial_value: 240
     restore_value: true
     min_value: 10
     max_value: 300
     step: 5
     mode: box
+    unit_of_measurement: "s"
+    icon: mdi:timer-outline
+    entity_category: config
+
+  - platform: template
+    id: id_num_awake_backlight_brightness
+    name: "Awake Screen Backlight Brightness Level"
+    min_value: 21
+    max_value: 100
+    step: 1
+    optimistic: true
+    unit_of_measurement: "%"
+    icon: mdi:brightness-6
+    entity_category: config
+    on_value:
+      then:
+        - if:
+            condition:
+              - binary_sensor.is_on: id_bin_bl_state
+            then:
+              - light.turn_on: 
+                  id: id_light_backlight_brightness
+                  brightness: !lambda return id(id_num_awake_backlight_brightness).state / 100.0;
+                  transition_length: 300ms
