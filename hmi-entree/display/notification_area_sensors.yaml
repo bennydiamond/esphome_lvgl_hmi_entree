@@ -111,6 +111,22 @@ binary_sensor:
             id: id_lv_lab_defi_hilo
             hidden: true
 
+  # Water Softener Salt Level Critical from HA #
+  - platform: homeassistant
+    id: id_ha_salt_lvl_crit
+    entity_id: binary_sensor.esphome_web_9cd79a_sel_bas
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_salt_lvl
+            hidden: false
+    on_release:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_salt_lvl
+            hidden: true
+
 interval:
   - interval: 800ms
     startup_delay: 0s

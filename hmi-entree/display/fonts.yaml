@@ -130,6 +130,7 @@
     "\U000F185B", # mdi-waves-arrow-up
     "\U000F0D85", # mdi-home-floor-g
     "\U000F00B5", # mdi-blur
+    "\U000F110E", # mdi-shaker
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"

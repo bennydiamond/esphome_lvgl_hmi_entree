@@ -133,3 +133,15 @@ obj:
                 text_color: color_green
                 text_font: mdi_icons_32
                 hidden: true
+            # Water Softener Salt Level critical
+            - label:
+                id: id_lv_lab_salt_lvl
+                #width: 40
+                #height: 40
+                #align: CENTER #TOP_LEFT
+                #x: 95
+                #y: 5
+                text: "${salt_shaker}"
+                text_color: color_yellow
+                text_font: mdi_icons_32
+                hidden: true
