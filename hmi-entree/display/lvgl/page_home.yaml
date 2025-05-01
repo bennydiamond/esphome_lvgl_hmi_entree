@@ -25,6 +25,13 @@ script:
   - id: id_script_blink_quit_icon
     mode: restart
     then:
+      - script.stop: id_script_backlight_timeout
+      - lvgl.button.update:
+          id: id_lv_but_quit_home
+          shadow_color: color_yellow
+      - lvgl.label.update:
+          id: id_lv_lab_quit_home
+          text_color: color_yellow
       - repeat:
           count: 120  # 120 x 1000ms = 120 seconds
           then:
@@ -32,7 +39,16 @@ script:
             - delay: 500ms
             - lvgl.widget.show: id_lv_but_quit_home
             - delay: 500ms
+      - lvgl.button.update:
+          id: id_lv_but_quit_home
+          shadow_color: color_green
+      - lvgl.label.update:
+          id: id_lv_lab_quit_home
+          text_color: color_green
       - lvgl.widget.show: id_lv_but_quit_home
+      - binary_sensor.template.publish:
+          id: id_bin_bl_state
+          state: False
 
 lvgl:
   pages:
@@ -78,13 +94,14 @@ lvgl:
                         not:
                           - script.is_running: id_script_blink_quit_icon
                       then:
-                        - script.execute: id_script_blink_quit_icon
                         - homeassistant.event:
                               event: esphome.button_pressed
                               data:
                                 message: button_quit_porte_avant
+                        - script.execute: id_script_blink_quit_icon
                   widgets:
                     - label:
+                        id: id_lv_lab_quit_home
                         align: CENTER
                         text_font: mdi_icons_72
                         text_color: color_green
