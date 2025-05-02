@@ -43,6 +43,9 @@ esphome:
         - number.set:
             id: id_num_awake_backlight_brightness
             value: 100
+        - number.set:
+            id: id_num_idle_backlight_brightness
+            value: 20
     - priority: -100 # everything should be initialized
       then:
         - script.execute: id_script_backlight_timeout
@@ -78,6 +81,7 @@ logger:
     script: WARN
 
 api:
+  reboot_timeout: 60s
 
 http_request:
   verify_ssl: false
