@@ -28,6 +28,8 @@ text_sensor:
   - platform: homeassistant
     id: id_garage_media_state
     entity_id: ${garage_media_player_entity_id}
+    filters:
+      - to_lower:
     internal: true
     on_value:
       - if:

@@ -64,11 +64,12 @@ text_sensor:
   - platform: homeassistant
     id: id_media_state
     entity_id: ${media_player_entity_id}
+    filters:
+      - to_lower:
     internal: true
     on_value:
       - if:
           condition:
-            # Checks if "my_text_sensor" has state "Hello World"
             text_sensor.state:
               id: id_media_state
               state: 'playing'
@@ -105,7 +106,12 @@ text_sensor:
       then:
         - lvgl.label.update:
             id: id_lv_lab_now_playing_track_name
-            text: !lambda "return x.c_str();"
+            text: !lambda |-
+              std::string str = x;
+              if (str.length() > 200) {
+                str = str.substr(0, 200);
+              }
+              return str.c_str();
         - lvgl.label.update:
             id: id_lv_lab_now_playing_album_name
             text: " "
@@ -128,7 +134,12 @@ text_sensor:
         - delay: 80ms # Delay to let field get pre-wiped when receiving track name
         - lvgl.label.update:
             id: id_lv_lab_now_playing_album_name
-            text: !lambda "return x.c_str();"
+            text: !lambda |-
+              std::string str = x;
+              if (str.length() > 200) {
+                str = str.substr(0, 200);
+              }
+              return str.c_str();
   - platform: homeassistant
     id: id_media_now_playing_artist
     entity_id: ${media_player_artist_entity_id}
@@ -138,11 +149,18 @@ text_sensor:
         - delay: 80ms # Delay to let field get pre-wiped when receiving track name
         - lvgl.label.update:
             id: id_lv_lab_now_playing_artist_name
-            text: !lambda "return x.c_str();"
+            text: !lambda |-
+              std::string str = x;
+              if (str.length() > 200) {
+                str = str.substr(0, 200);
+              }
+              return str.c_str();
   - platform: homeassistant
     id: id_media_player_repeat
     entity_id: ${media_player_repeat_state_entity_id}
     internal: true
+    filters:
+      - to_lower:
     on_value:
       then:
         - if:

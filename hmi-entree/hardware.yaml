@@ -163,22 +163,36 @@ text_sensor:
       name: "WiFi SSID"
       id: id_wifi_ssid
       entity_category: diagnostic
+      filters:
+        - lambda: |-
+            std::string str = x;
+            if (str.length() > 32) {
+              return str.substr(0, 32);
+            }
+            return str;
       on_value:
         then:
           - lvgl.label.update:
               id: id_lv_lab_debug_network_info_ssid
-              text: !lambda |-
-                return ("SSID: " + x).c_str();
+              text: !lambda 'return ("SSID: " + x).c_str();'
+
     ip_address:
       name: "IP Address"
       id: id_ip_address
       entity_category: diagnostic
+      filters:
+        - lambda: |-
+            std::string str = x;
+            if (str.length() > 15) {
+              return str.substr(0, 15);
+            }
+            return str;
       on_value:
         then:
           - lvgl.label.update:
               id: id_lv_lab_debug_network_info_ip
-              text: !lambda |-
-                return ("IP Address: " + x).c_str();
+              text: !lambda 'return ("IP Address: " + x).c_str();'
+
     mac_address:
       name: "MAC Address"
       id: id_mac_address

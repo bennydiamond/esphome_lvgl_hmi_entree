@@ -28,6 +28,8 @@ text_sensor:
   - platform: homeassistant
     id: id_atelier_media_state
     entity_id: ${atelier_media_player_entity_id}
+    filters:
+      - to_lower:
     internal: true
     on_value:
       - if:

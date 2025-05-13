@@ -99,6 +99,8 @@ text_sensor:
     internal: true
     entity_id: climate.thermostat
     attribute: hvac_action
+    filters:
+      - to_lower:
     on_value:
       then:
         - if:
@@ -133,6 +135,8 @@ text_sensor:
     id: id_txt_riv_lvl
     internal: true
     entity_id: sensor.etat_niveau_de_la_riviere
+    filters:
+      - to_lower:
     on_value:
       then:
         - lvgl.label.update:
@@ -150,6 +154,8 @@ text_sensor:
     id: id_txt_riv_flow
     internal: true
     entity_id: sensor.etat_debit_de_la_riviere
+    filters:
+      - to_lower:
     on_value:
       then:
         - lvgl.label.update:

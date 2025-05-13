@@ -75,6 +75,13 @@ text_sensor:
   - platform: homeassistant
     id: id_text_${light_ha_entity}_freeze_end_time
     entity_id: ${sensor_freeze_end_time}
+    filters:
+      - lambda: |-
+            std::string str = x;
+            if (str.length() > 12) {
+              return str.substr(0, 12);
+            }
+            return str;
     internal: true
     on_value:
       then:
@@ -87,6 +94,12 @@ text_sensor:
     entity_id: ${input_datetime_freeze_value_on_start}
     internal: true
     filters:
+      - lambda: |-
+            std::string str = x;
+            if (str.length() > 12) {
+              return str.substr(0, 12);
+            }
+            return str;
       - lambda: >
           size_t idx = 0;
           for(size_t i = 0; i <= x.length(); i++)
