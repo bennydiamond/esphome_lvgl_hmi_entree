@@ -31,7 +31,7 @@ widgets:
 
   - slider:
       id: ${id_lv_slid_hue}
-      border_opa: 50%
+      bg_opa: COVER
       border_width: 1
       border_color: color_dark_gray
       shadow_opa: TRANSP
@@ -44,7 +44,6 @@ widgets:
       grid_cell_column_span: 1
       grid_cell_row_span: 1
       radius: 20
-      bg_opa: COVER
       bg_grad: id_gradient_hue
       bg_grad_dir: HOR
       min_value: 0
@@ -53,16 +52,16 @@ widgets:
         opa: TRANSP
       knob:
         bg_opa: COVER
-        radius: 4
+        radius: 3
         # TODO remove define through lambda once fixed
         # https://github.com/esphome/issues/issues/6945
         pad_left: !lambda return -30;
         pad_right: !lambda return -30;
-        outline_width: 10
-        width: 10
+        border_opa: TRANSP
+        border_width: 0
         shadow_opa: COVER
         shadow_color: color_dark_gray
-        shadow_width: 22
+        shadow_width: 20
       on_release:
         - homeassistant.action: 
             action: script.esphome_huesaturation_light_set
@@ -85,7 +84,7 @@ widgets:
 
   - slider:
       id: ${id_lv_slid_sat}
-      border_opa: 50%
+      bg_opa: COVER
       border_width: 1
       border_color: color_dark_gray
       shadow_opa: TRANSP
@@ -98,7 +97,6 @@ widgets:
       grid_cell_column_span: 1
       grid_cell_row_span: 1
       radius: 20
-      bg_opa: COVER
       bg_grad: id_gradient_saturation
       bg_grad_dir: HOR
       min_value: 0
@@ -107,15 +105,16 @@ widgets:
         opa: TRANSP
       knob:
         bg_opa: COVER
-        radius: 4
+        radius: 3
         # TODO remove define through lambda once fixed
         # https://github.com/esphome/issues/issues/6945
         pad_left: !lambda return -30;
         pad_right: !lambda return -30;
-        outline_width: 10
+        border_opa: TRANSP
+        border_width: 0
         shadow_opa: COVER
         shadow_color: color_dark_gray
-        shadow_width: 22
+        shadow_width: 20
       on_release:
         - homeassistant.action: 
             action: script.esphome_huesaturation_light_set
