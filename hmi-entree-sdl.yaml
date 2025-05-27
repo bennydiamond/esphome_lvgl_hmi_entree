@@ -18,7 +18,3 @@ packages:
   script: !include hmi-entree/components/script.yaml
   lvgl: !include hmi-entree/display/lvgl.yaml
 
-external_components:
-  - source: github://pr#8040
-    refresh: 30s
-    components: [http_request]
