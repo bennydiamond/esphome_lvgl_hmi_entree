@@ -26,6 +26,7 @@ binary_sensor:
     publish_initial_state: True
     on_release:
       then:
+        - delay: 200ms # seems to be required has other attributes are changing a bit as lights dims down while it's turning down.
         - lvgl.button.update: 
             id: ${light_button_grid_button_id}
             shadow_color: color_gray
@@ -155,12 +156,13 @@ text_sensor:
       then:
         - if:
             condition:
-              - binary_sensor.is_on: id_bin_${light_ha_entity}_state
-              - not:
-                  - text_sensor.state:
-                      id: ${light_ha_entity}_hs
-                      state: 'None'
-              - lambda: return x.length() < 10;
+              and:
+                - binary_sensor.is_on: id_bin_${light_ha_entity}_state
+                - not:
+                    - text_sensor.state:
+                        id: ${light_ha_entity}_hs
+                        state: 'None'
+                - lambda: return x.length() < 20;
             then:
               - sensor.template.publish:
                   id: id_sens_${light_ha_entity}_hs
