@@ -82,6 +82,7 @@ lvgl:
                     id: page_home
                     animation: OUT_RIGHT
                     time: 300ms
+                - lvgl.widget.hide: page_players_volume
       #on_swipe_up:
       #  then:
       #    - lvgl.page.show: 
