@@ -32,12 +32,14 @@ widgets:
             text: "Cuisine"
       on_short_click:
         then:
+            - lvgl.widget.show: page_music_cuisine
             - lvgl.page.show: 
                 id: page_music_cuisine
                 animation: OUT_RIGHT
                 time: 300ms
       on_long_press:
         then:
+            - lvgl.widget.show: page_music_cuisine
             - lvgl.page.show: 
                 id: page_music_cuisine
                 animation: OUT_RIGHT
@@ -113,7 +115,7 @@ widgets:
       shadow_width: 20
       shadow_opa: 100%
       grid_cell_column_pos: 0
-      grid_cell_row_pos: 2
+      grid_cell_row_pos: 1
       grid_cell_x_align: STRETCH
       grid_cell_y_align: STRETCH
       widgets:
@@ -132,14 +134,56 @@ widgets:
             text: "Volumes"
       on_short_click:
         then:
+            - lvgl.widget.show: page_players_volume
             - lvgl.page.show: 
                 id: page_players_volume
                 animation: OUT_RIGHT
                 time: 300ms
       on_long_press:
         then:
+            - lvgl.widget.show: page_players_volume
             - lvgl.page.show: 
                 id: page_players_volume
+                animation: OUT_RIGHT
+                time: 300ms
+
+  - button:
+      id: id_lv_but_water
+      bg_color: color_black
+      shadow_color: color_blue
+      shadow_spread: 2
+      shadow_width: 20
+      shadow_opa: 100%
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 2
+      grid_cell_x_align: STRETCH
+      grid_cell_y_align: STRETCH
+      widgets:
+        - label:
+            id: id_lv_lab_water_but_ico
+            align: LEFT_MID
+            x: 0
+            text_font: mdi_icons_48
+            text_color: color_blue
+            text: "${sprinkler}"
+        - label:
+            align: LEFT_MID
+            x: 60
+            text_font: lato_24
+            text_color: color_white
+            text: "Arrosage"
+      on_short_click:
+        then:
+            - lvgl.widget.show: page_watering
+            - lvgl.page.show: 
+                id: page_watering
+                animation: OUT_RIGHT
+                time: 300ms
+      on_long_press:
+        then:
+            - lvgl.widget.show: page_watering
+            - lvgl.page.show: 
+                id: page_watering
                 animation: OUT_RIGHT
                 time: 300ms
 
@@ -168,12 +212,14 @@ widgets:
             text: "Settings"
       on_short_click:
         then:
+            - lvgl.widget.show: page_settings
             - lvgl.page.show: 
                 id: page_settings
                 animation: OUT_RIGHT
                 time: 300ms
       on_long_press:
         then:
+            - lvgl.widget.show: page_settings
             - lvgl.page.show: 
                 id: page_settings
                 animation: OUT_RIGHT

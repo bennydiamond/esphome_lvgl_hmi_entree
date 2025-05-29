@@ -127,6 +127,22 @@ binary_sensor:
             id: id_lv_lab_salt_lvl
             hidden: true
 
+  # Irrigation System Active from HA #
+  - platform: homeassistant
+    id: id_ha_watering_active
+    entity_id: binary_sensor.rain_bird_irrigation_actif
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_watering_active
+            hidden: false
+    on_release:
+      then:
+        - lvgl.label.update: 
+            id: id_lv_lab_watering_active
+            hidden: true
+
 interval:
   - interval: 800ms
     startup_delay: 0s

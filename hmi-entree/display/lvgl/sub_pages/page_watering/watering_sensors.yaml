@@ -1,0 +1,139 @@
+binary_sensor:
+  - platform: homeassistant
+    id: id_bin_pump_active
+    internal: True
+    entity_id: binary_sensor.pompe_irrigation_active
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.led.update:
+            id: id_lv_led_pump_active
+            color: color_green
+            brightness: 100%
+    on_release:
+      then:
+        - lvgl.led.update:
+            id: id_lv_led_pump_active
+            color: color_red
+            brightness: 40%
+  
+  - platform: homeassistant
+    id: id_bin_valve_gazon_av
+    internal: True
+    entity_id: switch.gazon_avant
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_gazon_av
+            state:
+              checked: !lambda return x;
+
+  - platform: homeassistant
+    id: id_bin_valve_gazon_ar
+    internal: True
+    entity_id: switch.gazon_arriere
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_gazon_ar
+            state:
+              checked: !lambda return x;
+
+  - platform: homeassistant
+    id: id_bin_valve_gazon_c
+    internal: True
+    entity_id: switch.gazon_cote
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_gazon_c
+            state:
+              checked: !lambda return x;
+
+  - platform: homeassistant
+    id: id_bin_valve_pb_av
+    internal: True
+    entity_id: switch.plate_bandes_avant
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_pb_av
+            state:
+              checked: !lambda return x;
+
+  - platform: homeassistant
+    id: id_bin_valve_pb_ar
+    internal: True
+    entity_id: switch.plate_bandes_arriere
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_pb_ar
+            state:
+              checked: !lambda return x;
+
+  - platform: homeassistant
+    id: id_bin_valve_vid
+    internal: True
+    entity_id: switch.vidange
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_vid
+            state:
+              checked: !lambda return x;
+
+  - platform: homeassistant
+    id: id_bin_switch_pump
+    internal: True
+    entity_id: switch.alimentation_pompe_irrigation_alimentation_pompe_irrigation
+    publish_initial_state: True
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: id_lv_switch_pump_pwr
+            state:
+              checked: !lambda return x;
+
+sensor:
+  - platform: homeassistant
+    id: id_bin_current_pump
+    internal: True
+    entity_id: sensor.alimentation_pompe_irrigation_alimentation_pompe_irrigation_current
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_watering_current
+            text:
+              format: "%.0f A"
+              args: x
+
+  - platform: homeassistant
+    id: id_bin_power_pump
+    internal: True
+    entity_id: sensor.alimentation_pompe_irrigation_alimentation_pompe_irrigation_power
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_watering_power
+            text:
+              format: "%.0f W"
+              args: x
+
+  - platform: homeassistant
+    id: id_bin_factor_pump
+    internal: True
+    entity_id: sensor.alimentation_pompe_irrigation_alimentation_pompe_irrigation_power_factor
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_watering_factor
+            text:
+              format: "%.2f"
+              args: x

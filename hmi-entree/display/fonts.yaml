@@ -131,6 +131,7 @@
     "\U000F0D85", # mdi-home-floor-g
     "\U000F00B5", # mdi-blur
     "\U000F110E", # mdi-shaker
+    "\U000F1060", # mdi-sprinkler-variant
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"
@@ -174,6 +175,7 @@
     "\U000F071F", # mdi-speaker-wireless
     "\U000F06D9", # mdi-garage
     "\U000F06DA", # mdi-garage-open
+    "\U000F1060", # mdi-sprinkler-variant
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"

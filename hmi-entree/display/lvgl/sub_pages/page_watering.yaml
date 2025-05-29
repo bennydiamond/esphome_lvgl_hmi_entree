@@ -1,0 +1,231 @@
+packages:
+  homepod_corridor_sensors: !include "page_watering/watering_sensors.yaml"
+
+lvgl:
+  pages:
+    - id: page_watering
+      bg_color: color_black
+      widgets:
+        - obj:
+            x: 0
+            y: 46
+            height: 360
+            width: 380
+            align: TOP_LEFT
+            bg_opa: TRANSP
+            shadow_opa: TRANSP
+            border_opa: TRANSP
+            scrollable: True
+            layout: 
+                type: FLEX
+                flex_flow: ROW_WRAP
+                flex_align_cross: CENTER
+                pad_row: 16
+            widgets:
+              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                vars: { f_name: "Gazon Avant",
+                                        toggle_event_name: button_valve_gazon_av,
+                                        toggle_switch_id: id_lv_switch_gazon_av,
+                                      } 
+                              }
+              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                vars: { f_name: "Gazon Arrière",
+                                        toggle_event_name: button_valve_gazon_ar,
+                                        toggle_switch_id: id_lv_switch_gazon_ar,
+                                      } 
+                              }
+              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                vars: { f_name: "Gazon Coté",
+                                        toggle_event_name: button_valve_gazon_c,
+                                        toggle_switch_id: id_lv_switch_gazon_c,
+                                      } 
+                              }
+              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                vars: { f_name: "Plate Bandes Avant",
+                                        toggle_event_name: button_valve_pb_av,
+                                        toggle_switch_id: id_lv_switch_pb_av,
+                                      } 
+                              }
+              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                vars: { f_name: "Plate Bandes Arrière",
+                                        toggle_event_name: button_valve_pb_ar,
+                                        toggle_switch_id: id_lv_switch_pb_ar,
+                                      } 
+                              }
+              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                vars: { f_name: "Vidange",
+                                        toggle_event_name: button_valve_vid,
+                                        toggle_switch_id: id_lv_switch_vid,
+                                      } 
+                              }
+        - label:
+            x: 380
+            y: 46
+            width: 320
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            pad_all: 0
+            pad_top: 10
+            align: TOP_LEFT
+            text_font: lato_24
+            text_color: color_white
+            text_align: CENTER
+            long_mode: WRAP
+            text_decor: UNDERLINE
+            text: "Pompe"
+
+        - label:
+            x: 460
+            y: 120
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            text_font: lato_24
+            text_color: color_white
+            text_align: CENTER
+            text: "En Fonction:"
+
+        - led:
+            x: 604
+            y: 123
+            id: id_lv_led_pump_active
+            align: TOP_LEFT
+            color: color_red
+            brightness: 40%
+
+        - label:
+            x: 400
+            y: 190
+            width: 150
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            pad_right: 0
+            text_font: lato_18
+            text_color: color_white
+            text_align: RIGHT
+            long_mode: WRAP
+            text: "Courant:" 
+        - label:
+            id: id_lv_lab_watering_current
+            x: 556
+            y: 190
+            width: 100
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            text_font: lato_18
+            text_color: color_white
+            text_align: LEFT
+            long_mode: WRAP
+
+        - label:
+            x: 400
+            y: 218
+            width: 150
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            pad_right: 0
+            text_font: lato_18
+            text_color: color_white
+            text_align: RIGHT
+            long_mode: WRAP
+            text: "Puissance:" 
+        - label:
+            id: id_lv_lab_watering_power
+            x: 556
+            y: 218
+            width: 100
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            text_font: lato_18
+            text_color: color_white
+            text_align: LEFT
+            long_mode: WRAP
+
+        - label:
+            x: 400
+            y: 246
+            width: 150
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            pad_right: 0
+            text_font: lato_18
+            text_color: color_white
+            text_align: RIGHT
+            long_mode: WRAP
+            text: "Facteur:" 
+        - label:
+            id: id_lv_lab_watering_factor
+            x: 556
+            y: 246
+            width: 100
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            text_font: lato_18
+            text_color: color_white
+            text_align: LEFT
+            long_mode: WRAP
+
+        - label:
+            x: 390
+            y: 330
+            width: 250
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            shadow_opa: TRANSP
+            align: TOP_LEFT
+            text_font: lato_24
+            text_color: color_white
+            text_align: CENTER
+            long_mode: WRAP
+            text: "Alimentation:" 
+
+        - switch:
+            x: 600
+            y: 331
+            id: id_lv_switch_pump_pwr
+            on_change:
+              then:
+                - homeassistant.event:
+                    event: esphome.button_pressed
+                    data:
+                      message: button_pump_pwr
+            
+        - button:
+            x: 0
+            y: 0
+            width: 80
+            height: 50
+            bg_opa: TRANSP
+            shadow_opa: TRANSP
+            radius: 0
+            align: BOTTOM_LEFT
+            widgets:
+              - label:
+                  x: 5
+                  y: -5
+                  pad_all: 0
+                  text_font: montserrat_22
+                  text_color: color_gray
+                  text: "\uF015"
+            on_press:
+              then:
+                - lvgl.page.show: 
+                    id: page_home
+                    animation: OUT_RIGHT
+                    time: 300ms
+                - delay: 300ms
+                - lvgl.widget.hide: page_watering

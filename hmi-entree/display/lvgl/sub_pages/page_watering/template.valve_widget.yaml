@@ -1,0 +1,36 @@
+- obj:
+    width: 350
+    height: 50
+    align: LEFT_MID
+    bg_opa: TRANSP
+    shadow_opa: TRANSP
+    border_opa: TRANSP
+    pad_left: 0
+    scrollable: False
+    layout:
+      type: GRID
+      grid_columns: [FR(2), FR(25), FR(3), FR(70)]
+      grid_rows: [100%]
+    widgets:
+      - switch:
+          grid_cell_column_pos: 1
+          grid_cell_row_pos: 0
+          grid_cell_x_align: STRETCH
+          grid_cell_y_align: CENTER
+          id: ${toggle_switch_id}
+          on_change:
+            then:
+              - homeassistant.event:
+                  event: esphome.button_pressed
+                  data:
+                    message: ${toggle_event_name}
+
+      - label:
+          grid_cell_column_pos: 3
+          grid_cell_row_pos: 0
+          grid_cell_x_align: START
+          grid_cell_y_align: CENTER
+          text_font: lato_24
+          text_color: color_white
+          text_align: CENTER
+          text: ${f_name}

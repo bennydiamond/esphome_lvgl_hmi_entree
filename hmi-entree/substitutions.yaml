@@ -55,6 +55,7 @@ speaker_wireless:   "\U000F071F" # mdi-speaker-wireless
 garage_door_closed: "\U000F06D9" # mdi-garage
 garage_door_open:   "\U000F06DA" # mdi-garage-open
 salt_shaker:        "\U000F110E" # mdi-shaker
+sprinkler:          "\U000F1060" # mdi-sprinkler-variant
 
 ha_instance_url: "http://192.168.0.250:8123"
 # token is valid for 10 years (2025-02-15)
