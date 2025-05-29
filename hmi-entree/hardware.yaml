@@ -48,6 +48,14 @@ esphome:
             value: 20
     - priority: -100 # everything should be initialized
       then:
+        - lvgl.widget.hide: page_light_all_ext
+        - lvgl.widget.hide: page_light_extc
+        - lvgl.widget.hide: page_light_port
+        - lvgl.widget.hide: page_light_lamp
+        - lvgl.widget.hide: page_music_cuisine
+        - lvgl.widget.hide: page_players_volume
+        - lvgl.widget.hide: page_watering
+        - lvgl.widget.hide: page_settings
         - script.execute: id_script_backlight_timeout
 
 logger:
