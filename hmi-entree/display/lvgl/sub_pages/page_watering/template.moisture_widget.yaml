@@ -1,0 +1,86 @@
+- obj:
+    height: 106
+    width: 200
+    pad_all: 0
+    bg_opa: TRANSP
+    border_opa: 20%
+    scrollable: False
+    widgets:
+      - label:
+          id: ${battery_alert_ico}
+          x: 3
+          y: 3
+          bg_opa: TRANSP
+          border_opa: TRANSP
+          shadow_opa: TRANSP
+          text: ${battery_alert}
+          text_color: color_red
+          text_font: mdi_icons_24
+      - meter:
+          height: 200
+          width: 200
+          y: 42
+          border_width: 0
+          align: CENTER
+          bg_opa: TRANSP
+          border_opa: COVER
+          scales:
+            - range_from: 0
+              range_to: 100
+              angle_range: 180
+              ticks:
+                count: 70
+                width: 1
+                length: 61
+              indicators:
+                - tick_style:
+                    start_value: 0
+                    end_value: 30
+                    color_start: color_red
+                    color_end: color_green
+                    local: true
+                - tick_style:
+                    start_value: 30
+                    end_value: 70
+                    color_start: color_green
+                    color_end: color_green
+                    local: true
+                - tick_style:
+                    start_value: 70
+                    end_value: 100
+                    color_start: color_green
+                    color_end: color_blue
+                    local: true
+            - range_from: 0
+              range_to: 100
+              angle_range: 180
+              ticks:
+                count: 0
+              indicators:
+                - line:
+                    id: ${meter_needle}
+                    width: 8
+                    r_mod: 4
+                    value: 0
+                    color: color_dark_blue
+      - obj: # to cover the middle part of meter indicator line
+          height: 123
+          width: 123
+          y: 42
+          radius: 73
+          align: CENTER
+          border_width: 0
+          pad_all: 0
+          bg_color: color_black
+      - label:
+          id: ${numeric_value}
+          text_color: color_white
+          text_font: lato_18
+          align: BOTTOM_MID
+          y: -30
+      - label:
+          text: ${f_name}
+          text_color: color_white
+          text_font: lato_18
+          align: BOTTOM_MID
+          y: -10

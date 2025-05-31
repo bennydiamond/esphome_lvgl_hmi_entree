@@ -1,0 +1,32 @@
+binary_sensor:
+  - platform: homeassistant
+    id: ${low_batt_label_ico}_bin
+    internal: True
+    entity_id: ${low_batt_entity_id}
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.label.update:
+            id: ${low_batt_label_ico}
+            hidden: False
+    on_release:
+      then:
+        - lvgl.label.update:
+            id: ${low_batt_label_ico}
+            hidden: True
+
+sensor:
+  - platform: homeassistant
+    id: ${moisture_value_label}_sens
+    internal: True
+    entity_id: ${moisture_value_entity_id}
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: ${moisture_value_label}
+            text:
+              format: "%.0f%%"
+              args: x
+        - lvgl.indicator.update:
+            id: ${moisture_meter_needle}
+            value: !lambda return x;

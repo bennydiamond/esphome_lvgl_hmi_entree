@@ -1,5 +1,5 @@
 - obj:
-    width: 350
+    width: 100%
     height: 50
     align: LEFT_MID
     bg_opa: TRANSP
@@ -9,7 +9,7 @@
     scrollable: False
     layout:
       type: GRID
-      grid_columns: [FR(2), FR(25), FR(3), FR(70)]
+      grid_columns: [FR(1), FR(23), FR(2), FR(70)]
       grid_rows: [100%]
     widgets:
       - switch:

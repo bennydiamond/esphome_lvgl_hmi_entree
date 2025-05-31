@@ -95,6 +95,14 @@
 #  bpp: 4
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"
+  id: mdi_icons_24
+  size: 24
+  bpp: 4
+  glyphs: [
+    "\U000F10CC", # mdi-battery-alert-variant
+  ]
+
+- file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"
   id: mdi_icons_32
   size: 32
   bpp: 4
@@ -132,6 +140,7 @@
     "\U000F00B5", # mdi-blur
     "\U000F110E", # mdi-shaker
     "\U000F1060", # mdi-sprinkler-variant
+    "\U000F029A", # mdi-gauge
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"
@@ -158,7 +167,7 @@
 #    "\U000F0E66", # mdi-sprout
 #    "\U000F1481", # mdi-watering-can
 #    "\U000F050F", # mdi-thermometer
-#    "\U000F058E", # mdi-water-percent
+    "\U000F058E", # mdi-water-percent
     "\U000F1A60", # mdi-post-lamp
     "\U000F075A", # mdi-music
     "\U000F057E", # mdi-volume-high

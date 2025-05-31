@@ -1,0 +1,81 @@
+packages:
+  soilsensor_bac: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_bac_low_battery
+      low_batt_label_ico: id_lv_lab_bac_lowbat
+      moisture_value_entity_id: sensor.soilsensor_bac_moisture
+      moisture_value_label: id_lv_label_moist_bac
+      moisture_meter_needle: id_lv_meter_moist_bac
+
+  soilsensor_broccolini: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_broccolini_low_battery
+      low_batt_label_ico: id_lv_lab_broc_lowbat
+      moisture_value_entity_id: sensor.soilsensor_broccolini_moisture
+      moisture_value_label: id_lv_label_moist_broc
+      moisture_meter_needle: id_lv_meter_moist_broc
+
+  soilsensor_citronnelle: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_citronnelle_low_battery
+      low_batt_label_ico: id_lv_lab_citr_lowbat
+      moisture_value_entity_id: sensor.soilsensor_citronnelle_moisture
+      moisture_value_label: id_lv_label_moist_citr
+      moisture_meter_needle: id_lv_meter_moist_citr
+
+  soilsensor_curry: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_curry_low_battery
+      low_batt_label_ico: id_lv_lab_curry_lowbat
+      moisture_value_entity_id: sensor.soilsensor_curry_moisture
+      moisture_value_label: id_lv_label_moist_curry
+      moisture_meter_needle: id_lv_meter_moist_curry
+
+  soilsensor_hibiscus: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_hibiscus_low_battery
+      low_batt_label_ico: id_lv_lab_hibi_lowbat
+      moisture_value_entity_id: sensor.fineoffset_wh51_00db7d_moisture
+      moisture_value_label: id_lv_label_moist_hibi
+      moisture_meter_needle: id_lv_meter_moist_hibi
+
+  soilsensor_lys: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_lys_de_paix_low_battery
+      low_batt_label_ico: id_lv_lab_lys_lowbat
+      moisture_value_entity_id: sensor.soilsensor_lys_de_paix_soil_moisture
+      moisture_value_label: id_lv_label_moist_lys
+      moisture_meter_needle: id_lv_meter_moist_lys
+
+  soilsensor_ricin: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_ricin_low_battery
+      low_batt_label_ico: id_lv_lab_ricin_lowbat
+      moisture_value_entity_id: sensor.soilsensor_ricin_moisture
+      moisture_value_label: id_lv_label_moist_ricin
+      moisture_meter_needle: id_lv_meter_moist_ricin
+
+  soilsensor_sesame: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_sesame_low_battery
+      low_batt_label_ico: id_lv_lab_sesame_lowbat
+      moisture_value_entity_id: sensor.soilsensor_sesame_moisture
+      moisture_value_label: id_lv_label_moist_sesame
+      moisture_meter_needle: id_lv_meter_moist_sesame
+
+  soilsensor_tom_p: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_tomates_petites_low_battery
+      low_batt_label_ico: id_lv_lab_tom_p_lowbat
+      moisture_value_entity_id: sensor.soilsensor_tomates_petite_moisture
+      moisture_value_label: id_lv_label_moist_tom_p
+      moisture_meter_needle: id_lv_meter_moist_tom_p

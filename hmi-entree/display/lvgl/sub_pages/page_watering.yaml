@@ -1,208 +1,406 @@
 packages:
-  homepod_corridor_sensors: !include "page_watering/watering_sensors.yaml"
+  irrigation_sensors: !include "page_watering/watering_sensors.yaml"
+  soil_moisture_sensors: !include "page_watering/soil_moisture_sensors.yaml"
 
 lvgl:
   pages:
     - id: page_watering
       bg_color: color_black
       widgets:
-        - obj:
-            x: 0
+        - tabview:
+            x: 1
             y: 46
             height: 360
-            width: 380
+            width: 708
             align: TOP_LEFT
+            position: LEFT
             bg_opa: TRANSP
-            shadow_opa: TRANSP
-            border_opa: TRANSP
-            scrollable: True
-            layout: 
-                type: FLEX
-                flex_flow: ROW_WRAP
-                flex_align_cross: CENTER
-                pad_row: 16
-            widgets:
-              - <<: !include { file: page_watering/template.valve_widget.yaml, 
-                                vars: { f_name: "Gazon Avant",
-                                        toggle_event_name: button_valve_gazon_av,
-                                        toggle_switch_id: id_lv_switch_gazon_av,
-                                      } 
-                              }
-              - <<: !include { file: page_watering/template.valve_widget.yaml, 
-                                vars: { f_name: "Gazon Arrière",
-                                        toggle_event_name: button_valve_gazon_ar,
-                                        toggle_switch_id: id_lv_switch_gazon_ar,
-                                      } 
-                              }
-              - <<: !include { file: page_watering/template.valve_widget.yaml, 
-                                vars: { f_name: "Gazon Coté",
-                                        toggle_event_name: button_valve_gazon_c,
-                                        toggle_switch_id: id_lv_switch_gazon_c,
-                                      } 
-                              }
-              - <<: !include { file: page_watering/template.valve_widget.yaml, 
-                                vars: { f_name: "Plate Bandes Avant",
-                                        toggle_event_name: button_valve_pb_av,
-                                        toggle_switch_id: id_lv_switch_pb_av,
-                                      } 
-                              }
-              - <<: !include { file: page_watering/template.valve_widget.yaml, 
-                                vars: { f_name: "Plate Bandes Arrière",
-                                        toggle_event_name: button_valve_pb_ar,
-                                        toggle_switch_id: id_lv_switch_pb_ar,
-                                      } 
-                              }
-              - <<: !include { file: page_watering/template.valve_widget.yaml, 
-                                vars: { f_name: "Vidange",
-                                        toggle_event_name: button_valve_vid,
-                                        toggle_switch_id: id_lv_switch_vid,
-                                      } 
-                              }
-        - label:
-            x: 380
-            y: 46
-            width: 320
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            pad_all: 0
-            pad_top: 10
-            align: TOP_LEFT
-            text_font: lato_24
-            text_color: color_white
-            text_align: CENTER
-            long_mode: WRAP
-            text_decor: UNDERLINE
-            text: "Pompe"
+            bg_color: color_black
+            scrollable: False
+            tab_style:
+              bg_color: color_black
+              border_width: 2
+              radius: 10
+              border_color: color_gray
+              items:
+                text_font: mdi_icons_32
+                radius: 10
+            tabs:
+              - name: ${gauge}
+                pad_all: 0
+                bg_color: color_black
+                border_width: 2
+                radius: 10
+                border_color: color_gray
+                widgets:
+                  - obj:
+                      width: 100%
+                      height: 100%
+                      pad_all: 0
+                      bg_color: color_black
+                      border_opa: TRANSP
+                      scrollable: True
+                      layout: 
+                          type: FLEX
+                          flex_flow: ROW_WRAP
+                          flex_align_main: SPACE_EVENLY
+                          flex_align_cross: START
+                          flex_align_track: START
+                      widgets:
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Bette à carde",
+                                                  battery_alert_ico: id_lv_lab_bac_lowbat,
+                                                  meter_needle: id_lv_meter_moist_bac,
+                                                  numeric_value: id_lv_label_moist_bac
+                                                } 
+                                        }
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Broccolini",
+                                                  battery_alert_ico: id_lv_lab_broc_lowbat,
+                                                  meter_needle: id_lv_meter_moist_broc,
+                                                  numeric_value: id_lv_label_moist_broc
+                                                } 
+                                        }
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Citronnelle",
+                                                  battery_alert_ico: id_lv_lab_citr_lowbat,
+                                                  meter_needle: id_lv_meter_moist_citr,
+                                                  numeric_value: id_lv_label_moist_citr
+                                                } 
+                                        }
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Curry",
+                                                  battery_alert_ico: id_lv_lab_curry_lowbat,
+                                                  meter_needle: id_lv_meter_moist_curry,
+                                                  numeric_value: id_lv_label_moist_curry
+                                                } 
+                                        }
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Hibiscus",
+                                                  battery_alert_ico: id_lv_lab_hibi_lowbat,
+                                                  meter_needle: id_lv_meter_moist_hibi,
+                                                  numeric_value: id_lv_label_moist_hibi
+                                                } 
+                                        }
 
-        - label:
-            x: 460
-            y: 120
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            text_font: lato_24
-            text_color: color_white
-            text_align: CENTER
-            text: "En Fonction:"
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Lys de Paix",
+                                                  battery_alert_ico: id_lv_lab_lys_lowbat,
+                                                  meter_needle: id_lv_meter_moist_lys,
+                                                  numeric_value: id_lv_label_moist_lys
+                                                } 
+                                        }
 
-        - led:
-            x: 604
-            y: 123
-            id: id_lv_led_pump_active
-            align: TOP_LEFT
-            color: color_red
-            brightness: 40%
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Ricin",
+                                                  battery_alert_ico: id_lv_lab_ricin_lowbat,
+                                                  meter_needle: id_lv_meter_moist_ricin,
+                                                  numeric_value: id_lv_label_moist_ricin
+                                                } 
+                                        }
 
-        - label:
-            x: 400
-            y: 190
-            width: 150
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            pad_right: 0
-            text_font: lato_18
-            text_color: color_white
-            text_align: RIGHT
-            long_mode: WRAP
-            text: "Courant:" 
-        - label:
-            id: id_lv_lab_watering_current
-            x: 556
-            y: 190
-            width: 100
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            text_font: lato_18
-            text_color: color_white
-            text_align: LEFT
-            long_mode: WRAP
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Sésame",
+                                                  battery_alert_ico: id_lv_lab_sesame_lowbat,
+                                                  meter_needle: id_lv_meter_moist_sesame,
+                                                  numeric_value: id_lv_label_moist_sesame
+                                                } 
+                                        }
 
-        - label:
-            x: 400
-            y: 218
-            width: 150
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            pad_right: 0
-            text_font: lato_18
-            text_color: color_white
-            text_align: RIGHT
-            long_mode: WRAP
-            text: "Puissance:" 
-        - label:
-            id: id_lv_lab_watering_power
-            x: 556
-            y: 218
-            width: 100
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            text_font: lato_18
-            text_color: color_white
-            text_align: LEFT
-            long_mode: WRAP
+                        - <<: !include { file: page_watering/template.moisture_widget.yaml, 
+                                          vars: { f_name: "Tomate Petite",
+                                                  battery_alert_ico: id_lv_lab_tom_p_lowbat,
+                                                  meter_needle: id_lv_meter_moist_tom_p,
+                                                  numeric_value: id_lv_label_moist_tom_p
+                                                } 
+                                        }
 
-        - label:
-            x: 400
-            y: 246
-            width: 150
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            pad_right: 0
-            text_font: lato_18
-            text_color: color_white
-            text_align: RIGHT
-            long_mode: WRAP
-            text: "Facteur:" 
-        - label:
-            id: id_lv_lab_watering_factor
-            x: 556
-            y: 246
-            width: 100
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            text_font: lato_18
-            text_color: color_white
-            text_align: LEFT
-            long_mode: WRAP
 
-        - label:
-            x: 390
-            y: 330
-            width: 250
-            bg_opa: TRANSP
-            border_opa: TRANSP
-            shadow_opa: TRANSP
-            align: TOP_LEFT
-            text_font: lato_24
-            text_color: color_white
-            text_align: CENTER
-            long_mode: WRAP
-            text: "Alimentation:" 
+              - name: ${watering_can}
+                pad_all: 0
+                bg_color: color_black
+                border_width: 2
+                radius: 10
+                border_color: color_gray
+                widgets:
+                  - obj:
+                      width: 100%
+                      height: 100%
+                      pad_all: 0
+                      bg_color: color_black
+                      border_opa: TRANSP
+                      layout: 
+                        pad_row: 0
+                        pad_column: 0
+                        type: GRID
+                        grid_columns: [FR(56), FR(44)]
+                        grid_rows: [100%]
+                      widgets:
+                        - obj:
+                            grid_cell_column_pos: 0
+                            grid_cell_row_pos: 0
+                            grid_cell_x_align: STRETCH
+                            grid_cell_y_align: STRETCH
+                            shadow_opa: TRANSP
+                            border_opa: TRANSP
+                            bg_color: color_black
+                            scrollable: True
+                            layout: 
+                                type: FLEX
+                                flex_flow: ROW_WRAP
+                                flex_align_cross: CENTER
+                                pad_row: 16
+                            widgets:
+                              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                                vars: { f_name: "Gazon Avant",
+                                                        toggle_event_name: button_valve_gazon_av,
+                                                        toggle_switch_id: id_lv_switch_gazon_av,
+                                                      } 
+                                              }
+                              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                                vars: { f_name: "Gazon Arrière",
+                                                        toggle_event_name: button_valve_gazon_ar,
+                                                        toggle_switch_id: id_lv_switch_gazon_ar,
+                                                      } 
+                                              }
+                              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                                vars: { f_name: "Gazon Coté",
+                                                        toggle_event_name: button_valve_gazon_c,
+                                                        toggle_switch_id: id_lv_switch_gazon_c,
+                                                      } 
+                                              }
+                              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                                vars: { f_name: "Plate Bandes Avant",
+                                                        toggle_event_name: button_valve_pb_av,
+                                                        toggle_switch_id: id_lv_switch_pb_av,
+                                                      } 
+                                              }
+                              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                                vars: { f_name: "Plate Bandes Arrière",
+                                                        toggle_event_name: button_valve_pb_ar,
+                                                        toggle_switch_id: id_lv_switch_pb_ar,
+                                                      } 
+                                              }
+                              - <<: !include { file: page_watering/template.valve_widget.yaml, 
+                                                vars: { f_name: "Vidange",
+                                                        toggle_event_name: button_valve_vid,
+                                                        toggle_switch_id: id_lv_switch_vid,
+                                                      } 
+                                              }
+                        - obj:
+                            grid_cell_column_pos: 1
+                            grid_cell_row_pos: 0
+                            grid_cell_x_align: STRETCH
+                            grid_cell_y_align: STRETCH
+                            width: 100%
+                            height: 100%
+                            align: CENTER
+                            pad_all: 0
+                            bg_opa: TRANSP
+                            border_opa: TRANSP
+                            shadow_opa: TRANSP
+                            scrollable: False
+                            widgets:
+                              - obj: 
+                                  width: 100%
+                                  height: 100%
+                                  pad_all: 0
+                                  bg_color: color_black
+                                  bg_opa: TRANSP
+                                  border_opa: TRANSP
+                                  shadow_opa: TRANSP
+                                  layout: 
+                                    pad_row: 0
+                                    pad_column: 0
+                                    type: GRID
+                                    grid_columns: [100%]
+                                    grid_rows: [FR(10), FR(8), FR(13), FR(8), FR(40), FR(8), FR(13)]
+                                  widgets:
+                                    - label:
+                                        grid_cell_column_pos: 0
+                                        grid_cell_row_pos: 0
+                                        grid_cell_x_align: STRETCH
+                                        grid_cell_y_align: STRETCH
+                                        bg_opa: TRANSP
+                                        border_opa: TRANSP
+                                        shadow_opa: TRANSP
+                                        pad_all: 0
+                                        pad_top: 10
+                                        pad_bottom: 20
+                                        align: CENTER
+                                        text_font: lato_24
+                                        text_color: color_white
+                                        text_align: CENTER
+                                        long_mode: WRAP
+                                        text_decor: UNDERLINE
+                                        text: "Pompe"
+                                    - obj:
+                                        grid_cell_column_pos: 0
+                                        grid_cell_row_pos: 2
+                                        grid_cell_x_align: STRETCH
+                                        grid_cell_y_align: STRETCH
+                                        bg_opa: TRANSP
+                                        border_opa: TRANSP
+                                        shadow_opa: TRANSP
+                                        pad_all: 0
+                                        align: CENTER
+                                        layout:
+                                          type: FLEX
+                                          flex_flow: ROW
+                                          flex_align_main: CENTER
+                                          flex_align_cross: CENTER
+                                          pad_column: 8
+                                        widgets:
+                                          - label:
+                                              align: CENTER
+                                              text_font: lato_24
+                                              text_color: color_white
+                                              text_align: CENTER
+                                              text: "En Fonction:"
 
-        - switch:
-            x: 600
-            y: 331
-            id: id_lv_switch_pump_pwr
-            on_change:
-              then:
-                - homeassistant.event:
-                    event: esphome.button_pressed
-                    data:
-                      message: button_pump_pwr
+                                          - led:
+                                              id: id_lv_led_pump_active
+                                              align: CENTER
+                                              color: color_red
+                                              brightness: 40%
+                                    - obj:
+                                        grid_cell_column_pos: 0
+                                        grid_cell_row_pos: 4
+                                        grid_cell_x_align: STRETCH
+                                        grid_cell_y_align: STRETCH
+                                        bg_opa: TRANSP
+                                        border_opa: TRANSP
+                                        shadow_opa: TRANSP
+                                        pad_all: 0
+                                        layout: 
+                                          pad_row: 0
+                                          pad_column: 0
+                                          type: GRID
+                                          grid_columns: [100%]
+                                          grid_rows: [FR(1), FR(1), FR(1), FR(1), FR(1)]
+                                        widgets:
+                                          - obj:
+                                              grid_cell_column_pos: 0
+                                              grid_cell_row_pos: 0
+                                              grid_cell_x_align: STRETCH
+                                              grid_cell_y_align: STRETCH
+                                              bg_opa: TRANSP
+                                              border_opa: TRANSP
+                                              shadow_opa: TRANSP
+                                              pad_all: 0
+                                              align: CENTER
+                                              layout:
+                                                type: FLEX
+                                                flex_flow: ROW
+                                                flex_align_main: CENTER
+                                                flex_align_cross: CENTER
+                                                pad_column: 1
+                                              widgets:
+                                                - label:
+                                                    align: LEFT_MID
+                                                    text_font: lato_18
+                                                    text_color: color_white
+                                                    text_align: RIGHT
+                                                    text: "Courant:" 
+                                                - label:
+                                                    id: id_lv_lab_watering_current
+                                                    bg_opa: TRANSP
+                                                    border_opa: TRANSP
+                                                    shadow_opa: TRANSP
+                                                    align: RIGHT_MID
+                                                    text_font: lato_18
+                                                    text_color: color_white
+                                                    text_align: LEFT
+                                          - obj:
+                                              grid_cell_column_pos: 0
+                                              grid_cell_row_pos: 1
+                                              grid_cell_x_align: STRETCH
+                                              grid_cell_y_align: STRETCH
+                                              bg_opa: TRANSP
+                                              border_opa: TRANSP
+                                              shadow_opa: TRANSP
+                                              pad_all: 0
+                                              layout:
+                                                type: FLEX
+                                                flex_flow: ROW
+                                                flex_align_main: CENTER
+                                                flex_align_cross: CENTER
+                                                pad_column: 1
+                                              widgets:
+                                                - label:
+                                                    align: LEFT_MID
+                                                    text_font: lato_18
+                                                    text_color: color_white
+                                                    text_align: RIGHT
+                                                    text: "Puissance:" 
+                                                - label:
+                                                    id: id_lv_lab_watering_power
+                                                    align: RIGHT_MID
+                                                    text_font: lato_18
+                                                    text_color: color_white
+                                                    text_align: LEFT
+                                          - obj:
+                                              grid_cell_column_pos: 0
+                                              grid_cell_row_pos: 2
+                                              grid_cell_x_align: STRETCH
+                                              grid_cell_y_align: STRETCH
+                                              bg_opa: TRANSP
+                                              border_opa: TRANSP
+                                              shadow_opa: TRANSP
+                                              pad_all: 0
+                                              layout:
+                                                type: FLEX
+                                                flex_flow: ROW
+                                                flex_align_main: CENTER
+                                                flex_align_cross: CENTER
+                                                pad_column: 1
+                                              widgets:
+                                                - label:
+                                                    align: LEFT_MID
+                                                    text_font: lato_18
+                                                    text_color: color_white
+                                                    text_align: RIGHT
+                                                    text: "Facteur:" 
+                                                - label:
+                                                    id: id_lv_lab_watering_factor
+                                                    align: RIGHT_MID
+                                                    text_font: lato_18
+                                                    text_color: color_white
+                                                    text_align: LEFT
+                                    - obj:
+                                        grid_cell_column_pos: 0
+                                        grid_cell_row_pos: 6
+                                        grid_cell_x_align: STRETCH
+                                        grid_cell_y_align: STRETCH
+                                        align: CENTER
+                                        pad_all: 0
+                                        bg_opa: TRANSP
+                                        border_opa: TRANSP
+                                        shadow_opa: TRANSP
+                                        layout:
+                                          type: FLEX
+                                          flex_flow: ROW
+                                          flex_align_main: CENTER
+                                          flex_align_cross: CENTER
+                                          pad_column: 8
+                                        widgets:
+                                          - label:
+                                              align: CENTER
+                                              text_font: lato_24
+                                              text_color: color_white
+                                              text_align: CENTER
+                                              long_mode: WRAP
+                                              text: "Alimentation:" 
+
+                                          - switch:
+                                              id: id_lv_switch_pump_pwr
+                                              align: CENTER
+                                              on_change:
+                                                then:
+                                                  - homeassistant.event:
+                                                      event: esphome.button_pressed
+                                                      data:
+                                                        message: button_pump_pwr
             
         - button:
             x: 0
