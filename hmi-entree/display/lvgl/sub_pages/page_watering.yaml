@@ -51,35 +51,40 @@ lvgl:
                                           vars: { f_name: "Bette à carde",
                                                   battery_alert_ico: id_lv_lab_bac_lowbat,
                                                   meter_needle: id_lv_meter_moist_bac,
-                                                  numeric_value: id_lv_label_moist_bac
+                                                  numeric_value: id_lv_label_moist_bac,
+                                                  outline_color: color_blue
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget.yaml, 
                                           vars: { f_name: "Broccolini",
                                                   battery_alert_ico: id_lv_lab_broc_lowbat,
                                                   meter_needle: id_lv_meter_moist_broc,
-                                                  numeric_value: id_lv_label_moist_broc
+                                                  numeric_value: id_lv_label_moist_broc,
+                                                  outline_color: color_blue
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget.yaml, 
                                           vars: { f_name: "Citronnelle",
                                                   battery_alert_ico: id_lv_lab_citr_lowbat,
                                                   meter_needle: id_lv_meter_moist_citr,
-                                                  numeric_value: id_lv_label_moist_citr
+                                                  numeric_value: id_lv_label_moist_citr,
+                                                  outline_color: color_blue
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget.yaml, 
                                           vars: { f_name: "Curry",
                                                   battery_alert_ico: id_lv_lab_curry_lowbat,
                                                   meter_needle: id_lv_meter_moist_curry,
-                                                  numeric_value: id_lv_label_moist_curry
+                                                  numeric_value: id_lv_label_moist_curry,
+                                                  outline_color: color_blue
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget.yaml, 
                                           vars: { f_name: "Hibiscus",
                                                   battery_alert_ico: id_lv_lab_hibi_lowbat,
                                                   meter_needle: id_lv_meter_moist_hibi,
-                                                  numeric_value: id_lv_label_moist_hibi
+                                                  numeric_value: id_lv_label_moist_hibi,
+                                                  outline_color: color_blue
                                                 } 
                                         }
 
@@ -87,7 +92,8 @@ lvgl:
                                           vars: { f_name: "Lys de Paix",
                                                   battery_alert_ico: id_lv_lab_lys_lowbat,
                                                   meter_needle: id_lv_meter_moist_lys,
-                                                  numeric_value: id_lv_label_moist_lys
+                                                  numeric_value: id_lv_label_moist_lys,
+                                                  outline_color: color_green
                                                 } 
                                         }
 
@@ -95,7 +101,8 @@ lvgl:
                                           vars: { f_name: "Ricin",
                                                   battery_alert_ico: id_lv_lab_ricin_lowbat,
                                                   meter_needle: id_lv_meter_moist_ricin,
-                                                  numeric_value: id_lv_label_moist_ricin
+                                                  numeric_value: id_lv_label_moist_ricin,
+                                                  outline_color: color_blue
                                                 } 
                                         }
 
@@ -103,7 +110,8 @@ lvgl:
                                           vars: { f_name: "Sésame",
                                                   battery_alert_ico: id_lv_lab_sesame_lowbat,
                                                   meter_needle: id_lv_meter_moist_sesame,
-                                                  numeric_value: id_lv_label_moist_sesame
+                                                  numeric_value: id_lv_label_moist_sesame,
+                                                  outline_color: color_blue
                                                 } 
                                         }
 
@@ -111,7 +119,8 @@ lvgl:
                                           vars: { f_name: "Tomate Petite",
                                                   battery_alert_ico: id_lv_lab_tom_p_lowbat,
                                                   meter_needle: id_lv_meter_moist_tom_p,
-                                                  numeric_value: id_lv_label_moist_tom_p
+                                                  numeric_value: id_lv_label_moist_tom_p,
+                                                  outline_color: color_blue
                                                 } 
                                         }
 

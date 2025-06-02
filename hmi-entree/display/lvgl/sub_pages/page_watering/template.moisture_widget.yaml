@@ -2,7 +2,8 @@
     height: 106
     width: 200
     pad_all: 0
-    bg_opa: TRANSP
+    bg_opa: 20%
+    bg_color: ${outline_color}
     border_opa: 20%
     scrollable: False
     widgets:
@@ -66,6 +67,16 @@
           border_width: 0
           pad_all: 0
           bg_color: color_black
+      - obj: # to cover bottom underneath the gauge part
+          height: 8
+          width: 123
+          y: 2
+          radius: 0
+          align: BOTTOM_MID
+          border_width: 0
+          pad_all: 0
+          bg_color: ${outline_color}
+          bg_opa: 20%
       - label:
           id: ${numeric_value}
           text_color: color_white
