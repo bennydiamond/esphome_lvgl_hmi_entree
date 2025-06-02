@@ -56,7 +56,6 @@ garage_door_closed: "\U000F06D9" # mdi-garage
 garage_door_open:   "\U000F06DA" # mdi-garage-open
 salt_shaker:        "\U000F110E" # mdi-shaker
 sprinkler:          "\U000F1060" # mdi-sprinkler-variant
-gauge:              "\U000F029A" # mdi-gauge
 battery_alert:      "\U000F10CC" # mdi-battery-alert-variant
 
 ha_instance_url: "http://192.168.0.250:8123"

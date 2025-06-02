@@ -35,18 +35,12 @@
               indicators:
                 - tick_style:
                     start_value: 0
-                    end_value: 30
+                    end_value: 45
                     color_start: color_red
                     color_end: color_green
                     local: true
                 - tick_style:
-                    start_value: 30
-                    end_value: 70
-                    color_start: color_green
-                    color_end: color_green
-                    local: true
-                - tick_style:
-                    start_value: 70
+                    start_value: 46
                     end_value: 100
                     color_start: color_green
                     color_end: color_blue

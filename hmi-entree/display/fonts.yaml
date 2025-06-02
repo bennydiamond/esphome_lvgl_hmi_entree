@@ -140,7 +140,6 @@
     "\U000F00B5", # mdi-blur
     "\U000F110E", # mdi-shaker
     "\U000F1060", # mdi-sprinkler-variant
-    "\U000F029A", # mdi-gauge
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"
