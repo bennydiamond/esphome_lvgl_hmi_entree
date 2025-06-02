@@ -94,7 +94,6 @@ lvgl:
       - lvgl.widget.hide: page_players_volume
       - lvgl.widget.hide: page_watering
       - lvgl.widget.hide: page_settings
-      - script.execute: id_script_backlight_timeout
             
   top_layer: # Top Screen Status bar. Visible on all pages.
     widgets:
