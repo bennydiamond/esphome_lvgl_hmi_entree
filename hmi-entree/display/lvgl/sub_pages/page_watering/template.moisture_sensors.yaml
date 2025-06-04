@@ -27,6 +27,16 @@ sensor:
             text:
               format: "%.0f%%"
               args: x
-        - lvgl.indicator.update:
+# Used for meter variant widget only
+#        - lvgl.indicator.update:
+#            id: ${moisture_meter_needle}
+#            value: !lambda return x;
+# Used for arc variant widget only
+        - lvgl.arc.update:
             id: ${moisture_meter_needle}
             value: !lambda return x;
+            indicator:
+              arc_color: !lambda |- 
+                if(x > 85) { return lv_color_make(id(color_blue).red, id(color_blue).green, id(color_blue).blue); }
+                else if (x < ${low_level_value}) { return lv_color_make(id(color_red).red, id(color_red).green, id(color_red).blue); }
+                else { return lv_color_make(id(color_green).red, id(color_green).green, id(color_green).blue); }
