@@ -8,6 +8,7 @@ lvgl:
       bg_color: color_black
       widgets:
         - tabview:
+            id: id_lv_tab_watering
             x: 1
             y: 46
             height: 360
