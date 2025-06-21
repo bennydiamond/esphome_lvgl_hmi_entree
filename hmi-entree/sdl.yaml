@@ -11,6 +11,9 @@ logger:
   level: DEBUG
 
 api:
+  on_client_connected:
+    then:
+      - component.update: id_img_river_flow_graph
 
 http_request:
 

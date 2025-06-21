@@ -1,1 +1,11 @@
-# Intentionally left empty
+online_image:
+  - url: "http://192.168.0.252/graphs/latest_graph_compressed.png"
+    id: id_img_river_flow_graph
+    format: png
+    type: RGB565
+    update_interval: 2h
+    on_download_finished:
+      then:
+        - lvgl.image.update:
+            id: id_lvgl_image_river
+            src: id_img_river_flow_graph

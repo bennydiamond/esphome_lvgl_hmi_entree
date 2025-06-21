@@ -31,6 +31,7 @@ binary_sensor:
               - lvgl.widget.hide: page_players_volume
               - lvgl.widget.hide: page_watering
               - lvgl.widget.hide: page_settings
+              - lvgl.widget.hide: page_river_graph
               - lvgl.tabview.select:
                   id: id_lv_tab_watering
                   index: 0

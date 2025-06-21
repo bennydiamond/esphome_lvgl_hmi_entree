@@ -83,6 +83,10 @@ logger:
 
 api:
   reboot_timeout: 60s
+  on_client_connected:
+    then:
+      - delay: 3s
+      - component.update: id_img_river_flow_graph
 
 http_request:
   verify_ssl: false

@@ -4,6 +4,7 @@ packages:
   page_music_cuisine: !include lvgl/sub_pages/page_music_cuisine.yaml
   page_players_volume: !include lvgl/sub_pages/page_players_volume.yaml
   page_watering: !include lvgl/sub_pages/page_watering.yaml
+  page_river_graph: !include lvgl/sub_pages/page_river_graph.yaml
   notification_area_sensors: !include notification_area_sensors.yaml
 
   page_light_all_ext: !include 
@@ -94,6 +95,7 @@ lvgl:
       - lvgl.widget.hide: page_players_volume
       - lvgl.widget.hide: page_watering
       - lvgl.widget.hide: page_settings
+      - lvgl.widget.hide: page_river_graph
             
   top_layer: # Top Screen Status bar. Visible on all pages.
     widgets:
