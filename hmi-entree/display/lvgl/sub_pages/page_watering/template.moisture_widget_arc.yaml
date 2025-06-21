@@ -1,9 +1,9 @@
 - obj:
+    id: ${moisture_widget_arc}
     height: 106
     width: 200
     pad_all: 0
     bg_opa: 20%
-    bg_color: ${outline_color}
     border_opa: 20%
     scrollable: False
     widgets:

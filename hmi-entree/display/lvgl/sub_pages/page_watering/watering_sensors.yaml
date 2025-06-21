@@ -2,7 +2,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_bin_pump_active
     internal: True
-    entity_id: binary_sensor.pompe_irrigation_active
+    entity_id: binary_sensor.alimentation_pompe_irrigation_alimentation_pompe_irrigation_load
     publish_initial_state: True
     on_press:
       then:
@@ -137,3 +137,35 @@ sensor:
             text:
               format: "%.2f"
               args: x
+
+text_sensor:
+  - platform: homeassistant
+    id: id_text_pump_fault
+    internal: True
+    entity_id: sensor.alimentation_pompe_irrigation_alimentation_pompe_irrigation_pump_fault_reason
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_pump_fault
+            text: !lambda 'return id(id_text_pump_fault).state;'
+        - if:
+            condition:
+              text_sensor.state:
+                id: id_text_pump_fault
+                state: 'OK'
+            then:
+              - lvgl.widget.hide:
+                  id: id_lv_obj_pump_fault_ack
+              - lvgl.widget.show:
+                  id: id_lv_obj_pump_pwr
+              - lvgl.label.update:
+                  id: id_lv_lab_pump_fault
+                  text_color: color_white
+            else:
+              - lvgl.widget.hide:
+                  id: id_lv_obj_pump_pwr
+              - lvgl.widget.show:
+                  id: id_lv_obj_pump_fault_ack
+              - lvgl.label.update:
+                  id: id_lv_lab_pump_fault
+                  text_color: color_red

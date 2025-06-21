@@ -73,6 +73,8 @@ default_mid_kelvin: "4000"
 
 weather_ha_entity_id: "weather.environnement_canada_meteo_previsions"
 
+grenier_light_ha_entity_id: "switch_lumieres_grenier_relay"
+
 light_all_ext_ha_entity_id: "exterieur"
 light_all_ext_min_kelvin: "${default_min_kelvin}"
 light_all_ext_mid_kelvin: "4000"

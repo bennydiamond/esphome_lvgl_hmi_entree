@@ -22,13 +22,13 @@ binary_sensor:
     publish_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_side_door
+        - lvgl.widget.update: 
+            id: id_lv_but_side_door
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_side_door
+        - lvgl.widget.update: 
+            id: id_lv_but_side_door
             hidden: true
 
   # Patio door from HA #
@@ -38,13 +38,13 @@ binary_sensor:
     publish_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_patio_door
+        - lvgl.widget.update: 
+            id: id_lv_but_patio_door
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_patio_door
+        - lvgl.widget.update: 
+            id: id_lv_but_patio_door
             hidden: true
 
   # Miner is running from HA #
@@ -63,36 +63,36 @@ binary_sensor:
             id: id_lv_lab_miner_status
             text_color: color_dark_gray
 
-  # Hibiscus needs water from HA #
+  # Global Alert for Outside SoilSensors from HA #
   - platform: homeassistant
-    id: id_ha_hibiscus_watering
-    entity_id: binary_sensor.hibiscus_a_soif
+    id: id_ha_outside_watering_alert
+    entity_id: binary_sensor.low_moisture_sensors_outside_alert
     publish_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_hibiscus_watering
+        - lvgl.widget.update: 
+            id: id_lv_but_outside_soil_alert
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_hibiscus_watering
+        - lvgl.widget.update: 
+            id: id_lv_but_outside_soil_alert
             hidden: true
 
-  # Lys de paix needs water from HA #
+  # Global Alert for Inside SoilSensors from HA #
   - platform: homeassistant
-    id: id_ha_lysdepaix_watering
-    entity_id: binary_sensor.lys_de_paix_a_soif
+    id: id_ha_inside_watering_alert
+    entity_id: binary_sensor.low_moisture_sensors_inside_alert
     publish_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_lysdepaix_watering
+        - lvgl.widget.update: 
+            id: id_lv_but_inside_soil_alert
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_lysdepaix_watering
+        - lvgl.widget.update: 
+            id: id_lv_but_inside_soil_alert
             hidden: true
 
   # Défi Hilo Status from HA #
@@ -118,13 +118,13 @@ binary_sensor:
     publish_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_salt_lvl
+        - lvgl.widget.update: 
+            id: id_lv_but_salt_lvl
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_salt_lvl
+        - lvgl.widget.update: 
+            id: id_lv_but_salt_lvl
             hidden: true
 
   # Irrigation System Active from HA #
@@ -134,13 +134,13 @@ binary_sensor:
     publish_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_watering_active
+        - lvgl.widget.update: 
+            id: id_lv_but_watering_active
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_watering_active
+        - lvgl.widget.update: 
+            id: id_lv_but_watering_active
             hidden: true
 
 interval:

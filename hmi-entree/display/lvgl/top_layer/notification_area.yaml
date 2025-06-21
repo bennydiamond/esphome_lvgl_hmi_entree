@@ -73,87 +73,242 @@ obj:
             flex_align_main : START # they sould be centered
             pad_column: 3
           widgets:
-            # Front door
-            - label:
-                id: id_lv_lab_side_door
-                #width: 40
-                #height: 40
-                #align: CENTER #TOP_LEFT
-                #x: 5
-                #y: 5
-                text: "${door_open}"
-                text_color: color_red
-                text_font: mdi_icons_32
+            # Side door
+            - button:
+                id: id_lv_but_side_door
+                pad_all: 0  
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
                 hidden: true
-            # Patio door
-            - label:
-                id: id_lv_lab_patio_door
-                #width: 40
-                #height: 40
-                #align: CENTER #TOP_LEFT
-                #x: 50
-                #y: 5
-                text: "${patio_door_open}"
-                text_color: color_red
-                text_font: mdi_icons_32
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${door_open}"
+                        text_color: color_red
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_side_door
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_side_door
+           # Patio door
+            - button:
+                id: id_lv_but_patio_door
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
                 hidden: true
-            - label:
-                # Bound sensor in tileview_page2/widget_sensors.yaml
-                id: id_lv_lab_riv_lvl_crit_notif 
-                text: "${waves_arrow_up}"
-                text_color: color_red
-                text_font: mdi_icons_32
-            - label:
-                id: id_lv_lab_attic 
-                text: "${home_floor_g}"
-                text_color: color_warmest_white
-                text_font: mdi_icons_32
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${patio_door_open}"
+                        text_color: color_red
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:   
+                        - lvgl.widget.show: id_lv_mbox_notify_patio_door
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_patio_door
+            # River Level critical
+            - button:
+                id: id_lv_but_riv_lvl_crit_notif
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
                 hidden: true
-            # Hibiscus watering
-            - label:
-                id: id_lv_lab_hibiscus_watering
-                #width: 40
-                #height: 40
-                #align: CENTER #TOP_LEFT
-                #x: 95
-                #y: 5
-                text: "${watering_can}"
-                text_color: color_blue
-                text_font: mdi_icons_32
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${waves_arrow_up}"
+                        text_color: color_red
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_riv_lvl_crit
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_riv_lvl_crit
+            # Attic Light ON
+            - button:
+                id: id_lv_but_notify_attic_light
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
                 hidden: true
-            # Lys de Paix watering
-            - label:
-                id: id_lv_lab_lysdepaix_watering
-                #width: 40
-                #height: 40
-                #align: CENTER #TOP_LEFT
-                #x: 95
-                #y: 5
-                text: "${watering_can}"
-                text_color: color_green
-                text_font: mdi_icons_32
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${home_floor_g}"
+                        text_color: color_warmest_white
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_attic
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_attic
+            # Outside SoilSensors Global Alert
+            - button:
+                id: id_lv_but_outside_soil_alert
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0 
                 hidden: true
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${watering_can}"
+                        text_color: color_green
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: page_watering
+                        - lvgl.tabview.select:
+                            id: id_lv_tab_watering
+                            index : 0
+                        - lvgl.page.show: 
+                            id: page_watering
+                            animation: OUT_RIGHT
+                            time: 300ms
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: page_watering
+                        - lvgl.tabview.select:
+                            id: id_lv_tab_watering
+                            index : 0
+                        - lvgl.page.show: 
+                            id: page_watering
+                            animation: OUT_RIGHT
+                            time: 300ms
+            # Inside SoilSensors Global Alert
+            - button:
+                id: id_lv_but_inside_soil_alert
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0 
+                hidden: true
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${watering_can}"
+                        text_color: color_blue
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: page_watering
+                        - lvgl.tabview.select:
+                            id: id_lv_tab_watering
+                            index : 0
+                        - lvgl.page.show: 
+                            id: page_watering
+                            animation: OUT_RIGHT
+                            time: 300ms
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: page_watering
+                        - lvgl.tabview.select:
+                            id: id_lv_tab_watering
+                            index : 0
+                        - lvgl.page.show: 
+                            id: page_watering
+                            animation: OUT_RIGHT
+                            time: 300ms
             # Water Softener Salt Level critical
-            - label:
-                id: id_lv_lab_salt_lvl
-                #width: 40
-                #height: 40
-                #align: CENTER #TOP_LEFT
-                #x: 95
-                #y: 5
-                text: "${salt_shaker}"
-                text_color: color_yellow
-                text_font: mdi_icons_32
-                hidden: true
+            - button:
+                id: id_lv_but_salt_lvl
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
+                hidden: True
+                widgets:
+                - label:
+                    align: CENTER
+                    text: "${salt_shaker}"
+                    text_color: color_yellow
+                    text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_salt
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_notify_salt
             # Irrigation System Active
-            - label:
-                id: id_lv_lab_watering_active
-                #width: 40
-                #height: 40
-                #align: CENTER #TOP_LEFT
-                #x: 95
-                #y: 5
-                text: "${sprinkler}"
-                text_color: color_blue
-                text_font: mdi_icons_32
+            - button:
+                id: id_lv_but_watering_active
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0 
                 hidden: true
+                widgets:
+                    - label:
+                        width: 100%
+                        height: 100%
+                        pad_all: 0
+                        align: CENTER
+                        text: "${sprinkler}"
+                        text_color: color_blue
+                        text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: page_watering
+                        - lvgl.tabview.select:
+                            id: id_lv_tab_watering
+                            index : 1
+                        - lvgl.page.show: 
+                            id: page_watering
+                            animation: OUT_RIGHT
+                            time: 300ms
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: page_watering
+                        - lvgl.tabview.select:
+                            id: id_lv_tab_watering
+                            index : 1
+                        - lvgl.page.show: 
+                            id: page_watering
+                            animation: OUT_RIGHT
+                            time: 300ms

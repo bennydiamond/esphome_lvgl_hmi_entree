@@ -7,7 +7,9 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_bac_moisture
       moisture_value_label: id_lv_label_moist_bac
       moisture_meter_needle: id_lv_meter_moist_bac
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_bac_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_bac_is_outside
+      card_outline_obj: id_lv_card_soilsensor_bac_outline
 
   soilsensor_broccolini: !include 
     file: template.moisture_sensors.yaml
@@ -17,7 +19,9 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_broccolini_moisture
       moisture_value_label: id_lv_label_moist_broc
       moisture_meter_needle: id_lv_meter_moist_broc
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_broccolini_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_broccolini_is_outside
+      card_outline_obj: id_lv_card_soilsensor_broccolini_outline
 
   soilsensor_citronnelle: !include 
     file: template.moisture_sensors.yaml
@@ -27,7 +31,9 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_citronnelle_moisture
       moisture_value_label: id_lv_label_moist_citr
       moisture_meter_needle: id_lv_meter_moist_citr
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_citronelle_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_citronnelle_is_outside
+      card_outline_obj: id_lv_card_soilsensor_citronnelle_outline
 
   soilsensor_curry: !include 
     file: template.moisture_sensors.yaml
@@ -37,7 +43,10 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_curry_moisture
       moisture_value_label: id_lv_label_moist_curry
       moisture_meter_needle: id_lv_meter_moist_curry
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_curry_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_curry_is_outside
+      card_outline_obj: id_lv_card_soilsensor_curry_outline
+
 
   soilsensor_hibiscus: !include 
     file: template.moisture_sensors.yaml
@@ -47,7 +56,9 @@ packages:
       moisture_value_entity_id: sensor.fineoffset_wh51_00db7d_moisture
       moisture_value_label: id_lv_label_moist_hibi
       moisture_meter_needle: id_lv_meter_moist_hibi
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_hibiscus_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_hibiscus_is_outside
+      card_outline_obj: id_lv_card_soilsensor_hibiscus_outline
 
   soilsensor_lys: !include 
     file: template.moisture_sensors.yaml
@@ -57,17 +68,9 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_lys_de_paix_soil_moisture
       moisture_value_label: id_lv_label_moist_lys
       moisture_meter_needle: id_lv_meter_moist_lys
-      low_level_value: 25
-
-  soilsensor_ricin: !include 
-    file: template.moisture_sensors.yaml
-    vars: 
-      low_batt_entity_id: binary_sensor.soilsensor_ricin_low_battery
-      low_batt_label_ico: id_lv_lab_ricin_lowbat
-      moisture_value_entity_id: sensor.soilsensor_ricin_moisture
-      moisture_value_label: id_lv_label_moist_ricin
-      moisture_meter_needle: id_lv_meter_moist_ricin
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_lys_de_paix_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_lys_de_paix_is_outside
+      card_outline_obj: id_lv_card_soilsensor_lys_outline
 
   soilsensor_sesame: !include 
     file: template.moisture_sensors.yaml
@@ -77,7 +80,21 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_sesame_moisture
       moisture_value_label: id_lv_label_moist_sesame
       moisture_meter_needle: id_lv_meter_moist_sesame
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_sesame_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_sesame_is_outside
+      card_outline_obj: id_lv_card_soilsensor_sesame_outline
+
+  soilsensor_tom_c: !include 
+    file: template.moisture_sensors.yaml
+    vars: 
+      low_batt_entity_id: binary_sensor.soilsensor_tomates_cerises_low_battery
+      low_batt_label_ico: id_lv_lab_tom_c_lowbat
+      moisture_value_entity_id: sensor.soilsensor_tomates_cerises_moisture
+      moisture_value_label: id_lv_label_moist_tom_c
+      moisture_meter_needle: id_lv_meter_moist_tom_c
+      low_moisture_entity_id: binary_sensor.soilsensor_tomate_cerise_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_tomate_cerise_is_outside
+      card_outline_obj: id_lv_card_soilsensor_tom_c_outline
 
   soilsensor_tom_p: !include 
     file: template.moisture_sensors.yaml
@@ -87,4 +104,6 @@ packages:
       moisture_value_entity_id: sensor.soilsensor_tomates_petite_moisture
       moisture_value_label: id_lv_label_moist_tom_p
       moisture_meter_needle: id_lv_meter_moist_tom_p
-      low_level_value: 25
+      low_moisture_entity_id: binary_sensor.soilsensor_tomate_petite_low_moisture
+      is_outside_entity_id: binary_sensor.soilsensor_tomate_petite_is_outside
+      card_outline_obj: id_lv_card_soilsensor_tom_p_outline

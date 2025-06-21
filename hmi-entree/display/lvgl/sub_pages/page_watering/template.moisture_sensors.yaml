@@ -15,6 +15,43 @@ binary_sensor:
             id: ${low_batt_label_ico}
             hidden: True
 
+  - platform: homeassistant
+    id: ${card_outline_obj}_bin
+    internal: True
+    entity_id: ${is_outside_entity_id}
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.update:
+            id: ${card_outline_obj}
+            bg_color: color_green
+    on_release:
+      then:
+        - lvgl.widget.update:
+            id: ${card_outline_obj}
+            bg_color: color_blue
+
+  - platform: homeassistant
+    id: ${moisture_value_label}_low_bin
+    internal: True
+    entity_id: ${low_moisture_entity_id}
+    publish_initial_state: True
+    on_press:
+      then:
+        - lvgl.arc.update:
+              id: ${moisture_meter_needle}
+              indicator:
+                arc_color: !lambda |- 
+                  return lv_color_make(id(color_red).red, id(color_red).green, id(color_red).blue);
+    on_release:
+      then:
+        - lvgl.arc.update:
+              id: ${moisture_meter_needle}
+              indicator:
+                arc_color: !lambda |- 
+                  if(id(${moisture_value_label}_sens).state > 85) { return lv_color_make(id(color_blue).red, id(color_blue).green, id(color_blue).blue); }
+                  else { return lv_color_make(id(color_green).red, id(color_green).green, id(color_green).blue); }
+
 sensor:
   - platform: homeassistant
     id: ${moisture_value_label}_sens
@@ -37,6 +74,6 @@ sensor:
             value: !lambda return x;
             indicator:
               arc_color: !lambda |- 
-                if(x > 85) { return lv_color_make(id(color_blue).red, id(color_blue).green, id(color_blue).blue); }
-                else if (x < ${low_level_value}) { return lv_color_make(id(color_red).red, id(color_red).green, id(color_red).blue); }
+                if(id(${moisture_value_label}_low_bin).state == true) { return lv_color_make(id(color_red).red, id(color_red).green, id(color_red).blue); }
+                else if(x > 85) { return lv_color_make(id(color_blue).red, id(color_blue).green, id(color_blue).blue); }
                 else { return lv_color_make(id(color_green).red, id(color_green).green, id(color_green).blue); }

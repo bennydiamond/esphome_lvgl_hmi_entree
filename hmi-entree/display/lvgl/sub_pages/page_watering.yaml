@@ -53,7 +53,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_bac_lowbat,
                                                   meter_needle: id_lv_meter_moist_bac,
                                                   numeric_value: id_lv_label_moist_bac,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_bac_outline,
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget_arc.yaml, 
@@ -61,7 +61,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_broc_lowbat,
                                                   meter_needle: id_lv_meter_moist_broc,
                                                   numeric_value: id_lv_label_moist_broc,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_broccolini_outline,
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget_arc.yaml, 
@@ -69,7 +69,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_citr_lowbat,
                                                   meter_needle: id_lv_meter_moist_citr,
                                                   numeric_value: id_lv_label_moist_citr,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_citronnelle_outline,
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget_arc.yaml, 
@@ -77,7 +77,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_curry_lowbat,
                                                   meter_needle: id_lv_meter_moist_curry,
                                                   numeric_value: id_lv_label_moist_curry,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_curry_outline,
                                                 } 
                                         }
                         - <<: !include { file: page_watering/template.moisture_widget_arc.yaml, 
@@ -85,16 +85,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_hibi_lowbat,
                                                   meter_needle: id_lv_meter_moist_hibi,
                                                   numeric_value: id_lv_label_moist_hibi,
-                                                  outline_color: color_blue
-                                                } 
-                                        }
-
-                        - <<: !include { file: page_watering/template.moisture_widget_arc.yaml, 
-                                          vars: { f_name: "Ricin",
-                                                  battery_alert_ico: id_lv_lab_ricin_lowbat,
-                                                  meter_needle: id_lv_meter_moist_ricin,
-                                                  numeric_value: id_lv_label_moist_ricin,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_hibiscus_outline,
                                                 } 
                                         }
 
@@ -103,7 +94,16 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_sesame_lowbat,
                                                   meter_needle: id_lv_meter_moist_sesame,
                                                   numeric_value: id_lv_label_moist_sesame,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_sesame_outline,
+                                                } 
+                                        }
+
+                        - <<: !include { file: page_watering/template.moisture_widget_arc.yaml, 
+                                          vars: { f_name: "Tomate Cerise",
+                                                  battery_alert_ico: id_lv_lab_tom_c_lowbat,
+                                                  meter_needle: id_lv_meter_moist_tom_c,
+                                                  numeric_value: id_lv_label_moist_tom_c,
+                                                  moisture_widget_arc: id_lv_card_soilsensor_tom_c_outline,
                                                 } 
                                         }
 
@@ -112,7 +112,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_tom_p_lowbat,
                                                   meter_needle: id_lv_meter_moist_tom_p,
                                                   numeric_value: id_lv_label_moist_tom_p,
-                                                  outline_color: color_blue
+                                                  moisture_widget_arc: id_lv_card_soilsensor_tom_p_outline,
                                                 } 
                                         }
 
@@ -121,7 +121,7 @@ lvgl:
                                                   battery_alert_ico: id_lv_lab_lys_lowbat,
                                                   meter_needle: id_lv_meter_moist_lys,
                                                   numeric_value: id_lv_label_moist_lys,
-                                                  outline_color: color_green
+                                                  moisture_widget_arc: id_lv_card_soilsensor_lys_outline,
                                                 } 
                                         }
 
@@ -224,7 +224,7 @@ lvgl:
                                     pad_column: 0
                                     type: GRID
                                     grid_columns: [100%]
-                                    grid_rows: [FR(10), FR(8), FR(13), FR(8), FR(40), FR(8), FR(13)]
+                                    grid_rows: [FR(10), FR(4), FR(13), FR(3), FR(40), FR(3), FR(13), FR(13)]
                                   widgets:
                                     - label:
                                         grid_cell_column_pos: 0
@@ -395,22 +395,96 @@ lvgl:
                                           pad_column: 8
                                         widgets:
                                           - label:
-                                              align: CENTER
-                                              text_font: lato_24
+                                              align: LEFT_MID
+                                              text_font: lato_18
                                               text_color: color_white
-                                              text_align: CENTER
+                                              text_align: LEFT
                                               long_mode: WRAP
-                                              text: "Alimentation:" 
-
-                                          - switch:
-                                              id: id_lv_switch_pump_pwr
+                                              text: "État/Faute:" 
+                                          - label:
+                                              id: id_lv_lab_pump_fault
+                                              align: LEFT_MID
+                                              text_font: lato_18
+                                              text_color: color_white
+                                              text_align: LEFT
+                                              long_mode: WRAP
+                                              text: "OK" 
+                                    - obj:
+                                        grid_cell_column_pos: 0
+                                        grid_cell_row_pos: 7
+                                        grid_cell_x_align: STRETCH
+                                        grid_cell_y_align: STRETCH
+                                        align: CENTER
+                                        pad_all: 0
+                                        bg_opa: TRANSP
+                                        border_opa: TRANSP
+                                        shadow_opa: TRANSP
+                                        widgets:
+                                          - obj:
+                                              id: id_lv_obj_pump_fault_ack
+                                              hidden: True
+                                              width: 100% 
+                                              height: 100%
+                                              pad_all: 0
+                                              bg_opa: TRANSP
+                                              border_opa: TRANSP
+                                              shadow_opa: TRANSP
+                                              scrollable: False
+                                              widgets:
+                                                - button:
+                                                    id: id_lv_btn_pump_fault_ack
+                                                    align: CENTER
+                                                    pad_top: 5
+                                                    pad_bottom: 5
+                                                    bg_color: color_red
+                                                    widgets:
+                                                      - label:
+                                                          text_font: lato_24
+                                                          text_color: color_white
+                                                          text_align: CENTER
+                                                          long_mode: WRAP
+                                                          text_decor: UNDERLINE
+                                                          text: "Éffacer la Faute"
+                                                    on_press:
+                                                      then:
+                                                        - homeassistant.event:
+                                                            event: esphome.button_pressed
+                                                            data:
+                                                              message: button_pump_fault_ack
+                                          - obj:
+                                              id: id_lv_obj_pump_pwr
+                                              hidden: False
+                                              width: 100% 
+                                              height: 100%
                                               align: CENTER
-                                              on_change:
-                                                then:
-                                                  - homeassistant.event:
-                                                      event: esphome.button_pressed
-                                                      data:
-                                                        message: button_pump_pwr
+                                              pad_all: 0
+                                              bg_opa: TRANSP
+                                              border_opa: TRANSP
+                                              shadow_opa: TRANSP
+                                              layout:
+                                                type: FLEX
+                                                flex_flow: ROW
+                                                flex_align_main: CENTER
+                                                flex_align_cross: CENTER
+                                                pad_column: 8
+                                              widgets:
+                                                - label:
+                                                    align: CENTER
+                                                    text_font: lato_24
+                                                    text_color: color_white
+                                                    text_align: CENTER
+                                                    long_mode: WRAP
+                                                    text: "Alimentation:"
+
+                                                - switch:
+                                                    id: id_lv_switch_pump_pwr
+                                                    align: CENTER
+                                                    on_change:
+                                                      then:
+                                                        - homeassistant.event:
+                                                            event: esphome.button_pressed
+                                                            data:
+                                                              message: button_pump_pwr
             
         - button:
             x: 0
