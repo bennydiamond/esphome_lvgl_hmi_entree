@@ -3,7 +3,7 @@ online_image:
     id: id_img_river_flow_graph
     format: png
     type: RGB565
-    update_interval: 2h
+    update_interval: 59min # source image is updated every hour
     on_download_finished:
       then:
         - lvgl.image.update:
