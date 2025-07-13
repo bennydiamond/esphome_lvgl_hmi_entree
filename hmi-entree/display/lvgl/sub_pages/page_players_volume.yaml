@@ -1,5 +1,6 @@
 packages:
   homepod_corridor_sensors: !include "page_players_volume/homepod_corridor_sensors.yaml"
+  homepod_bureau_bianka_sensors: !include "page_players_volume/homepod_bureau_bianka_sensors.yaml"
   shairport_garage_sensors: !include "page_players_volume/shairport_garage_sensors.yaml"
   shairport_atelier_sensors: !include "page_players_volume/shairport_atelier_sensors.yaml"
 
@@ -33,6 +34,17 @@ lvgl:
                                         id_slider: id_lv_slid_corridor_vol,
                                         id_speaker_icon: id_corridor_speaker_icon,
                                         id_play_pause_icon: id_corridor_play_pause_icon
+                                      } 
+                              }
+              - <<: !include { file: page_players_volume/template.volume_widget.yaml, 
+                                vars: { f_name: "Bureau",
+                                        mute_but_event_name: button_bureau_bianka_mute,
+                                        play_pause_but_event_name: button_bureau_bianka_play_pause,
+                                        id_muted: id_bin_bureau_bianka_muted,
+                                        volume_control_ent_id: '${bureau_bianka_volume_control_entity_id}',
+                                        id_slider: id_lv_slid_bureau_bianka_vol,
+                                        id_speaker_icon: id_bureau_bianka_speaker_icon,
+                                        id_play_pause_icon: id_bureau_bianka_play_pause_icon
                                       } 
                               }
               - <<: !include { file: page_players_volume/template.volume_widget.yaml, 

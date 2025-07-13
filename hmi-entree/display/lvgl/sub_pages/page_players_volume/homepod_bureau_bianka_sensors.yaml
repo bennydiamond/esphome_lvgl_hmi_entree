@@ -1,0 +1,47 @@
+binary_sensor:
+  - platform: homeassistant
+    id: id_bin_bureau_bianka_muted
+    internal: True
+    entity_id: ${bureau_bianka_mute_state_entity_id}
+    publish_initial_state: True
+    on_state: 
+      then:
+        - lvgl.label.update:
+            id: id_bureau_bianka_speaker_icon
+            text: !lambda  |-
+              if(x == true) {return "${volume_off}";}
+              else if(x < 25) {return "${volume_low}";}
+              else if (x < 65) {return "${volume_medium}";}
+              else {return "${volume_high}";}
+
+sensor:
+  - platform: homeassistant
+    id: id_sens_bureau_bianka_volume
+    entity_id: ${bureau_bianka_volume_control_entity_id}
+    internal: true
+    on_value:
+      - lvgl.slider.update:
+          id: id_lv_slid_bureau_bianka_vol
+          value: !lambda "return x;"
+          
+text_sensor:
+  - platform: homeassistant
+    id: id_bureau_bianka_media_state
+    entity_id: ${bureau_bianka_media_player_entity_id}
+    filters:
+      - to_lower:
+    internal: true
+    on_value:
+      - if:
+          condition:
+            text_sensor.state:
+              id: id_bureau_bianka_media_state
+              state: 'playing'
+          then:
+            - lvgl.label.update:
+                id: id_bureau_bianka_play_pause_icon
+                text: ${pause_icon}
+          else:
+            - lvgl.label.update:
+                id: id_bureau_bianka_play_pause_icon
+                text: ${play_icon}
