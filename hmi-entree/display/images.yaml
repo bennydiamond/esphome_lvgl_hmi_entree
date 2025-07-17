@@ -1,6 +1,6 @@
-- file: 'hmi-entree/music_note_cover.png'
-  type: RGB565
-  id: id_img_music_note
+#- file: 'hmi-entree/music_note_cover.png'
+#  type: RGB565
+#  id: id_img_music_note
 
   # FOG ANIMATION
 - file: 'hmi-entree/weather/fog/fog0.png'

@@ -61,8 +61,12 @@ battery_alert:      "\U000F10CC" # mdi-battery-alert-variant
 ha_instance_url: "http://192.168.0.250:8123"
 # token is valid for 10 years (2025-02-15)
 ha_auth_token: !secret ha_long_term_auth_token
-music_cover_jpg_url: 'http://192.168.1.192/music_cover.jpg'
-default_music_cover_jpg_url: 'http://192.168.0.250:8123/local/music_note_cover.jpg?authToken=${ha_auth_token}'
+music_cover_jpg_url: 'http://192.168.1.191:76/music_cover.jpg'
+music_cover_png_url: 'http://192.168.1.191:76/music_cover.png'
+default_music_cover_jpg_url: 'http://192.168.1.191:76/default_cover.jpg'
+default_music_cover_png_url: 'http://192.168.1.191:76/default_cover.png'
+fallback_music_cover_jpg_url: 'http://192.168.0.250:8123/local/music_note_cover.jpg?authToken=${ha_auth_token}'
+fallback_music_cover_png_url: 'http://192.168.0.250:8123/local/music_note_cover.png?authToken=${ha_auth_token}'
 
 #screen_idle_timeout_seconds: "5"
 entity_update_debounce_ms: "350"

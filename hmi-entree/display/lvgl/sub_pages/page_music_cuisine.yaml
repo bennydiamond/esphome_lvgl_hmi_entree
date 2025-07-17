@@ -1,19 +1,18 @@
-#online_image:
-#  - url: ${music_cover_jpg_url}
-#    id: id_online_img_now_playing
-#    format: jpg
-##    resize: 200x200
-#    type: RGB565
-#    on_download_finished:
-#      then:
-#        - lvgl.image.update:
-#            id: id_lvgl_image_now_playing
-#            src: id_online_img_now_playing
-#    on_error:
-#      then:
-#        - online_image.set_url:
-#            id: id_online_img_now_playing
-#            url: ${default_music_cover_jpg_url}
+online_image:
+  - url: ${music_cover_png_url} # Image is expected to be 200x200 pixels
+    id: id_online_img_now_playing
+    format: png
+    type: RGB565
+    on_download_finished:
+      then:
+        - lvgl.image.update:
+            id: id_lvgl_image_now_playing
+            src: id_online_img_now_playing
+    on_error:
+      then:
+        - online_image.set_url:
+            id: id_online_img_now_playing
+            url: ${fallback_music_cover_png_url}
 
 binary_sensor:
   # Used by media control widget in LVGL's top_layer
@@ -81,43 +80,42 @@ text_sensor:
             - lvgl.label.update:
                 id: id_lv_lab_music_playpause_icon
                 text: ${play_icon}
-      - if:
-          condition:
-            # Checks if "my_text_sensor" has state "Hello World"
-            text_sensor.state:
-              id: id_media_state
-              state: 'idle'
-          then:
-            - lvgl.label.update:
-                id: id_lv_lab_now_playing_track_name
-                text: " "
-            - lvgl.label.update:
-                id: id_lv_lab_now_playing_album_name
-                text: " "
-            - lvgl.label.update:
-                id: id_lv_lab_now_playing_artist_name
-                text: " "
+#      - if:
+#          condition:
+#            text_sensor.state:
+#              id: id_media_state
+#              state: 'idle'
+#          then:
+#            - lvgl.label.update:
+#                id: id_lv_lab_now_playing_track_name
+#                text: " "
+#            - lvgl.label.update:
+#                id: id_lv_lab_now_playing_album_name
+#                text: " "
+#            - lvgl.label.update:
+#                id: id_lv_lab_now_playing_artist_name
+#                text: " "
 
-  - platform: homeassistant
-    id: id_media_now_playing_track
-    entity_id: ${media_player_title_entity_id}
-    internal: true
-    on_value:
-      then:
-        - lvgl.label.update:
-            id: id_lv_lab_now_playing_track_name
-            text: !lambda |-
-              std::string str = x;
-              if (str.length() > 200) {
-                str = str.substr(0, 200);
-              }
-              return str.c_str();
-        - lvgl.label.update:
-            id: id_lv_lab_now_playing_album_name
-            text: " "
-        - lvgl.label.update:
-            id: id_lv_lab_now_playing_artist_name
-            text: " "
+#  - platform: homeassistant
+#    id: id_media_now_playing_track
+#    entity_id: ${media_player_title_entity_id}
+#    internal: true
+#    on_value:
+#      then:
+#        - lvgl.label.update:
+#            id: id_lv_lab_now_playing_track_name
+#            text: !lambda |-
+#              std::string str = x;
+#              if (str.length() > 200) {
+#                str = str.substr(0, 200);
+#              }
+#              return str.c_str();
+#        - lvgl.label.update:
+#            id: id_lv_lab_now_playing_album_name
+#            text: " "
+#        - lvgl.label.update:
+#            id: id_lv_lab_now_playing_artist_name
+#            text: " "
 #        - if:
 #            condition:
 #              lvgl.page.is_showing: page_music_cuisine
@@ -125,36 +123,36 @@ text_sensor:
 #              - delay: 100ms
 #              - component.update: id_online_img_now_playing
 
-  - platform: homeassistant
-    id: id_media_now_playing_album
-    entity_id: ${media_player_album_entity_id}
-    internal: true
-    on_value:
-      then:
-        - delay: 80ms # Delay to let field get pre-wiped when receiving track name
-        - lvgl.label.update:
-            id: id_lv_lab_now_playing_album_name
-            text: !lambda |-
-              std::string str = x;
-              if (str.length() > 200) {
-                str = str.substr(0, 200);
-              }
-              return str.c_str();
-  - platform: homeassistant
-    id: id_media_now_playing_artist
-    entity_id: ${media_player_artist_entity_id}
-    internal: true
-    on_value:
-      then:
-        - delay: 80ms # Delay to let field get pre-wiped when receiving track name
-        - lvgl.label.update:
-            id: id_lv_lab_now_playing_artist_name
-            text: !lambda |-
-              std::string str = x;
-              if (str.length() > 200) {
-                str = str.substr(0, 200);
-              }
-              return str.c_str();
+#  - platform: homeassistant
+#    id: id_media_now_playing_album
+#    entity_id: ${media_player_album_entity_id}
+#    internal: true
+#    on_value:
+#      then:
+#        - delay: 80ms # Delay to let field get pre-wiped when receiving track name
+#        - lvgl.label.update:
+#            id: id_lv_lab_now_playing_album_name
+#            text: !lambda |-
+#              std::string str = x;
+#              if (str.length() > 200) {
+#                str = str.substr(0, 200);
+#              }
+#              return str.c_str();
+#  - platform: homeassistant
+#    id: id_media_now_playing_artist
+#    entity_id: ${media_player_artist_entity_id}
+#    internal: true
+#    on_value:
+#      then:
+#        - delay: 80ms # Delay to let field get pre-wiped when receiving track name
+#        - lvgl.label.update:
+#            id: id_lv_lab_now_playing_artist_name
+#            text: !lambda |-
+#              std::string str = x;
+#              if (str.length() > 200) {
+#                str = str.substr(0, 200);
+#              }
+#              return str.c_str();
   - platform: homeassistant
     id: id_media_player_repeat
     entity_id: ${media_player_repeat_state_entity_id}
@@ -212,7 +210,7 @@ lvgl:
             scrollable: False
             widgets:
               - image:
-                  src: id_img_music_note #id_online_img_now_playing
+                  src: id_online_img_now_playing
                   id: id_lvgl_image_now_playing
                   bg_opa: TRANSP
                   align: TOP_LEFT
