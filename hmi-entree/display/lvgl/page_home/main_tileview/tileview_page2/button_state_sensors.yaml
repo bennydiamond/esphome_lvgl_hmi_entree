@@ -3,7 +3,7 @@ binary_sensor:
     id: id_bin_curt_salon_rdc
     internal: True
     entity_id: binary_sensor.etat_rideaux_salon_rdc_ouvert
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.button.update: 
@@ -26,7 +26,7 @@ binary_sensor:
     id: id_bin_curt_dining
     internal: True
     entity_id: binary_sensor.etat_rideaux_salle_a_manger
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.button.update: 

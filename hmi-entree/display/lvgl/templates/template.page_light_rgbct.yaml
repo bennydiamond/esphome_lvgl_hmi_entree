@@ -23,7 +23,7 @@ binary_sensor:
     id: id_bin_${light_ha_entity}_state
     internal: True
     entity_id: light.${light_ha_entity}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_release:
       then:
         - delay: 200ms # seems to be required has other attributes are changing a bit as lights dims down while it's turning down.

@@ -4,7 +4,7 @@ binary_sensor:
     id: id_bin_${light_ha_entity}_light_state
     internal: True
     entity_id: light.${light_ha_entity}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.button.update: 
@@ -46,7 +46,7 @@ binary_sensor:
     id: id_text_${light_ha_entity}_freeze_active
     entity_id: ${input_bool_freeze_active_ha_entity}
     internal: true
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.label.update:

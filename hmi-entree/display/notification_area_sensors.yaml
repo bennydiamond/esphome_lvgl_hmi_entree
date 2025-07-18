@@ -19,7 +19,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_side_door
     entity_id: binary_sensor.ademcointerposer_porte_de_cote
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update: 
@@ -35,7 +35,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_patio_door
     entity_id: binary_sensor.ademcointerposer_patio
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update: 
@@ -51,7 +51,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_mining_running
     entity_id: binary_sensor.mining_rig_est_en_fonction
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.label.update: 
@@ -67,7 +67,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_outside_watering_alert
     entity_id: binary_sensor.low_moisture_sensors_outside_alert
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update: 
@@ -83,7 +83,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_inside_watering_alert
     entity_id: binary_sensor.low_moisture_sensors_inside_alert
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update: 
@@ -99,7 +99,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_defi_hilo_active
     entity_id: binary_sensor.defi_hilo_thermostat_central_override_is_active
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.label.update: 
@@ -115,7 +115,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_salt_lvl_crit
     entity_id: binary_sensor.esphome_web_9cd79a_sel_bas
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update: 
@@ -131,7 +131,7 @@ binary_sensor:
   - platform: homeassistant
     id: id_ha_watering_active
     entity_id: binary_sensor.rain_bird_irrigation_actif
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update: 

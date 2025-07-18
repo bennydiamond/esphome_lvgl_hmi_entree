@@ -9,7 +9,7 @@ packages:
 #    id: id_bin_all_light_state
 #    internal: True
 #    entity_id: light.toutes_les_lumieres_sauf_eclairage_exterieur
-#    publish_initial_state: True
+#    trigger_on_initial_state: True
 #    on_press:
 #      then:
 #        - lvgl.widget.update: 

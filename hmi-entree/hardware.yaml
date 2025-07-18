@@ -5,6 +5,8 @@ esp32:
 #  cpu_frequency : 240MHz
   framework:
     type: esp-idf
+    version: 5.4.2
+    platform_version: 54.03.21
     sdkconfig_options:
       CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
       CONFIG_ESPTOOLPY_FLASHSIZE_8MB: "y"
@@ -28,7 +30,7 @@ esp32:
 
 esphome:
   name: ${dname}
-  min_version: 2025.05.2
+  min_version: 2025.07.1
   platformio_options:
     build_unflags: -Werror=all
     board_build.flash_mode: dio
@@ -181,7 +183,7 @@ i2c:
   sda: 8
   scl: 9
   frequency: 400kHz
-  scan: true
+  scan: false
   id: bus_a
 
 button:
@@ -196,35 +198,35 @@ text_sensor:
       name: "WiFi SSID"
       id: id_wifi_ssid
       entity_category: diagnostic
-      filters:
-        - lambda: |-
-            std::string str = x;
-            if (str.length() > 32) {
-              return str.substr(0, 32);
-            }
-            return str;
-      on_value:
-        then:
-          - lvgl.label.update:
-              id: id_lv_lab_debug_network_info_ssid
-              text: !lambda 'return ("SSID: " + x).c_str();'
+#      filters:
+#        - lambda: |-
+#            std::string str = x;
+#            if (str.length() > 32) {
+#              return str.substr(0, 32);
+#            }
+#            return str;
+#      on_value:
+#        then:
+#          - lvgl.label.update:
+#              id: id_lv_lab_debug_network_info_ssid
+#              text: !lambda 'return ("SSID: " + x).c_str();'
 
     ip_address:
       name: "IP Address"
       id: id_ip_address
       entity_category: diagnostic
-      filters:
-        - lambda: |-
-            std::string str = x;
-            if (str.length() > 15) {
-              return str.substr(0, 15);
-            }
-            return str;
-      on_value:
-        then:
-          - lvgl.label.update:
-              id: id_lv_lab_debug_network_info_ip
-              text: !lambda 'return ("IP Address: " + x).c_str();'
+#      filters:
+#        - lambda: |-
+#            std::string str = x;
+#            if (str.length() > 15) {
+#              return str.substr(0, 15);
+#            }
+#            return str;
+#      on_value:
+#        then:
+#          - lvgl.label.update:
+#              id: id_lv_lab_debug_network_info_ip
+#              text: !lambda 'return ("IP Address: " + x).c_str();'
 
     mac_address:
       name: "MAC Address"
@@ -236,16 +238,16 @@ text_sensor:
       name: "Device Info"
       id: id_sensor_debug_device_info
       internal: True
-      filters:
-        - lambda: |-
-            std::replace(x.begin(), x.end(), '|', '\n');
-            return x;
-        - prepend: "ESPHome version: "
-      on_value:
-        then:
-          - lvgl.label.update:
-              id: id_lv_lab_debug_device_info
-              text: !lambda "return x.c_str();"
+#      filters:
+#        - lambda: |-
+#            std::replace(x.begin(), x.end(), '|', '\n');
+#            return x;
+#        - prepend: "ESPHome version: "
+#      on_value:
+#        then:
+#          - lvgl.label.update:
+#              id: id_lv_lab_debug_device_info
+#              text: !lambda "return x.c_str();"
 
 sensor:
   - platform: wifi_signal

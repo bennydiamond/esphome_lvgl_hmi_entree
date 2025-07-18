@@ -41,7 +41,7 @@ binary_sensor:
     id: id_bin_lock_side
     internal: true
     entity_id: binary_sensor.etat_verrou_porte_de_cote
-    publish_initial_state: true
+    trigger_on_initial_state: true
     on_press:
       then:
         - script.stop: id_script_blink_lock_ico
@@ -81,7 +81,7 @@ binary_sensor:
     id: id_bin_garage_door
     internal: true
     entity_id: binary_sensor.garage_door_opener_tat_de_la_porte
-    publish_initial_state: true
+    trigger_on_initial_state: true
     on_press:
       then:
         - lvgl.button.update: 

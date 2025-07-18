@@ -9,7 +9,7 @@ binary_sensor:
     id: id_bin_riv_lvl_crit
     internal: True
     entity_id: binary_sensor.niveau_de_la_riviere_elevee
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.label.update: 

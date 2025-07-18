@@ -20,7 +20,7 @@ binary_sensor:
     id: id_media_muted
     internal: True
     entity_id: ${mute_state_entity_id}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state: 
       then:
         - lvgl.label.update:
@@ -34,7 +34,7 @@ binary_sensor:
     id: id_media_player_shuffle
     entity_id: ${media_player_shuffle_state_entity_id}
     internal: true
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.label.update:

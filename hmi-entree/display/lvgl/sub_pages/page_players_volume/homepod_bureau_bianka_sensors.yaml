@@ -3,7 +3,7 @@ binary_sensor:
     id: id_bin_bureau_bianka_muted
     internal: True
     entity_id: ${bureau_bianka_mute_state_entity_id}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state: 
       then:
         - lvgl.label.update:

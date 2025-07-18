@@ -3,7 +3,7 @@ binary_sensor:
     id: id_bin_pump_active
     internal: True
     entity_id: binary_sensor.alimentation_pompe_irrigation_alimentation_pompe_irrigation_load
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.led.update:
@@ -21,7 +21,7 @@ binary_sensor:
     id: id_bin_valve_gazon_av
     internal: True
     entity_id: switch.gazon_avant
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:
@@ -33,7 +33,7 @@ binary_sensor:
     id: id_bin_valve_gazon_ar
     internal: True
     entity_id: switch.gazon_arriere
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:
@@ -45,7 +45,7 @@ binary_sensor:
     id: id_bin_valve_gazon_c
     internal: True
     entity_id: switch.gazon_cote
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:
@@ -57,7 +57,7 @@ binary_sensor:
     id: id_bin_valve_pb_av
     internal: True
     entity_id: switch.plate_bandes_avant
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:
@@ -69,7 +69,7 @@ binary_sensor:
     id: id_bin_valve_pb_ar
     internal: True
     entity_id: switch.plate_bandes_arriere
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:
@@ -81,7 +81,7 @@ binary_sensor:
     id: id_bin_valve_vid
     internal: True
     entity_id: switch.vidange
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:
@@ -93,7 +93,7 @@ binary_sensor:
     id: id_bin_switch_pump
     internal: True
     entity_id: switch.alimentation_pompe_irrigation_alimentation_pompe_irrigation
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_state:
       then:
         - lvgl.widget.update:

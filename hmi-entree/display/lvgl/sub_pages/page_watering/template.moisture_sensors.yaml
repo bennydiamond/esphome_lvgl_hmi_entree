@@ -3,7 +3,7 @@ binary_sensor:
     id: ${low_batt_label_ico}_bin
     internal: True
     entity_id: ${low_batt_entity_id}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.label.update:
@@ -19,7 +19,7 @@ binary_sensor:
     id: ${card_outline_obj}_bin
     internal: True
     entity_id: ${is_outside_entity_id}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.widget.update:
@@ -35,7 +35,7 @@ binary_sensor:
     id: ${moisture_value_label}_low_bin
     internal: True
     entity_id: ${low_moisture_entity_id}
-    publish_initial_state: True
+    trigger_on_initial_state: True
     on_press:
       then:
         - lvgl.arc.update:
