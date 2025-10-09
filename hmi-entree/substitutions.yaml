@@ -75,7 +75,7 @@ default_min_kelvin: "2000"
 default_max_kelvin: "6535"
 default_mid_kelvin: "4000"
 
-weather_ha_entity_id: "weather.environnement_canada_meteo_previsions"
+weather_ha_entity_id: "weather.pirateweather"
 
 grenier_light_ha_entity_id: "switch_lumieres_grenier_relay"
 
@@ -106,7 +106,7 @@ lampadaire_avant_max_kelvin: "${default_max_kelvin}"
 
 volume_control_entity_id: "number.homepod_cuisine_volume"
 mute_state_entity_id: "switch.homepod_cuisine_virtual_mute"
-media_player_entity_id: "media_player.cuisine_proxy" # HA is in charge of supplying correct information on this sensor. Toggles between Homepod and MASS entity.
+media_player_entity_id: "media_player.cuisine_ump" # HA is in charge of supplying correct information on this sensor. Toggles between Homepod and MASS entity.
 media_player_title_entity_id: "sensor.homepod_cuisine_media_title_sanitized"
 media_player_album_entity_id: "sensor.homepod_cuisine_media_album_sanitized"
 media_player_artist_entity_id: "sensor.homepod_cuisine_media_artist_sanitized"
@@ -120,11 +120,11 @@ music_playlist4_text: "Playlist4"
 
 corridor_volume_control_entity_id: "number.homepod_corridor_volume"
 corridor_mute_state_entity_id: "switch.homepod_corridor_virtual_mute"
-corridor_media_player_entity_id: "media_player.corridor_proxy"
+corridor_media_player_entity_id: "media_player.corridor_ump"
 
 bureau_bianka_volume_control_entity_id: "number.homepod_bureau_de_bianka_volume"
 bureau_bianka_mute_state_entity_id: "switch.homepod_bureau_de_bianka_virtual_mute"
-bureau_bianka_media_player_entity_id: "media_player.bureau_bianka_proxy"
+bureau_bianka_media_player_entity_id: "media_player.bureau_bianka_ump"
 
 garage_volume_control_entity_id: "number.garage_alsa_audio_garage_alsa_audio_volume"
 garage_mute_state_entity_id: "switch.garage_alsa_audio_garage_alsa_audio_mute"

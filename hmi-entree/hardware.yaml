@@ -198,35 +198,35 @@ text_sensor:
       name: "WiFi SSID"
       id: id_wifi_ssid
       entity_category: diagnostic
-#      filters:
-#        - lambda: |-
-#            std::string str = x;
-#            if (str.length() > 32) {
-#              return str.substr(0, 32);
-#            }
-#            return str;
-#      on_value:
-#        then:
-#          - lvgl.label.update:
-#              id: id_lv_lab_debug_network_info_ssid
-#              text: !lambda 'return ("SSID: " + x).c_str();'
+      filters:
+        - lambda: |-
+            std::string str = x;
+            if (str.length() > 32) {
+              return str.substr(0, 32);
+            }
+            return str;
+      on_value:
+        then:
+          - lvgl.label.update:
+              id: id_lv_lab_debug_network_info_ssid
+              text: !lambda 'return ("SSID: " + x).c_str();'
 
     ip_address:
       name: "IP Address"
       id: id_ip_address
       entity_category: diagnostic
-#      filters:
-#        - lambda: |-
-#            std::string str = x;
-#            if (str.length() > 15) {
-#              return str.substr(0, 15);
-#            }
-#            return str;
-#      on_value:
-#        then:
-#          - lvgl.label.update:
-#              id: id_lv_lab_debug_network_info_ip
-#              text: !lambda 'return ("IP Address: " + x).c_str();'
+      filters:
+        - lambda: |-
+            std::string str = x;
+            if (str.length() > 15) {
+              return str.substr(0, 15);
+            }
+            return str;
+      on_value:
+        then:
+          - lvgl.label.update:
+              id: id_lv_lab_debug_network_info_ip
+              text: !lambda 'return ("IP Address: " + x).c_str();'
 
     mac_address:
       name: "MAC Address"
@@ -238,16 +238,22 @@ text_sensor:
       name: "Device Info"
       id: id_sensor_debug_device_info
       internal: True
-#      filters:
-#        - lambda: |-
-#            std::replace(x.begin(), x.end(), '|', '\n');
-#            return x;
-#        - prepend: "ESPHome version: "
-#      on_value:
-#        then:
-#          - lvgl.label.update:
-#              id: id_lv_lab_debug_device_info
-#              text: !lambda "return x.c_str();"
+      filters:
+        - lambda: |-
+            std::string str = x;
+            if (str.length() > 264) {
+              return str.substr(0, 264);
+            }
+            return str;
+        - lambda: |-
+            std::replace(x.begin(), x.end(), '|', '\n');
+            return x;
+        - prepend: "ESPHome version: "
+      on_value:
+        then:
+          - lvgl.label.update:
+              id: id_lv_lab_debug_device_info
+              text: !lambda "return x.c_str();"
 
 sensor:
   - platform: wifi_signal
