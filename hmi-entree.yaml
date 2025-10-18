@@ -1,5 +1,9 @@
 # Based of https://github.com/alaltitov/display/tree/main
 
+
+# WARNING: Currently at 2025.10.1, loop_task stack size must be increased in esphome core package esp32/core.cpp to 8704 to avoid crashes with LVGL enabled.
+
+
 # ESP32-S3-Touch-LCD-7
 substitutions: !include hmi-entree/substitutions.yaml
 

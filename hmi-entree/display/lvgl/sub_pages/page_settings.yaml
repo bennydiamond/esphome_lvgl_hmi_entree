@@ -1,9 +1,3 @@
-globals:
-  - id: id_blinker_toggle
-    type: bool
-    restore_value: no
-    initial_value: "false"
-
 switch:
   - platform: template
     icon: mdi:television-shimmer

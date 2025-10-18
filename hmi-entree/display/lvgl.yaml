@@ -139,3 +139,28 @@ lvgl:
                   data:
                     entity_id: light.${grenier_light_ha_entity_id}
               - lvgl.widget.hide: id_lv_mbox_notify_attic
+    - id: id_lv_mbox_notify_trash
+      close_button: true
+      title: "Jour des vidanges"
+      body:
+        text: "\nC'est le jour des vidanges."
+    - id: id_lv_mbox_notify_recycle
+      close_button: true
+      title: "Jour du recyclage"
+      body:
+        text: "\nC'est le jour du recyclage."
+    - id: id_lv_mbox_notify_compost
+      close_button: true
+      title: "Jour du bac brun"
+      body:
+        text: "\nC'est le jour du composte."
+    - id: id_lv_mbox_notify_defi_hilo
+      close_button: true
+      title: "Défi Hilo"
+      body:
+        text: "\nDéfi Hilo en cours!"
+    - id: id_lv_mbox_notify_miner
+      close_button: true
+      title: "Statut du Mineur"
+      body:
+        text: "\nLe mineur est en fonction."

@@ -54,14 +54,14 @@ binary_sensor:
     trigger_on_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_miner_status
-            text_color: color_orange
+        - lvgl.widget.update: 
+            id: id_lv_but_miner_status
+            hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_miner_status
-            text_color: color_dark_gray
+        - lvgl.widget.update: 
+            id: id_lv_but_miner_status
+            hidden: true
 
   # Global Alert for Outside SoilSensors from HA #
   - platform: homeassistant
@@ -102,13 +102,13 @@ binary_sensor:
     trigger_on_initial_state: True
     on_press:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_defi_hilo
+        - lvgl.widget.update: 
+            id: id_lv_but_defi_hilo
             hidden: false
     on_release:
       then:
-        - lvgl.label.update: 
-            id: id_lv_lab_defi_hilo
+        - lvgl.widget.update: 
+            id: id_lv_but_defi_hilo
             hidden: true
 
   # Water Softener Salt Level Critical from HA #
@@ -143,12 +143,124 @@ binary_sensor:
             id: id_lv_but_watering_active
             hidden: true
 
+   # Trash bin #
+  - platform: homeassistant
+    id: id_ha_trash_day
+    entity_id: ${trash_bin_day_entity_id}
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.show: id_lv_but_variable_bin
+        - lvgl.label.update:
+            id: id_lv_lab_variable_bin
+            text_color: color_red
+            hidden: false
+    on_release:
+      then:
+        - lvgl.widget.hide: id_lv_but_variable_bin
+        - lvgl.widget.hide: id_lv_lab_variable_bin
+
+  # Trash bin alert
+  - platform: homeassistant
+    id: id_ha_trash_alert
+    entity_id: ${trash_bin_location_alert_entity_id}
+    trigger_on_initial_state: True
+    on_release:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_variable_bin
+            text_color: color_red
+        - if:
+            condition:
+              - binary_sensor.is_on: id_ha_trash_day
+            then:
+              - lvgl.widget.show: id_lv_but_variable_bin
+              - lvgl.widget.show: id_lv_lab_variable_bin
+
+  # Recycle bin #
+  - platform: homeassistant
+    id: id_ha_recycle_day
+    entity_id: ${recycle_bin_day_entity_id}
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.show: id_lv_but_variable_bin
+        - lvgl.label.update:
+            id: id_lv_lab_variable_bin
+            text_color: color_dark_green
+            hidden: false
+    on_release:
+      then:
+        - lvgl.widget.hide: id_lv_but_variable_bin
+        - lvgl.widget.hide: id_lv_lab_variable_bin
+
+  # Recycle bin alert
+  - platform: homeassistant
+    id: id_ha_recycle_alert
+    entity_id: ${recycle_bin_location_alert_entity_id}
+    trigger_on_initial_state: True
+    on_release:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_variable_bin
+            text_color: color_dark_green
+        - if:
+            condition:
+              - binary_sensor.is_on: id_ha_recycle_day
+            then:
+              - lvgl.widget.show: id_lv_but_variable_bin
+              - lvgl.widget.show: id_lv_lab_variable_bin
+
+  # Compost bin #
+  - platform: homeassistant
+    id: id_ha_compost_day
+    entity_id: ${compost_bin_day_entity_id}
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.show: id_lv_but_variable_bin
+        - lvgl.label.update:
+            id: id_lv_lab_variable_bin
+            text_color: color_brown
+            hidden: false
+    on_release:
+      then:
+        - lvgl.widget.hide: id_lv_but_variable_bin
+        - lvgl.widget.hide: id_lv_lab_variable_bin
+
+  # Compost bin alert
+  - platform: homeassistant
+    id: id_ha_compost_alert
+    entity_id: ${compost_bin_location_alert_entity_id}
+    trigger_on_initial_state: True
+    on_release:
+      then:
+        - lvgl.label.update:
+            id: id_lv_lab_variable_bin
+            text_color: color_brown
+        - if:
+            condition:
+              - binary_sensor.is_on: id_ha_compost_day
+            then:
+              - lvgl.widget.show: id_lv_but_variable_bin
+              - lvgl.widget.show: id_lv_lab_variable_bin
+
+globals:
+  - id: id_blinker_toggle
+    type: bool
+    restore_value: no
+    initial_value: "false"
+  - id: id_bin_blinker_toggle
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
 interval:
   - interval: 800ms
     startup_delay: 0s
     then:
       - if:
-          condition: 
+          condition:
             - lambda: "return id(id_blinker_toggle) == false;"
           then:
             - lvgl.label.update: 
@@ -164,3 +276,75 @@ interval:
             - globals.set:
                 id: id_blinker_toggle
                 value: "false"
+      # Trash bin blinking
+      - if:
+          condition:
+            and:
+              - binary_sensor.is_on: id_ha_trash_alert
+              - binary_sensor.is_on: id_ha_trash_day
+          then:
+            - if:
+                condition:
+                  - lambda: "return id(id_bin_blinker_toggle) == true;"
+                then:
+                  - lvgl.label.update:
+                      id: id_lv_lab_variable_bin
+                      text_color: color_red
+                  - globals.set:
+                      id: id_bin_blinker_toggle
+                      value: "false"
+                else:
+                  - lvgl.label.update:
+                      id: id_lv_lab_variable_bin
+                      text_color: color_dark_gray
+                  - globals.set:
+                      id: id_bin_blinker_toggle
+                      value: "true"
+      # Recycle bin blinking
+      - if:
+          condition:
+            and:
+              - binary_sensor.is_on: id_ha_recycle_alert
+              - binary_sensor.is_on: id_ha_recycle_day
+          then:
+            - if:
+                condition:
+                  - lambda: "return id(id_bin_blinker_toggle) == true;"
+                then:
+                  - lvgl.label.update:
+                      id: id_lv_lab_variable_bin
+                      text_color: color_dark_green
+                  - globals.set:
+                      id: id_bin_blinker_toggle
+                      value: "false"
+                else:
+                  - lvgl.label.update:
+                      id: id_lv_lab_variable_bin
+                      text_color: color_dark_gray
+                  - globals.set:
+                      id: id_bin_blinker_toggle
+                      value: "true"
+      # Compost bin blinking
+      - if:
+          condition:
+            and:
+              - binary_sensor.is_on: id_ha_compost_alert
+              - binary_sensor.is_on: id_ha_compost_day
+          then:
+            - if:
+                condition:
+                  - lambda: "return id(id_bin_blinker_toggle) == true;"
+                then:
+                  - lvgl.label.update:
+                      id: id_lv_lab_variable_bin
+                      text_color: color_brown
+                  - globals.set:
+                      id: id_bin_blinker_toggle
+                      value: "false"
+                else:
+                  - lvgl.label.update:
+                      id: id_lv_lab_variable_bin
+                      text_color: color_dark_gray
+                  - globals.set:
+                      id: id_bin_blinker_toggle
+                      value: "true"

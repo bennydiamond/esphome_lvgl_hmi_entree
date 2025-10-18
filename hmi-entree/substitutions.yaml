@@ -57,6 +57,8 @@ garage_door_open:   "\U000F06DA" # mdi-garage-open
 salt_shaker:        "\U000F110E" # mdi-shaker
 sprinkler:          "\U000F1060" # mdi-sprinkler-variant
 battery_alert:      "\U000F10CC" # mdi-battery-alert-variant
+trash_bin:          "\U000F01B4" # mdi-delete
+trash_bin_empty:    "\U000F06CC" # mdi-delete-empty
 
 ha_instance_url: "http://192.168.0.250:8123"
 # token is valid for 10 years (2025-02-15)
@@ -133,3 +135,12 @@ garage_media_player_entity_id: "media_player.shairport_sync_garage"
 atelier_volume_control_entity_id: "number.atelier_alsa_audio_atelier_alsa_audio_volume"
 atelier_mute_state_entity_id: "switch.atelier_alsa_audio_atelier_alsa_audio_mute"
 atelier_media_player_entity_id: "media_player.shairport_sync_atelier"
+
+trash_bin_day_entity_id: binary_sensor.jour_de_poubelles
+trash_bin_location_alert_entity_id: binary_sensor.rappel_bac_vidanges
+
+recycle_bin_day_entity_id: binary_sensor.jour_de_recyclage
+recycle_bin_location_alert_entity_id: binary_sensor.rappel_bac_recyclage
+
+compost_bin_day_entity_id: binary_sensor.jour_de_residus_organiques
+compost_bin_location_alert_entity_id: binary_sensor.rappel_bac_residus_organiques

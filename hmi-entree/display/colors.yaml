@@ -22,6 +22,8 @@
   hex: 39d19c
 - id: color_green
   hex: 00ff00
+- id: color_dark_green
+  hex: 508c50
 - id: color_orange
   hex: f07c40
 #- id: color_deep_orange
@@ -40,3 +42,5 @@
   hex: 1c51ff
 - id: color_bulb_sunset
   hex: ff6454
+- id: color_brown
+  hex: 63481e

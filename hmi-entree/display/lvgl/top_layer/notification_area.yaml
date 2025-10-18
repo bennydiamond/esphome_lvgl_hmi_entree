@@ -37,29 +37,9 @@ obj:
         text_color: color_dark_gray
         text_font: mdi_icons_32
 
-
-    # Heating status
-    - label:
-        id: id_lv_lab_miner_status
-        align: TOP_MID
-        x: -17
-        y: 5
-        text: "${heating}"
-        text_color: color_dark_gray
-        text_font: mdi_icons_32
-    # Défi Hilo active
-    - label:
-        id: id_lv_lab_defi_hilo
-        align: TOP_MID
-        x: 18
-        y: 5
-        text: "${h_circle_outline}"
-        text_color: color_dark_gray
-        text_font: mdi_icons_32
-        hidden: true
     - obj: # a properly placed coontainer object for all these controls
           align: TOP_LEFT
-          width: 200
+          width: 400
           height: 40
           x: 0
           y: 0
@@ -173,6 +153,58 @@ obj:
                 on_long_press:
                     then:
                         - lvgl.widget.show: id_lv_mbox_notify_attic
+            # Miner status
+            - button:
+                id: id_lv_but_miner_status
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
+                hidden: true
+                widgets:
+                  - label:
+                      id: id_lv_lab_miner_status
+                      width: 100%
+                      height: 100%
+                      pad_all: 0
+                      align: CENTER
+                      text: "${heating}"
+                      text_color: color_orange
+                      text_font: mdi_icons_32
+                on_short_click:
+                  then:
+                    - lvgl.widget.show: id_lv_mbox_notify_miner
+                on_long_press:
+                  then:
+                    - lvgl.widget.show: id_lv_mbox_notify_miner
+            # Défi Hilo active
+            - button:
+                id: id_lv_but_defi_hilo
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
+                hidden: true
+                widgets:
+                  - label:
+                      id: id_lv_lab_defi_hilo
+                      width: 100%
+                      height: 100%
+                      pad_all: 0
+                      align: CENTER
+                      text: "${h_circle_outline}"
+                      text_color: color_yellow
+                      text_font: mdi_icons_32
+                on_short_click:
+                  then:
+                    - lvgl.widget.show: id_lv_mbox_notify_defi_hilo
+                on_long_press:
+                  then:
+                    - lvgl.widget.show: id_lv_mbox_notify_defi_hilo
             # Outside SoilSensors Global Alert
             - button:
                 id: id_lv_but_outside_soil_alert
@@ -312,3 +344,52 @@ obj:
                             id: page_watering
                             animation: OUT_RIGHT
                             time: 300ms
+            # variable bin day reminder and alert
+            - button:
+                id: id_lv_but_variable_bin
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
+                hidden: True
+                widgets:
+                - label:
+                    id: id_lv_lab_variable_bin
+                    align: CENTER
+                    text: "${trash_bin}"
+                    text_color: color_red
+                    text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - if:
+                            condition:
+                                - binary_sensor.is_on: id_ha_compost_day
+                            then:
+                                - lvgl.widget.show: id_lv_mbox_notify_compost
+                            else:
+                                - if:
+                                    condition:
+                                        - binary_sensor.is_on: id_ha_recycle_day
+                                    then:
+                                        - lvgl.widget.show: id_lv_mbox_notify_recycle
+                                    else:
+                                        - lvgl.widget.show: id_lv_mbox_notify_trash
+
+                        - lvgl.widget.show: id_lv_mbox_notify_trash
+                on_long_press:
+                    then:
+                        - if:
+                            condition:
+                                - binary_sensor.is_on: id_ha_compost_day
+                            then:
+                                - lvgl.widget.show: id_lv_mbox_notify_compost
+                            else:
+                                - if:
+                                    condition:
+                                        - binary_sensor.is_on: id_ha_recycle_day
+                                    then:
+                                        - lvgl.widget.show: id_lv_mbox_notify_recycle
+                                    else:
+                                        - lvgl.widget.show: id_lv_mbox_notify_trash
