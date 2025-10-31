@@ -259,11 +259,19 @@ widgets:
                     text_font: lato_18
                     text_align: CENTER
                   options:
-                    - Solid
-                    - Wake up
-                    - Cycle up
-                    - Cycle down
-                    - Random
+                    - None
+                    - Random Slow
+                    - Random Fast
+                    - Disco
+                    - Breathing
+                    - Halloween
+                    - Halloween2
+                    - Halloween3
+                    - Halloween4
+                    - Christmas
+                    - Saint-Jean-Baptiste
+                    - Canada Day
+                    - Valentine
                   on_change:
                     then:
                       - delay: 2000ms

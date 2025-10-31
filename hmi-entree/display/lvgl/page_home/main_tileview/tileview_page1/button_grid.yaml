@@ -74,7 +74,7 @@ widgets:
             action: light.toggle
             data:
               entity_id: light.${light_extc_ha_entity_id}
-              kelvin: "2000"
+              kelvin: ${default_min_kelvin}
               brightness_pct: "65"
       on_long_press:
         then:
@@ -114,7 +114,7 @@ widgets:
             action: light.toggle
             data:
               entity_id: light.${light_port_ha_entity_id}
-              kelvin: "2000"
+              kelvin: ${default_min_kelvin}
               brightness_pct: "65"
       on_long_press:
         then:
@@ -155,7 +155,7 @@ widgets:
             action: light.toggle
             data:
               entity_id: light.${lampadaire_avant_lights_ha_entity_id}
-              kelvin: "2000"
+              kelvin: ${default_min_kelvin}
               brightness_pct: "65"
       on_long_press:
         then:

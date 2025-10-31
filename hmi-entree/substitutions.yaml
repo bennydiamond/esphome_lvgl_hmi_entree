@@ -73,9 +73,9 @@ fallback_music_cover_png_url: 'http://192.168.0.250:8123/local/music_note_cover.
 #screen_idle_timeout_seconds: "5"
 entity_update_debounce_ms: "350"
 
-default_min_kelvin: "2000"
-default_max_kelvin: "6535"
-default_mid_kelvin: "4000"
+default_min_kelvin: "2700"
+default_max_kelvin: "6500"
+default_mid_kelvin: "4100"
 
 weather_ha_entity_id: "weather.pirateweather"
 
@@ -83,27 +83,27 @@ grenier_light_ha_entity_id: "switch_lumieres_grenier_relay"
 
 light_all_ext_ha_entity_id: "exterieur"
 light_all_ext_min_kelvin: "${default_min_kelvin}"
-light_all_ext_mid_kelvin: "4000"
+light_all_ext_mid_kelvin: "${default_mid_kelvin}"
 light_all_ext_max_kelvin: "${default_max_kelvin}"
 
 light_extf_ha_entity_id: "exterieur_avant_maison"
 light_extf_min_kelvin: "${default_min_kelvin}"
-light_extf_mid_kelvin: "4000"
+light_extf_mid_kelvin: "${default_mid_kelvin}"
 light_extf_max_kelvin: "${default_max_kelvin}"
 
 light_port_ha_entity_id: "portique_avant"
 light_port_min_kelvin: "${default_min_kelvin}"
-light_port_mid_kelvin: "4000"
+light_port_mid_kelvin: "${default_mid_kelvin}"
 light_port_max_kelvin: "${default_max_kelvin}"
 
 light_extc_ha_entity_id: "exterieur_avant_corniches"
 light_extc_min_kelvin: "${default_min_kelvin}"
-light_extc_mid_kelvin: "4000"
+light_extc_mid_kelvin: "${default_mid_kelvin}"
 light_extc_max_kelvin: "${default_max_kelvin}"
 
 lampadaire_avant_lights_ha_entity_id: "lampadaire_avant"
 lampadaire_avant_min_kelvin: "${default_min_kelvin}"
-lampadaire_avant_mid_kelvin: "4000"
+lampadaire_avant_mid_kelvin: "${default_mid_kelvin}"
 lampadaire_avant_max_kelvin: "${default_max_kelvin}"
 
 volume_control_entity_id: "number.homepod_cuisine_volume"

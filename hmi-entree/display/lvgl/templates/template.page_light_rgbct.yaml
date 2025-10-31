@@ -235,6 +235,9 @@ text_sensor:
                   - text_sensor.state:
                       id: id_${light_ha_entity}_color_mode
                       state: "xy"
+                  - text_sensor.state:
+                      id: id_${light_ha_entity}_color_mode
+                      state: "rgb"
                 then: 
                   - lvgl.widget.update:
                       id: id_lv_obj_${light_ha_entity}_color_rgb
