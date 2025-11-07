@@ -30,7 +30,7 @@ esp32:
       CONFIG_COMPILER_OPTIMIZATION_PERF: y
       #CONFIG_COMPILER_OPTIMIZATION_DEBUG: y
     advanced:
-      main_loop_stack_size: 9126 #pr#10564
+      loop_task_stack_size: 9126 #pr#10564
 #      enable_idf_experimental_features: True
 
 esphome:
