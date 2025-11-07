@@ -1,5 +1,20 @@
 binary_sensor:
   - platform: homeassistant
+    id: ${card_outline_obj}_dis_bin
+    internal: True
+    entity_id: ${device_disabled_entity_id}
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.update:
+            id: ${card_outline_obj}
+            hidden: True
+    on_release:
+      then:
+        - lvgl.widget.update:
+            id: ${card_outline_obj}
+            hidden: False
+  - platform: homeassistant
     id: ${low_batt_label_ico}_bin
     internal: True
     entity_id: ${low_batt_entity_id}

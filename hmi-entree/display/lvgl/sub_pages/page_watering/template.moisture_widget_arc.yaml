@@ -6,6 +6,7 @@
     bg_opa: 20%
     border_opa: 20%
     scrollable: False
+    hidden: True # Hide by default, will be shown when device is enabled
     widgets:
       - label:
           id: ${battery_alert_ico}

@@ -2,6 +2,7 @@ packages:
   soilsensor_bac: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_bac_disabled
       low_batt_entity_id: binary_sensor.soilsensor_bac_low_battery
       low_batt_label_ico: id_lv_lab_bac_lowbat
       moisture_value_entity_id: sensor.soilsensor_bac_moisture
@@ -14,6 +15,7 @@ packages:
   soilsensor_broccolini: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_broccolini_disabled
       low_batt_entity_id: binary_sensor.soilsensor_broccolini_low_battery
       low_batt_label_ico: id_lv_lab_broc_lowbat
       moisture_value_entity_id: sensor.soilsensor_broccolini_moisture
@@ -26,6 +28,7 @@ packages:
   soilsensor_citronnelle: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_citronnelle_disabled
       low_batt_entity_id: binary_sensor.soilsensor_citronnelle_low_battery
       low_batt_label_ico: id_lv_lab_citr_lowbat
       moisture_value_entity_id: sensor.soilsensor_citronnelle_moisture
@@ -38,6 +41,7 @@ packages:
   soilsensor_curry: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_curry_disabled
       low_batt_entity_id: binary_sensor.soilsensor_curry_low_battery
       low_batt_label_ico: id_lv_lab_curry_lowbat
       moisture_value_entity_id: sensor.soilsensor_curry_moisture
@@ -51,6 +55,7 @@ packages:
   soilsensor_hibiscus: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_hibiscus_disabled
       low_batt_entity_id: binary_sensor.soilsensor_hibiscus_low_battery
       low_batt_label_ico: id_lv_lab_hibi_lowbat
       moisture_value_entity_id: sensor.fineoffset_wh51_00db7d_moisture
@@ -63,6 +68,7 @@ packages:
   soilsensor_lys: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_lys_de_paix_disabled
       low_batt_entity_id: binary_sensor.soilsensor_lys_de_paix_low_battery
       low_batt_label_ico: id_lv_lab_lys_lowbat
       moisture_value_entity_id: sensor.soilsensor_lys_de_paix_soil_moisture
@@ -75,6 +81,7 @@ packages:
   soilsensor_sesame: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_sesame_disabled
       low_batt_entity_id: binary_sensor.soilsensor_sesame_low_battery
       low_batt_label_ico: id_lv_lab_sesame_lowbat
       moisture_value_entity_id: sensor.soilsensor_sesame_moisture
@@ -87,6 +94,7 @@ packages:
   soilsensor_tom_c: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_tomates_cerises_disabled
       low_batt_entity_id: binary_sensor.soilsensor_tomates_cerises_low_battery
       low_batt_label_ico: id_lv_lab_tom_c_lowbat
       moisture_value_entity_id: sensor.soilsensor_tomates_cerises_moisture
@@ -99,6 +107,7 @@ packages:
   soilsensor_tom_p: !include 
     file: template.moisture_sensors.yaml
     vars: 
+      device_disabled_entity_id: binary_sensor.soilsensor_tomates_petite_disabled
       low_batt_entity_id: binary_sensor.soilsensor_tomates_petites_low_battery
       low_batt_label_ico: id_lv_lab_tom_p_lowbat
       moisture_value_entity_id: sensor.soilsensor_tomates_petite_moisture
