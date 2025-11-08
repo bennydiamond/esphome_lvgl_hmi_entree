@@ -195,24 +195,56 @@ widgets:
                           saturation: !lambda return id(${id_global_satu});
 
         - obj:
-            id: ${id_lv_obj_color_kelvin}
-            <<: !include  { file: color_kelvin_slider_widget.yaml, 
-                            vars: { id_lv_lab_kelvin: "${id_lv_lab_kelvin}", 
-                                    id_lv_slid_kelvin: "${id_lv_slid_kelvin}", 
-                                    value_min_kelvin: "${value_min_kelvin}", 
-                                    value_max_kelvin: "${value_max_kelvin}", 
-                                    light_ha_entity_id: "${light_ha_entity_id}" 
-                                  } 
-                          }
-        - obj:
-            id: ${id_lv_obj_color_rgb}    
-            <<: !include  { file: color_hs_slider_widget.yaml,
-                            vars: { id_lv_slid_hue: '${id_lv_slid_hue}',
-                                    id_lv_slid_sat: '${id_lv_slid_sat}',
-                                    id_global_hue: '${id_global_hue}',
-                                    id_global_satu: '${id_global_satu}'
-                                  } 
-                          }
+            grid_cell_column_pos: 2
+            grid_cell_row_pos: 1
+            grid_cell_x_align: STRETCH
+            grid_cell_y_align: STRETCH
+            grid_cell_row_span: 3
+            align: CENTER
+            pad_all: 0
+            border_width: 0
+            border_opa: TRANSP
+            bg_opa: TRANSP
+            shadow_opa: TRANSP
+            pad_left: 24
+            widgets:
+              - obj:
+                  id: ${id_lv_obj_color_kelvin}
+                  hidden: True
+                  align: CENTER
+                  pad_all: 0
+                  height: 100%
+                  width: 100%
+                  border_width: 0
+                  border_opa: TRANSP
+                  bg_opa: TRANSP
+                  shadow_opa: TRANSP
+                  <<: !include  { file: color_kelvin_slider_widget.yaml, 
+                                  vars: { id_lv_lab_kelvin: "${id_lv_lab_kelvin}", 
+                                          id_lv_slid_kelvin: "${id_lv_slid_kelvin}", 
+                                          value_min_kelvin: "${value_min_kelvin}", 
+                                          value_max_kelvin: "${value_max_kelvin}", 
+                                          light_ha_entity_id: "${light_ha_entity_id}" 
+                                      } 
+                              }
+              - obj:
+                  id: ${id_lv_obj_color_rgb}    
+                  hidden: True
+                  align: CENTER
+                  pad_all: 0
+                  height: 100%
+                  width: 100%
+                  border_width: 0
+                  border_opa: TRANSP
+                  bg_opa: TRANSP
+                  shadow_opa: TRANSP
+                  <<: !include  { file: color_hs_slider_widget.yaml,
+                                  vars: { id_lv_slid_hue: '${id_lv_slid_hue}',
+                                          id_lv_slid_sat: '${id_lv_slid_sat}',
+                                          id_global_hue: '${id_global_hue}',
+                                          id_global_satu: '${id_global_satu}'
+                                        } 
+                                }
 # Not used anymore. Assume not up-to-date on layout. Kept as reference.
 #        - obj:
 #            <<: !include  { file: color_rgb_slider_widget.yaml, 

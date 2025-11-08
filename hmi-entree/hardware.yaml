@@ -1,9 +1,3 @@
-# For custom main stack size. https://github.com/esphome/esphome/pull/10564
-external_components:
-  - source: github://pr#10564
-    components: [esp32]
-    refresh: 1h
-
 esp32:
   board: esp32-s3-devkitc-1
   variant: esp32s3
@@ -35,7 +29,7 @@ esp32:
 
 esphome:
   name: ${dname}
-  min_version: 2025.07.1
+  min_version: 2025.11.0
   platformio_options:
     build_unflags: -Werror=all
     board_build.flash_mode: dio
