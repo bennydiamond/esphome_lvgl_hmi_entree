@@ -33,6 +33,7 @@ number:
                   id: id_light_backlight_brightness
                   brightness: !lambda return x / 100.0;
                   transition_length: 300ms
+                  color_mode: BRIGHTNESS
 
   - platform: template
     id: id_num_idle_backlight_brightness
@@ -54,3 +55,4 @@ number:
                   id: id_light_backlight_brightness
                   brightness: !lambda return x / 100.0;
                   transition_length: 300ms
+                  color_mode: BRIGHTNESS

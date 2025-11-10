@@ -35,9 +35,9 @@ esphome:
     board_build.flash_mode: dio
     build_flags: 
       - -DBOARD_HAS_PSRAM
-    board_build.esp-idf.memory_type: qio_opi #Added
-    board_upload.maximum_ram_size: 524288 #Added
-    board_build.flash_size: 8MB #Added
+    board_build.esp-idf.memory_type: qio_opi
+    board_upload.maximum_ram_size: 524288
+    board_build.flash_size: 8MB
     # No second OTA partition. Must be flashed through serial (hint: ser2net)
 #    board_build.partitions: "../../../hmi-entree/custom_partition_no_ota.csv"
   on_boot:
@@ -302,10 +302,6 @@ sensor:
               text:
                 format: "Heap free: %.3fkB"
                 args: [x / 1024]
-#    block:
-#      name: "Heap Max Block"
-#      id: id_sensor_debug_heap_max_block
-#      internal: True
     loop_time:
       name: "Loop Time"
       id: id_sensor_debug_loop_time
