@@ -17,27 +17,46 @@ obj:
           line_color: color_dark_gray
           line_rounded: true
 
-    # Wi-Fi status
-    - label:
-        id: id_lv_lab_wifi_status
+    - obj:
         align: TOP_RIGHT
-        x: -5
-        y: 5
-        text: "${wifi_100}"
-        text_color: color_dark_gray
-        text_font: mdi_icons_32
+        width: 160
+        height: 40
+        pad_all: 0
+        bg_opa: TRANSP
+        border_opa: TRANSP
+        pad_right: 1
+        layout: # enable the FLEX layout for the children widgets
+            type: FLEX
+            flex_flow: ROW  # the order of the widgets starts top left
+            flex_align_main : END
+            pad_column: 3
+        widgets:
+            # Time display. Must be at the start to avoid shifting when other icons appear/disappear
+            # Only shown when not on home page
+            - label:
+                id: id_lv_lab_time_notif_area
+                align: CENTER
+                pad_right: 8
+                text_color: color_white
+                text_font: lato_30
+                hidden: true
+            # Home Assistant status
+            - label:
+                id: id_lv_lab_ha_status
+                align: TOP_RIGHT
+                text: "${ha}"
+                text_color: color_dark_gray
+                text_font: mdi_icons_32
+            # Wi-Fi status
+            - label:
+                id: id_lv_lab_wifi_status
+                align: TOP_RIGHT
+                text: "${wifi_100}"
+                text_color: color_dark_gray
+                text_font: mdi_icons_32
 
-    # Home Assistant status
-    - label:
-        id: id_lv_lab_ha_status
-        align: TOP_RIGHT
-        x: -40
-        y: 5
-        text: "${ha}"
-        text_color: color_dark_gray
-        text_font: mdi_icons_32
 
-    - obj: # a properly placed coontainer object for all these controls
+    - obj:
           align: TOP_LEFT
           width: 400
           height: 40
@@ -393,3 +412,26 @@ obj:
                                         - lvgl.widget.show: id_lv_mbox_notify_recycle
                                     else:
                                         - lvgl.widget.show: id_lv_mbox_notify_trash
+            # Water Softener Salt Level critical
+            - button:
+                id: id_lv_but_catstuff_problem
+                pad_all: 0
+                height: 35
+                width: 33
+                border_side: NONE
+                bg_opa: TRANSP
+                shadow_width: 0
+                hidden: True
+                widgets:
+                - label:
+                    id: id_lv_lab_catstuff_problem
+                    align: CENTER
+                    text: "${cat}"
+                    text_color: color_red
+                    text_font: mdi_icons_32
+                on_short_click:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_catstuff
+                on_long_press:
+                    then:
+                        - lvgl.widget.show: id_lv_mbox_catstuff

@@ -75,6 +75,18 @@ font: !include fonts.yaml
 image: !include images.yaml
 color: !include colors.yaml
 
+interval:
+  - interval: 200ms
+    startup_delay: 2s
+    then:
+    - if:
+        condition:
+          lvgl.page.is_showing: page_home
+        then:
+          - lvgl.widget.hide: id_lv_lab_time_notif_area
+        else:
+          - lvgl.widget.show: id_lv_lab_time_notif_area
+
 lvgl:
 #  on_idle:
 #    timeout: ${screen_idle_timeout_seconds}s
@@ -107,28 +119,38 @@ lvgl:
     - id: id_lv_mbox_notify_side_door
       close_button: true
       title: "Porte de coté"
+      text_font: lato_18
       body:
         text: "\nLa porte de coté est ouverte."
+        text_font: lato_18
     - id: id_lv_mbox_notify_patio_door
       close_button: true
       title: "Porte Patio"
+      text_font: lato_18
       body:
         text: "\nLa porte patio est ouverte."
+        text_font: lato_18
     - id: id_lv_mbox_notify_salt
       close_button: true
       title: "Adoucisseur d'eau"
+      text_font: lato_18
       body:
         text: "\nLe niveau de sel est bas dans l'adoucisseur d'eau."
+        text_font: lato_18
     - id: id_lv_mbox_notify_riv_lvl_crit
       close_button: true
       title: "Niveau de la rivière"
+      text_font: lato_18
       body:
         text: "\nLe niveau de la rivière est élevé."
+        text_font: lato_18
     - id: id_lv_mbox_notify_attic
       close_button: true
       title: "Grenier"
+      text_font: lato_18
       body:
         text: "\nLes lumières du grenier sont allumées."
+        text_font: lato_18
       buttons:
         - id: msgbox_turn_off_attic
           text: "Éteindre"
@@ -142,25 +164,42 @@ lvgl:
     - id: id_lv_mbox_notify_trash
       close_button: true
       title: "Jour des vidanges"
+      text_font: lato_18
       body:
         text: "\nC'est le jour des vidanges."
+        text_font: lato_18
     - id: id_lv_mbox_notify_recycle
       close_button: true
       title: "Jour du recyclage"
+      text_font: lato_18
       body:
         text: "\nC'est le jour du recyclage."
+        text_font: lato_18
     - id: id_lv_mbox_notify_compost
       close_button: true
       title: "Jour du bac brun"
+      text_font: lato_18
       body:
         text: "\nC'est le jour du composte."
+        text_font: lato_18
     - id: id_lv_mbox_notify_defi_hilo
       close_button: true
       title: "Défi Hilo"
+      text_font: lato_18
       body:
         text: "\nDéfi Hilo en cours!"
+        text_font: lato_18
     - id: id_lv_mbox_notify_miner
       close_button: true
       title: "Statut du Mineur"
+      text_font: lato_18
       body:
         text: "\nLe mineur est en fonction."
+        text_font: lato_18
+    - id: id_lv_mbox_catstuff
+      close_button: true
+      title: "Problème équipement chats"
+      text_font: lato_18
+      body:
+        text: "\nVérifier la fontaine ou la mangeoire."
+        text_font: lato_18

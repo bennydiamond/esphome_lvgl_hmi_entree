@@ -1,1 +1,28 @@
-# Intentionally left empty
+text_sensor:
+  - platform: homeassistant
+    id: id_text_catstuff_list
+    entity_id: sensor.liste_problemes_fontaine_mangeoire_combined
+    filters:
+      - lambda: |-
+            const size_t max_length = 300;
+            if(x != "OK")
+            {
+              std::string str = x;
+              if (str.length() > max_length) {
+                return str.substr(0, max_length);
+              }
+              return str;
+            }
+            else
+            {
+              return std::string("");
+            }
+
+    internal: true
+    on_value:
+      then:
+        - lambda: |-
+            lv_obj_t * label = lv_msgbox_get_text(id(id_lv_mbox_catstuff));
+            if (label != nullptr) {
+              lv_label_set_text(label, x.c_str());
+            }

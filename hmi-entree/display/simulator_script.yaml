@@ -1,8 +1,10 @@
 - id: time_update
   then:
-    - lvgl.label.update:
-        id: id_lv_lab_display_time
-        text: "12:34"
+    - lambda:
+        char time_buf[6] = "12:34";
+
+        lv_label_set_text(id(id_lv_lab_display_time), time_buf);
+        lv_label_set_text(id(id_lv_lab_time_notif_area), time_buf);
 
     - lvgl.label.update:
         id: id_lv_lab_display_day

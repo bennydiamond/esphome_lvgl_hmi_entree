@@ -142,6 +142,7 @@
     "\U000F1060", # mdi-sprinkler-variant
     "\U000F01B4", # mdi-delete
     "\U000F06CC", # mdi-delete-empty
+    "\U000F011B", # mdi-cat
   ]
 
 - file: "hmi-entree/fonts/materialdesignicons-webfont.ttf"

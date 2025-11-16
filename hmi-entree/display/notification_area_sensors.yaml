@@ -245,12 +245,67 @@ binary_sensor:
               - lvgl.widget.show: id_lv_but_variable_bin
               - lvgl.widget.show: id_lv_lab_variable_bin
 
+  # Problem cat feeder from HA #
+  - platform: homeassistant
+    id: id_ha_cat_feeder_problem
+    entity_id: binary_sensor.problemes_mangeoire_de_la_tite_crisse
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.show: id_lv_but_catstuff_problem
+        - lvgl.label.update:
+            id: id_lv_lab_catstuff_problem
+            text_color: color_red
+            hidden: false
+    on_release:
+      then:
+        - if:
+            condition:
+              - binary_sensor.is_off: id_ha_cat_fountain_problem
+            then:
+              - lvgl.widget.hide: id_lv_but_catstuff_problem
+            else:
+              - lvgl.label.update:
+                  id: id_lv_lab_catstuff_problem
+                  text_color: color_blue
+                  hidden: false
+            
+
+  # Problem cat fountain from HA #
+  - platform: homeassistant
+    id: id_ha_cat_fountain_problem
+    entity_id: binary_sensor.problemes_fontaine_chats
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.show: id_lv_but_catstuff_problem
+        - lvgl.label.update:
+            id: id_lv_lab_catstuff_problem
+            text_color: color_blue
+            hidden: false
+    on_release:
+      then:
+        - if:
+            condition:
+              - binary_sensor.is_off: id_ha_cat_feeder_problem
+            then:
+              - lvgl.widget.hide: id_lv_but_catstuff_problem
+            else:
+              - lvgl.label.update:
+                  id: id_lv_lab_catstuff_problem
+                  text_color: color_red
+                  hidden: false
+
 globals:
   - id: id_blinker_toggle
     type: bool
     restore_value: no
     initial_value: "false"
   - id: id_bin_blinker_toggle
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+  - id: id_cat_blinker_toggle
     type: bool
     restore_value: no
     initial_value: 'false'
@@ -348,3 +403,27 @@ interval:
                   - globals.set:
                       id: id_bin_blinker_toggle
                       value: "true"
+      # Cat stuff blinking
+      - if:
+          condition:
+            and: 
+              - binary_sensor.is_on: id_ha_cat_feeder_problem
+              - binary_sensor.is_on: id_ha_cat_fountain_problem
+          then:
+            - if:
+                condition:
+                  - lambda: "return id(id_cat_blinker_toggle) == true;"
+                then:
+                  - lvgl.label.update:
+                      id: id_lv_lab_catstuff_problem
+                      text_color: color_red
+                  - globals.set:
+                      id: id_cat_blinker_toggle
+                      value: "false"
+                else:
+                  - lvgl.label.update:
+                      id: id_lv_lab_catstuff_problem
+                      text_color: color_blue
+                  - globals.set:
+                      id: id_cat_blinker_toggle
+                      value: "true" 

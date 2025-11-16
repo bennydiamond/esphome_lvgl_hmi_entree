@@ -1,12 +1,12 @@
 - id: time_update
   then:
-    - lvgl.label.update:
-        id: id_lv_lab_display_time
-        text: !lambda |-
-          static char time_buf[16];
-          auto now = id(sntp_time).now();            
-          snprintf(time_buf, sizeof(time_buf), "%02d:%02d", now.hour, now.minute);
-          return time_buf;
+    - lambda: |-
+        char time_buf[6];
+        auto now = id(sntp_time).now();
+        snprintf(time_buf, sizeof(time_buf), "%02d:%02d", now.hour, now.minute);
+
+        lv_label_set_text(id(id_lv_lab_display_time), time_buf);
+        lv_label_set_text(id(id_lv_lab_time_notif_area), time_buf);
 
     - lvgl.label.update:
         id: id_lv_lab_display_day
