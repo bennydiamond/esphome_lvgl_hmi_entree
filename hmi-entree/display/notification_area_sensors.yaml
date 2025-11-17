@@ -111,6 +111,23 @@ binary_sensor:
             id: id_lv_but_defi_hilo
             hidden: true
 
+  # Attic light state #
+  - platform: homeassistant
+    id: id_attic_light
+    entity_id: light.${grenier_light_ha_entity_id}
+    trigger_on_initial_state: True
+    on_press:
+      then:
+        - lvgl.widget.update: 
+            id: id_lv_but_notify_attic_light
+            hidden: false
+    on_release:
+      then:
+        - lvgl.widget.update: 
+            id: id_lv_but_notify_attic_light
+            hidden: true
+        - lvgl.widget.hide: id_lv_mbox_notify_attic
+
   # Water Softener Salt Level Critical from HA #
   - platform: homeassistant
     id: id_ha_salt_lvl_crit

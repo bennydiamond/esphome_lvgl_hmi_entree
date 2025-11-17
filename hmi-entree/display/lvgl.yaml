@@ -117,35 +117,39 @@ lvgl:
 
   msgboxes:
     - id: id_lv_mbox_notify_side_door
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Porte de coté"
       text_font: lato_18
       body:
         text: "\nLa porte de coté est ouverte."
         text_font: lato_18
     - id: id_lv_mbox_notify_patio_door
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Porte Patio"
       text_font: lato_18
       body:
         text: "\nLa porte patio est ouverte."
         text_font: lato_18
     - id: id_lv_mbox_notify_salt
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Adoucisseur d'eau"
       text_font: lato_18
       body:
         text: "\nLe niveau de sel est bas dans l'adoucisseur d'eau."
         text_font: lato_18
     - id: id_lv_mbox_notify_riv_lvl_crit
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Niveau de la rivière"
       text_font: lato_18
       body:
         text: "\nLe niveau de la rivière est élevé."
         text_font: lato_18
     - id: id_lv_mbox_notify_attic
-      close_button: true
+      close_button: false
       title: "Grenier"
       text_font: lato_18
       body:
@@ -153,7 +157,7 @@ lvgl:
         text_font: lato_18
       buttons:
         - id: msgbox_turn_off_attic
-          text: "Éteindre"
+          text: "Eteindre"
           on_click:
             then:
               - homeassistant.action:
@@ -161,43 +165,53 @@ lvgl:
                   data:
                     entity_id: light.${grenier_light_ha_entity_id}
               - lvgl.widget.hide: id_lv_mbox_notify_attic
+        - text: "OK"
+          on_click:
+            then:
+              - lvgl.widget.hide: id_lv_mbox_notify_attic
     - id: id_lv_mbox_notify_trash
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Jour des vidanges"
       text_font: lato_18
       body:
         text: "\nC'est le jour des vidanges."
         text_font: lato_18
     - id: id_lv_mbox_notify_recycle
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Jour du recyclage"
       text_font: lato_18
       body:
         text: "\nC'est le jour du recyclage."
         text_font: lato_18
     - id: id_lv_mbox_notify_compost
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Jour du bac brun"
       text_font: lato_18
       body:
         text: "\nC'est le jour du composte."
         text_font: lato_18
     - id: id_lv_mbox_notify_defi_hilo
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Défi Hilo"
       text_font: lato_18
       body:
         text: "\nDéfi Hilo en cours!"
         text_font: lato_18
     - id: id_lv_mbox_notify_miner
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Statut du Mineur"
       text_font: lato_18
       body:
         text: "\nLe mineur est en fonction."
         text_font: lato_18
     - id: id_lv_mbox_catstuff
-      close_button: true
+      close_button: false
+      clickable: false
       title: "Problème équipement chats"
       text_font: lato_18
       body:
