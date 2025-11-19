@@ -114,6 +114,19 @@ text_sensor:
                   hidden: False
                   text: ${hvac_cooling}
                   text_color: color_blue
+              - lambda: |-
+                  lv_obj_t * label = lv_msgbox_get_text(id(id_lv_mbox_notify_hvac));
+                  if (label != nullptr) {
+                    lv_label_set_text(label, "En climatisation");
+                  }
+              - lvgl.label.update:
+                  id: id_lv_lab_hvac_status
+                  hidden: False
+                  text: ${hvac_cooling}
+                  text_color: color_blue
+              - lvgl.button.update:
+                  id: id_lv_but_hvac_status
+                  hidden: False
             else:
               - if:
                   condition:
@@ -126,10 +139,55 @@ text_sensor:
                         hidden: False
                         text: ${hvac_heating}
                         text_color: color_orange
-                  else:
+                    - lambda: |-
+                        lv_obj_t * label = lv_msgbox_get_text(id(id_lv_mbox_notify_hvac));
+                        if (label != nullptr) {
+                          lv_label_set_text(label, "En chauffage");
+                        }
                     - lvgl.label.update:
-                        id: id_lv_hvac_status
-                        hidden: True
+                        id: id_lv_lab_hvac_status
+                        hidden: False
+                        text: ${hvac_heating}
+                        text_color: color_orange
+                    - lvgl.button.update:
+                        id: id_lv_but_hvac_status
+                        hidden: False
+
+                  else:
+                    - if:
+                        condition:
+                          - text_sensor.state:
+                              id: id_txt_thermostat_action
+                              state: "fan"
+                        then:
+                          - lvgl.label.update:
+                              id: id_lv_hvac_status
+                              hidden: False
+                              text: ${hvac_fan}
+                              text_color: color_green
+                          - lambda: |-
+                              lv_obj_t * label = lv_msgbox_get_text(id(id_lv_mbox_notify_hvac));
+                              if (label != nullptr) {
+                                lv_label_set_text(label, "En ventilation");
+                              }
+                          - lvgl.label.update:
+                              id: id_lv_lab_hvac_status
+                              hidden: False
+                              text: ${hvac_fan}
+                              text_color: color_green
+                          - lvgl.button.update:
+                              id: id_lv_but_hvac_status
+                              hidden: False
+                        else:
+                          - lvgl.label.update:
+                              id: id_lv_hvac_status
+                              hidden: True
+                          - lvgl.button.update:
+                              id: id_lv_but_hvac_status
+                              hidden: True
+                          - lvgl.widget.update:
+                              id: id_lv_mbox_notify_hvac
+                              hidden: True
 
   - platform: homeassistant
     id: id_txt_riv_lvl

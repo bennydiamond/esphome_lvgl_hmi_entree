@@ -29,6 +29,7 @@ music_note:         "\U000F075A" # mdi-music
 h_circle_outline:   "\U000F0C02" # mdi-alpha-h-circle-outline
 hvac_cooling:       "\U000F1A71" # mdi-snowflake-thermometer
 hvac_heating:       "\U000F0510" # mdi-thermometer-lines
+hvac_fan:           "\U000F0210" # mdi-fan
 volume_high:        "\U000F057E" # mdi-volume-high
 volume_medium:      "\U000F0580" # mdi-volume-medium
 volume_low:         "\U000F057F" # mdi-volume-low
