@@ -29,7 +29,7 @@ lvgl:
               - label:
                   id: id_lv_lab_display_day
                   align: BOTTOM_LEFT
-                  x: 6
+                  x: 2
                   y: 0
                   width: 84
                   height: 20
@@ -41,11 +41,11 @@ lvgl:
               # DATE
               - label:
                   id: id_lv_lab_display_date
-                  x: 90
+                  x: -2
                   y: 0
-                  width: 98
+                  width: 110
                   height: 20
-                  align: BOTTOM_LEFT
+                  align: BOTTOM_RIGHT
                   text_font: lato_18
                   text_color: color_white
                   text_align: RIGHT
