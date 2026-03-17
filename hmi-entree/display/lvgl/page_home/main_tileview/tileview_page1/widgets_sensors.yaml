@@ -73,7 +73,7 @@ sensor:
   - platform: homeassistant
     id: id_sens_riv_height
     internal: True
-    entity_id: sensor.riviere_noire_niveau
+    entity_id: sensor.riviere_noire_niveau_consolide
     on_value:
       then:
         - lvgl.label.update: 
@@ -84,7 +84,7 @@ sensor:
   - platform: homeassistant
     id: id_sens_riv_flow
     internal: True
-    entity_id: sensor.riviere_noire_debit
+    entity_id: sensor.riviere_noire_debit_consolide
     on_value:
       then:
         - lvgl.label.update: 
