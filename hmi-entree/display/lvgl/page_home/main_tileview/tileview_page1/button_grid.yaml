@@ -39,7 +39,6 @@ widgets:
               entity_id: light.${light_all_ext_ha_entity_id}
       on_long_press:
         then:
-            - lvgl.widget.show: page_light_all_ext
             - lvgl.page.show: 
                 id: page_light_all_ext
                 animation: OUT_RIGHT
@@ -78,7 +77,6 @@ widgets:
               brightness_pct: "65"
       on_long_press:
         then:
-            - lvgl.widget.show: page_light_extc
             - lvgl.page.show: 
                 id: page_light_extc
                 animation: OUT_RIGHT
@@ -118,7 +116,6 @@ widgets:
               brightness_pct: "65"
       on_long_press:
         then:
-            - lvgl.widget.show: page_light_port
             - lvgl.page.show: 
                 id: page_light_port
                 animation: OUT_RIGHT
@@ -159,7 +156,6 @@ widgets:
               brightness_pct: "65"
       on_long_press:
         then:
-            - lvgl.widget.show: page_light_lamp
             - lvgl.page.show: 
                 id: page_light_lamp
                 animation: OUT_RIGHT

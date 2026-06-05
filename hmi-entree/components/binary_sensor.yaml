@@ -30,14 +30,6 @@ binary_sensor:
                   tile_id: id_lv_tile_page0
                   animated: true
               - lvgl.page.show: page_home
-              - lvgl.widget.hide: page_light_all_ext
-              - lvgl.widget.hide: page_light_extc
-              - lvgl.widget.hide: page_light_port
-              - lvgl.widget.hide: page_light_lamp
-              - lvgl.widget.hide: page_players_volume
-              - lvgl.widget.hide: page_watering
-              - lvgl.widget.hide: page_settings
-              - lvgl.widget.hide: page_river_graph
               - lvgl.tabview.select:
                   id: id_lv_tab_watering
                   index: 0

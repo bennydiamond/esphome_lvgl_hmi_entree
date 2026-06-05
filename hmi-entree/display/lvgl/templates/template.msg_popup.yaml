@@ -1,0 +1,127 @@
+# lvgl/templates/template.msg_popup.yaml
+- obj:
+    id: ${widget_id}
+    width: 100%
+    height: 100%
+    align: CENTER
+    bg_color: ${dimmer_bg_color}
+    bg_opa: 50%
+    clickable: true
+    hidden: true 
+    pad_all: 0
+    border_width: 0
+
+    widgets:
+      - obj:
+          id: ${widget_id}_window
+          width: 360  
+          height: 280 
+          align: CENTER
+          bg_color: ${window_bg_color}
+          radius: 12
+          clip_corner: true
+          border_width: 1
+          border_color: ${border_color}
+          pad_all: 0  
+          layout:
+            type: flex
+            flex_flow: column
+
+          widgets:
+            # --- SHARP, CLEAN TITLE BAR (44px) ---
+            - obj:
+                width: 100%
+                height: 44 
+                bg_color: ${title_bar_bg_color}
+                border_width: 0
+                radius: 0 
+                pad_all: 0 
+
+                widgets:
+                  - label:
+                      text: "${title_text}"
+                      text_font: ${title_font}
+                      text_color: ${title_text_color}
+                      align: LEFT_MID   
+                      x: 15
+                  - button:
+                      width: 28
+                      height: 28
+                      radius: 4
+                      bg_color: ${close_btn_bg_color}
+                      border_width: 0
+                      pad_all: 0
+                      align: RIGHT_MID  
+                      x: -15
+                      # --- ADDED SHADOW FOR THE X BUTTON ---
+                      shadow_width: 4
+                      shadow_offset_y: 1
+                      shadow_color: color_black
+                      shadow_opa: 40%
+                      widgets:
+                        - label:
+                            text: "X"
+                            align: CENTER
+                            text_color: ${close_btn_text_color}
+                      on_click:
+                        then:
+                          - lvgl.widget.hide: ${widget_id}
+
+            # --- BODY TEXT AREA ---
+            - obj:
+                width: 100%
+                flex_grow: 1
+                pad_left: 18
+                pad_right: 18
+                pad_top: 20
+                pad_bottom: 10
+                border_width: 0
+                scrollable: true
+                bg_opa: 0%
+                widgets:
+                  - label:
+                      id: ${body_text_id}
+                      text: "${body_text}"
+                      text_font: ${body_font}
+                      text_color: ${body_text_color}
+                      width: 100%
+                      long_mode: wrap
+
+            # --- UNIFIED CENTERED FOOTER AREA (54px) ---
+            - obj:
+                width: 100%
+                height: 54
+                bg_opa: 0% 
+                border_width: 0
+                pad_top: 0
+                pad_bottom: 15 
+                pad_left: 15
+                pad_right: 15
+                layout:
+                  type: flex
+                  flex_flow: row
+                  flex_align_main: center     
+                  flex_align_cross: center    
+                widgets:
+                  - button:
+                      height: 34
+                      width: size_content
+                      pad_left: 30 
+                      pad_right: 30
+                      bg_color: ${action_btn_bg_color}
+                      border_width: 0
+                      radius: 6
+                      # --- ADDED ELEVATED SHADOW FOR OK BUTTON ---
+                      shadow_width: 8       # Thickness of the shadow bloom
+                      shadow_offset_y: 2       # Directional drop down the Y-axis
+                      shadow_color: color_dark_gray # Smooth blend using palette
+                      shadow_opa: 60%       # Visibility density
+                      widgets:
+                        - label:
+                            text: "${button1_text}"
+                            text_font: ${button1_font}
+                            text_color: ${action_btn_text_color}
+                            align: CENTER
+                      on_click:
+                        then:
+                          - ${button1_action}: ${button1_target}

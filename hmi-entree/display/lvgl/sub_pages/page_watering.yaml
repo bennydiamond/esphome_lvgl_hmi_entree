@@ -510,4 +510,3 @@ lvgl:
                     animation: OUT_RIGHT
                     time: 300ms
                 - delay: 300ms
-                - lvgl.widget.hide: page_watering

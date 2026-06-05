@@ -5,7 +5,8 @@ obj:
   height: 43
   width: 800
   radius: 0
-  bg_opa: TRANSP
+  bg_opa: 30%
+  bg_color: color_dark_gray
   border_width: 0
   pad_all: 0
   widgets:
@@ -194,10 +195,10 @@ obj:
                       text_font: mdi_icons_32
                 on_short_click:
                   then:
-                    - lvgl.widget.show: id_lv_mbox_notify_hvac
+                    - lvgl.widget.show: id_lv_popupbox_hvac
                 on_long_press:
                   then:
-                    - lvgl.widget.show: id_lv_mbox_notify_hvac
+                    - lvgl.widget.show: id_lv_popupbox_hvac
             # Miner status
             - button:
                 id: id_lv_but_miner_status
@@ -271,7 +272,6 @@ obj:
                         text_font: mdi_icons_32
                 on_short_click:
                     then:
-                        - lvgl.widget.show: page_watering
                         - lvgl.tabview.select:
                             id: id_lv_tab_watering
                             index : 0
@@ -281,7 +281,6 @@ obj:
                             time: 300ms
                 on_long_press:
                     then:
-                        - lvgl.widget.show: page_watering
                         - lvgl.tabview.select:
                             id: id_lv_tab_watering
                             index : 0
@@ -310,7 +309,6 @@ obj:
                         text_font: mdi_icons_32
                 on_short_click:
                     then:
-                        - lvgl.widget.show: page_watering
                         - lvgl.tabview.select:
                             id: id_lv_tab_watering
                             index : 0
@@ -320,7 +318,6 @@ obj:
                             time: 300ms
                 on_long_press:
                     then:
-                        - lvgl.widget.show: page_watering
                         - lvgl.tabview.select:
                             id: id_lv_tab_watering
                             index : 0
@@ -371,7 +368,6 @@ obj:
                         text_font: mdi_icons_32
                 on_short_click:
                     then:
-                        - lvgl.widget.show: page_watering
                         - lvgl.tabview.select:
                             id: id_lv_tab_watering
                             index : 1
@@ -381,7 +377,6 @@ obj:
                             time: 300ms
                 on_long_press:
                     then:
-                        - lvgl.widget.show: page_watering
                         - lvgl.tabview.select:
                             id: id_lv_tab_watering
                             index : 1
@@ -457,7 +452,7 @@ obj:
                     text_font: mdi_icons_32
                 on_short_click:
                     then:
-                        - lvgl.widget.show: id_lv_mbox_catstuff
+                        - lvgl.widget.show: id_lv_popupbox_catstuff
                 on_long_press:
                     then:
-                        - lvgl.widget.show: id_lv_mbox_catstuff
+                        - lvgl.widget.show: id_lv_popupbox_catstuff

@@ -23,14 +23,12 @@ widgets:
       <<: !include "river_widgets.yaml"
       on_short_click:
         then:
-          - lvgl.widget.show: page_river_graph
           - lvgl.page.show: 
               id: page_river_graph
               animation: OUT_RIGHT
               time: 300ms
       on_long_press:
         then:
-          - lvgl.widget.show: page_river_graph
           - lvgl.page.show: 
               id: page_river_graph
               animation: OUT_RIGHT
