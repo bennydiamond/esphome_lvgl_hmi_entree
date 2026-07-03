@@ -4,7 +4,7 @@
     width: 100%
     height: 100%
     align: CENTER
-    bg_color: ${dimmer_bg_color}
+    bg_color: color_black
     bg_opa: 50%
     clickable: true
     hidden: true 
@@ -17,22 +17,22 @@
           width: 360  
           height: 280 
           align: CENTER
-          bg_color: ${window_bg_color}
+          bg_color: color_white
           radius: 12
           clip_corner: true
           border_width: 1
-          border_color: ${border_color}
+          border_color: color_gray
           pad_all: 0  
           layout:
             type: flex
             flex_flow: column
 
           widgets:
-            # --- SHARP, CLEAN TITLE BAR (44px) ---
+            # --- SHARP BOLD TITLE BAR (44px) ---
             - obj:
                 width: 100%
                 height: 44 
-                bg_color: ${title_bar_bg_color}
+                bg_color: color_dark_gray
                 border_width: 0
                 radius: 0 
                 pad_all: 0 
@@ -41,19 +41,18 @@
                   - label:
                       text: "${title_text}"
                       text_font: ${title_font}
-                      text_color: ${title_text_color}
+                      text_color: color_white
                       align: LEFT_MID   
                       x: 15
                   - button:
                       width: 28
                       height: 28
                       radius: 4
-                      bg_color: ${close_btn_bg_color}
+                      bg_color: color_gray
                       border_width: 0
                       pad_all: 0
                       align: RIGHT_MID  
                       x: -15
-                      # --- ADDED SHADOW FOR THE X BUTTON ---
                       shadow_width: 4
                       shadow_offset_y: 1
                       shadow_color: color_black
@@ -62,7 +61,7 @@
                         - label:
                             text: "X"
                             align: CENTER
-                            text_color: ${close_btn_text_color}
+                            text_color: color_white
                       on_click:
                         then:
                           - lvgl.widget.hide: ${widget_id}
@@ -83,11 +82,11 @@
                       id: ${body_text_id}
                       text: "${body_text}"
                       text_font: ${body_font}
-                      text_color: ${body_text_color}
+                      text_color: color_black
                       width: 100%
                       long_mode: wrap
 
-            # --- UNIFIED CENTERED FOOTER AREA (54px) ---
+            # --- UNIFIED FOOTER AREA ---
             - obj:
                 width: 100%
                 height: 54
@@ -102,26 +101,51 @@
                   flex_flow: row
                   flex_align_main: center     
                   flex_align_cross: center    
+                  pad_column: 12
                 widgets:
+                  # Button 1 (Action Button or Main OK)
                   - button:
                       height: 34
                       width: size_content
-                      pad_left: 30 
-                      pad_right: 30
-                      bg_color: ${action_btn_bg_color}
+                      pad_left: 24 
+                      pad_right: 24
+                      bg_color: color_blue
                       border_width: 0
                       radius: 6
-                      # --- ADDED ELEVATED SHADOW FOR OK BUTTON ---
-                      shadow_width: 8       # Thickness of the shadow bloom
-                      shadow_offset_y: 2       # Directional drop down the Y-axis
-                      shadow_color: color_dark_gray # Smooth blend using palette
-                      shadow_opa: 60%       # Visibility density
+                      shadow_width: 8       
+                      shadow_offset_y: 2       
+                      shadow_color: color_dark_gray 
+                      shadow_opa: 60%       
                       widgets:
                         - label:
                             text: "${button1_text}"
                             text_font: ${button1_font}
-                            text_color: ${action_btn_text_color}
+                            text_color: color_black
                             align: CENTER
                       on_click:
                         then:
                           - ${button1_action}: ${button1_target}
+
+                  # Button 2 (Secondary Action - e.g., Close/Cancel)
+                  - button:
+                      height: 34
+                      width: size_content
+                      pad_left: 24 
+                      pad_right: 24
+                      bg_color: color_gray
+                      border_width: 0
+                      radius: 6
+                      shadow_width: 8       
+                      shadow_offset_y: 2       
+                      shadow_color: color_dark_gray 
+                      shadow_opa: 60%       
+                      hidden: ${button2_hidden}
+                      widgets:
+                        - label:
+                            text: "${button2_text}"
+                            text_font: ${button2_font}
+                            text_color: color_white
+                            align: CENTER
+                      on_click:
+                        then:
+                          - ${button2_action}: ${button2_target}
