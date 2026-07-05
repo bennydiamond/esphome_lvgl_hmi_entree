@@ -11,35 +11,36 @@ esp32:
       CONFIG_FREERTOS_HZ: "1000"
       CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240: y
       CONFIG_ESPTOOLPY_FLASHMODE_QIO: y
-      CONFIG_ESPTOOLPY_FLASHFREQ_80M: y
-#      CONFIG_ESPTOOLPY_FLASHFREQ_120M: y
+      CONFIG_ESPTOOLPY_FLASHFREQ_120M: y
       CONFIG_SPIRAM_MODE_OCT: y
       CONFIG_IDF_EXPERIMENTAL_FEATURES: y
-      CONFIG_SPIRAM_SPEED_80M: y
-#      CONFIG_SPIRAM_SPEED_120M: y
+      CONFIG_SPIRAM_SPEED_120M: y
       CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
       CONFIG_SPIRAM_RODATA: y
       CONFIG_ESP32S3_DATA_CACHE_LINE_64B: y
-      #CONFIG_COMPILER_OPTIMIZATION_SIZE: y
       CONFIG_COMPILER_OPTIMIZATION_PERF: y
-      #CONFIG_COMPILER_OPTIMIZATION_DEBUG: y
+#      CONFIG_LV_ATTRIBUTE_FAST_MEM_USE_IRAM: y # breaks compile
+      CONFIG_LV_ATTRIBUTE_FAST_MEM: y
+      CONFIG_LV_MEMCPY_MEMSET_STD: y
+      CONFIG_LV_DISP_DEF_REFR_PERIOD: "30"
     advanced:
-      loop_task_stack_size: 9126 #pr#10564
-#      enable_idf_experimental_features: True
+      loop_task_stack_size: 8704 #pr#10564
+      enable_idf_experimental_features: True
 
 esphome:
   name: ${dname}
-  min_version: 2025.11.0
+  min_version: 2026.6.4
   platformio_options:
     build_unflags: -Werror=all
-    board_build.flash_mode: dio
+    board_build.flash_mode: qio
     build_flags: 
       - -DBOARD_HAS_PSRAM
+      - -DUSE_LOOP_PRIORITY
     board_build.esp-idf.memory_type: qio_opi
     board_upload.maximum_ram_size: 524288
     board_build.flash_size: 8MB
     # No second OTA partition. Must be flashed through serial (hint: ser2net)
-#    board_build.partitions: "../../../hmi-entree/custom_partition_no_ota.csv"
+#    board_build.partitions: "../../../hmi-garage/custom_partition_no_ota.csv"
   on_boot:
     - priority: 500 # a bit after sensor init
       then:
@@ -54,7 +55,7 @@ esphome:
         - script.execute: id_script_backlight_timeout
 
 logger:
-  level: DEBUG
+  level: INFO
   hardware_uart: UART0
   #baud_rate: 0
   logs: 
@@ -135,6 +136,7 @@ wifi:
   use_address: 192.168.1.137
   power_save_mode: LIGHT # LIGHT is default for ESP32
   passive_scan: True
+  use_psram: False
   manual_ip:
     static_ip: 192.168.1.137
     gateway: 192.168.0.3
@@ -175,9 +177,7 @@ time:
 # Video memory
 psram:
   mode: octal
-  speed: 80MHz
-#  speed: 120MHz
-#  enable_ecc: True
+  speed: 120MHz
 
 ch422g:
   - id: io_ex
@@ -393,7 +393,7 @@ display:
     update_interval: never
     auto_clear_enabled: false
     color_order: RGB
-    pclk_frequency: 16MHz
+    pclk_frequency: 22MHz
     dimensions:
       width: 800
       height: 480
