@@ -1,5 +1,6 @@
-online_image:
-  - url: ${music_cover_png_url} # Image is expected to be 200x200 pixels
+image:
+  - platform: online_image
+    url: ${music_cover_png_url} # Image is expected to be 200x200 pixels
     id: id_online_img_now_playing
     format: png
     type: RGB565
