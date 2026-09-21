@@ -1,9 +1,5 @@
-# Based of https://github.com/alaltitov/display/tree/main
-
-# ESP32-S3-Touch-LCD-7
-substitutions: !include hmi-entree/substitutions.yaml
-
 packages:
+  substitutions: !include hmi-entree/substitutions.yaml
   hardware: !include hmi-entree/sdl.yaml
   button: !include hmi-entree/components/button.yaml
   globals: !include hmi-entree/components/globals.yaml
