@@ -9,28 +9,16 @@ layout:
 widgets:
   - button:
       id: id_lv_but_all_ext_light
-      bg_color: color_black
-      shadow_color: color_gray
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
+      styles: style_home_grid_button
       grid_cell_column_pos: 0
       grid_cell_row_pos: 0
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_all_ext_light
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
-            text_color: color_gray
+            styles: style_home_grid_icon
             text: "${home_lightbulb}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             text: "     Tout\nl'extérieur"
       on_short_click:
         - homeassistant.action:
@@ -45,28 +33,16 @@ widgets:
                 time: 300ms
   - button:
       id: id_lv_but_extc
-      bg_color: color_black
-      shadow_color: color_gray
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
+      styles: style_home_grid_button
       grid_cell_column_pos: 1
       grid_cell_row_pos: 0
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_extc
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
-            text_color: color_gray
+            styles: style_home_grid_icon
             text: "${light_recessed}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             text: "Corniche\n   Avant"
       on_short_click:
         - homeassistant.action:
@@ -84,28 +60,16 @@ widgets:
 
   - button:
       id: id_lv_but_port
-      bg_color: color_black
-      shadow_color: color_gray
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
+      styles: style_home_grid_button
       grid_cell_column_pos: 0
       grid_cell_row_pos: 1
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_port
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
-            text_color: color_gray
+            styles: style_home_grid_icon
             text: "${light_recessed}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             text: "Portique"
       on_short_click:
         - homeassistant.action:
@@ -123,28 +87,16 @@ widgets:
 
   - button:
       id: id_lv_but_lamp
-      bg_color: color_black
-      shadow_color: color_gray
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
+      styles: style_home_grid_button
       grid_cell_column_pos: 1
       grid_cell_row_pos: 1
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_lamp
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
-            text_color: color_gray
+            styles: style_home_grid_icon
             text: "${lamp_post}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             long_mode: WRAP
             text: "Lampadaire\n     Avant"
       on_short_click:
@@ -162,28 +114,19 @@ widgets:
                 time: 300ms
   - button:
       id: id_lv_but_lock_side
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_red
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: COVER
       grid_cell_column_pos: 0
       grid_cell_row_pos: 2
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_ico_lock_side
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_red
             text: "${unlocked}"
         - label:
             id: id_lv_lab_lock_side
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
+            styles: style_home_grid_label
             text_color: color_red
             text: "Porte Coté"
 #      on_short_click:
@@ -210,28 +153,19 @@ widgets:
                   message: button_lock_side_door_toggle
   - button:
       id: id_lv_but_garage_door
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_red
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: COVER
       grid_cell_column_pos: 1
       grid_cell_row_pos: 2
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_ico_garage_door
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_red
             text: "${garage_door_open}"
         - label:
             id: id_lv_lab_garage_door
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
+            styles: style_home_grid_label
             text_color: color_red
             text: "Garage"
 #      on_short_click:

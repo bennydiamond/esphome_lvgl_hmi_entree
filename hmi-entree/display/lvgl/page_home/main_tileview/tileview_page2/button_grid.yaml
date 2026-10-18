@@ -8,26 +8,18 @@ layout:
   grid_rows: [FR(1), FR(1), FR(1)]
 widgets:
   - button:
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_mint
-      shadow_spread: 2
       shadow_width: 25
-      shadow_opa: 100%
       grid_cell_column_pos: 0
       grid_cell_row_pos: 0
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_mint
             text: "${music_note}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
+            styles: style_home_grid_label
             text_color: color_mint
             text: "Cuisine"
       on_short_click:
@@ -45,28 +37,18 @@ widgets:
 
   - button:
       id: id_lv_but_curt_sal
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_warmest_white
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
       grid_cell_column_pos: 1
       grid_cell_row_pos: 0
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_curt_sal
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_warmest_white
             text: "${curtain_opened}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             text: "Salon"
       on_short_click:
         - homeassistant.event:
@@ -76,28 +58,19 @@ widgets:
 
   - button:
       id: id_lv_but_curt_dining
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_warmest_white
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
       grid_cell_column_pos: 1
       grid_cell_row_pos: 1
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_curt_dining
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_warmest_white
             text: "${curtain_opened}"
         - label:
-            align: LEFT_MID
+            styles: style_home_grid_label
             x: 50
-            text_font: lato_24
-            text_color: color_white
             text: "Salle à Manger"
       on_short_click:
         - homeassistant.event:
@@ -107,28 +80,18 @@ widgets:
 
   - button:
       id: id_lv_but_players_volums
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_white
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
       grid_cell_column_pos: 0
       grid_cell_row_pos: 1
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_vol_but_ico
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_white
             text: "${speaker_wireless}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             text: "Volumes"
       on_short_click:
         then:
@@ -145,28 +108,18 @@ widgets:
 
   - button:
       id: id_lv_but_water
-      bg_color: color_black
+      styles: style_home_grid_button
       shadow_color: color_blue
-      shadow_spread: 2
-      shadow_width: 20
-      shadow_opa: 100%
       grid_cell_column_pos: 0
       grid_cell_row_pos: 2
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
             id: id_lv_lab_water_but_ico
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
+            styles: style_home_grid_icon
             text_color: color_blue
             text: "${sprinkler}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
-            text_color: color_white
+            styles: style_home_grid_label
             text: "Arrosage"
       on_short_click:
         then:
@@ -182,26 +135,16 @@ widgets:
                 time: 300ms
 
   - button:
-      bg_color: color_black
-      shadow_color: color_gray
-      shadow_spread: 2
+      styles: style_home_grid_button
       shadow_width: 25
-      shadow_opa: 100%
       grid_cell_column_pos: 1
       grid_cell_row_pos: 2
-      grid_cell_x_align: STRETCH
-      grid_cell_y_align: STRETCH
       widgets:
         - label:
-            align: LEFT_MID
-            x: 0
-            text_font: mdi_icons_48
-            text_color: color_gray
+            styles: style_home_grid_icon
             text: "${settings}"
         - label:
-            align: LEFT_MID
-            x: 60
-            text_font: lato_24
+            styles: style_home_grid_label
             text_color: color_gray
             text: "Settings"
       on_short_click:
