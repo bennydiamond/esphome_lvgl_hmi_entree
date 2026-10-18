@@ -85,6 +85,7 @@ lvgl:
 #          id: id_bin_bl_state
 #          state: False
   gradients: !include lvgl/gradients.yaml  
+  style_definitions: !include lvgl/styles.yaml  
             
   top_layer: # Top Screen Status bar. Visible on all pages.
     widgets:
